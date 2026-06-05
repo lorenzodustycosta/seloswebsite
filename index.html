@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selo's Design</title>
+
+  <!-- Font Google (richiede connessione internet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Stili -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- data-theme: cambia qui per usare un tema diverso ("caldo" | "lineare" | "notturno") -->
+<body data-theme="lineare">
+
+  <!-- Contenuto dell'app (generato da app.js) -->
+  <div id="root"></div>
+
+  <!-- Overlay lightbox (sempre nel DOM, visibile solo quando aperto) -->
+  <div id="lightbox" style="display:none"></div>
+
+  <!-- ── File dati — modifica qui per aggiungere contenuti ── -->
+  <script src="data/it.js"></script>
+  <script src="data/en.js"></script>
+  <script src="data/tr.js"></script>
+  <script src="data/projects.js"></script>
+
+  <!-- Logica dell'app -->
+  <script src="app.js"></script>
+
+</body>
+</html>
