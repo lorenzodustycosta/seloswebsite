@@ -74,14 +74,16 @@ window.LANG_IT = {
         name:  "Selin Hilal",
         role:  "Interior Designer · Fondatrice",
         // I paragrafi sono separati da una riga vuota (\n\n)
-        bio:   "Sono Selin, fondatrice di Selo's Design. Le mie origini sono di Antalya, sul Mediterraneo: è lì, tra il mare e il negozio di arredamenti di mio padre, che è nata la mia passione per il design.\n\nL'ho coltivata ad Ankara, con la laurea magistrale in Architettura d'Interni alla Bilkent University, e poi a Istanbul, dove per alcuni anni ho progettato interni per hotel di lusso, ville e uffici. Nel 2016 sono arrivata in Italia — la mia seconda casa — e al Politecnico di Milano ho conseguito la laurea magistrale in Architettura.\n\nDa allora lavoro come libera professionista tra l'Italia e l'Europa, su progetti residenziali e commerciali. La mia visione unisce l'energia vibrante delle radici turche all'eleganza del gusto italiano: metto esperienza e creatività al servizio dei clienti per rendere ogni spazio unico.",
-        color: "oklch(84% 0.04 85)"
+        bio:   "Le mie origini sono di Antalya, sul Mediterraneo: è lì, tra il mare e il negozio di arredamenti di mio padre, che è nata la mia passione per il design.\n\nL'ho coltivata ad Ankara, con la laurea magistrale in Architettura d'Interni alla Bilkent University, e poi a Istanbul, dove per alcuni anni ho progettato interni per hotel di lusso, ville e uffici. Nel 2016 sono arrivata in Italia — la mia seconda casa — e al Politecnico di Milano ho conseguito la laurea magistrale in Architettura.\n\nDa allora lavoro come libera professionista tra l'Italia e l'Europa, su progetti residenziali e commerciali. La mia visione unisce l'energia vibrante delle radici turche all'eleganza del gusto italiano: metto esperienza e creatività al servizio dei clienti per rendere ogni spazio unico.",
+        color: "oklch(84% 0.04 85)",
+        photo: "assets/selin.png"
       },
       {
         name:  "Lorenzo Costa",
         role:  "Project Manager · Co-fondatore",
         bio:   "Mi occupo del lato operativo dello studio. Dal primo contatto con il cliente alla consegna del progetto, gestisco preventivi, rapporti con fornitori e artigiani, sopralluoghi in cantiere e il controllo di tempistiche e budget.\n\nCon un approccio analitico e organizzato, mi assicuro che ogni progetto proceda con chiarezza e puntualità, lasciando a Selin la libertà di concentrarsi sulla parte creativa. Per il cliente significa avere sempre un punto di riferimento che tiene tutto sotto controllo.",
-        color: "oklch(84% 0.03 220)"
+        color: "oklch(84% 0.03 220)",
+        photo: "assets/lorenzo.png"
       }
     ]
   },
@@ -103,14 +105,13 @@ window.LANG_IT = {
   },
 
   contact: {
-    label:        "Contatti",
-    title:        "Parliamo del\ntuo progetto",
-    phoneLabel:   "Telefono",
-    emailLabel:   "Email",
-    addressLabel: "Indirizzo",
-    hoursLabel:   "Orari",
-    hoursValue:   "Lunedì – Venerdì: 9:00 – 19:00\nSabato: su appuntamento",
-    socialLabel:  "Social",
+    label:          "Contatti",
+    title:          "Parliamo del\ntuo progetto",
+    areaText:       "Operiamo a Magenta, Milano e in tutta la zona — veniamo noi da te per il sopralluogo. Seguiamo progetti anche all'estero.",
+    emailLabel:     "Email",
+    phoneLabel:     "Telefono",
+    whatsappLabel:  "Scrivici su WhatsApp",
+    socialLabel:    "Seguici",
     form: {
       name:               "Nome",
       surname:            "Cognome",
@@ -118,18 +119,53 @@ window.LANG_IT = {
       phone:              "Telefono",
       messageLabel:       "Messaggio",
       messagePlaceholder: "Raccontami del tuo progetto…",
-      send:               "Invia Messaggio"
+      send:               "Invia Messaggio",
+      sending:            "Invio in corso…",
+      success:            "Messaggio inviato! Ti risponderemo presto.",
+      error:              "Qualcosa è andato storto. Riprova o scrivici direttamente."
     }
   },
 
   footer: {
     tagline:     "Studio di Interior Design · Magenta · Milano.",
-    studioLabel: "Studio",
+    studioLabel: "Contatti",
     hoursLabel:  "Orari",
     hoursLine1:  "Lun – Ven: 9:00 – 19:00",
     hoursLine2:  "Sabato: su appuntamento",
     privacy:     "Privacy Policy",
-    rights:      "© 2025 Selos Design. Tutti i diritti riservati."
+    rights:      `© ${new Date().getFullYear()} Selo's Design. Tutti i diritti riservati.`
+  },
+
+  privacy: {
+    title: "Privacy & Cookie Policy",
+    body: `## 1. Titolare del Trattamento
+Il Titolare del trattamento dei dati personali raccolti tramite questo sito è **Ummusan Selin Hilal**, P.IVA **11190110962**, con sede in **Via Silvio Pellico 40, 20013, Magenta**.
+Email di contatto: **selosdesign@gmail.com**
+
+## 2. Quali dati raccogliamo
+Questo sito raccoglie esclusivamente i dati che ci fornisci volontariamente tramite il modulo di contatto: nome e cognome, indirizzo email, numero di telefono (se fornito) e il contenuto del messaggio.
+Non raccogliamo dati di navigazione a fini statistici o di profilazione, non utilizziamo strumenti di analisi del traffico (es. Google Analytics) e non gestiamo newsletter o comunicazioni di marketing.
+
+## 3. Finalità e base giuridica
+Utilizziamo i dati del modulo esclusivamente per rispondere alla tua richiesta e gestire un eventuale contatto preliminare relativo ai nostri servizi. Base giuridica: riscontro a una tua richiesta e misure precontrattuali (art. 6.1.b GDPR) e nostro legittimo interesse a risponderti (art. 6.1.f GDPR). Il conferimento è facoltativo, ma senza i dati non possiamo risponderti.
+
+## 4. Come e dove conserviamo i dati
+I messaggi inviati tramite il modulo vengono recapitati e conservati nella nostra casella di posta (servizio Google/Gmail), per il tempo necessario a gestire la richiesta e gli eventuali contatti successivi, salvo obblighi di legge.
+
+## 5. A chi comunichiamo i dati
+Non vendiamo né cediamo i tuoi dati a terzi. Possono trattarli, per nostro conto, i fornitori tecnici che utilizziamo: **Cloudflare** (hosting e distribuzione del sito), **Google/Gmail** (casella email), **Formspree** (invio tecnico del modulo). Alcuni fornitori possono trattare dati fuori dall'UE, con le garanzie previste dal GDPR. I dati possono essere comunicati alle autorità se obbligatorio per legge.
+
+## 6. I tuoi diritti
+Hai diritto di accedere ai tuoi dati, chiederne rettifica o cancellazione, limitarne od opporti al trattamento, richiederne la portabilità e revocare l'eventuale consenso. Scrivi a **selosdesign@gmail.com**. Puoi inoltre proporre reclamo al **Garante per la protezione dei dati personali** (www.garanteprivacy.it).
+
+## 7. Cookie
+I cookie sono piccoli file di testo memorizzati sul tuo dispositivo. Questo sito utilizza **esclusivamente cookie tecnici** necessari al funzionamento, che non richiedono consenso. **Non** utilizziamo cookie di profilazione, analisi o marketing. I caratteri tipografici sono ospitati sul nostro server e non comportano trasmissione di dati a terzi. Il sito non incorpora mappe o contenuti di terze parti che installano cookie.
+
+## 8. Modifiche
+Potremo aggiornare questa policy nel tempo. Ultimo aggiornamento: **14/06/2026**.
+
+## 9. Contatti
+Per domande su questa policy: **selosdesign@gmail.com**`
   }
 
 };

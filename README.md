@@ -82,14 +82,17 @@ hero: {
 ├── index.html        ← punto di ingresso, non modificare
 ├── style.css         ← stili, non modificare
 ├── app.js            ← logica, non modificare
+├── sitemap.xml       ← per Google Search Console
+├── robots.txt        ← istruzioni per i crawler
 ├── data/
 │   ├── it.js         ← testi italiani dell'interfaccia
 │   ├── en.js         ← testi inglesi dell'interfaccia
-│   ├── tr.js         ← testi turchi dell'interfaccia
+│   ├── tr.js         ← testi turchi dell'interfaccia (+ chiave privacy.body)
 │   └── projects.js   ← tutti i progetti con testi multilingua
 └── assets/
     ├── logo.png
     ├── hero.png
+    ├── fonts/        ← font self-hosted (woff2, no Google CDN)
     └── projects/
         ├── trilocale/
         ├── bilocale/
@@ -106,6 +109,24 @@ Apri `index.html` e modifica l'attributo `data-theme` sul tag `<body>`:
 - `data-theme="lineare"` — bianco e verde (default)
 - `data-theme="caldo"` — toni sabbia e terracotta
 - `data-theme="notturno"` — dark mode
+
+---
+
+## Anteprima locale
+
+Il sito funziona aprendo `index.html` direttamente nel browser, ma alcuni browser bloccano i font self-hosted via `file://`. Per vedere i font corretti usa un server locale:
+
+**Opzione 1 — Python (sempre disponibile su Mac/Linux):**
+```
+python3 -m http.server 8080
+```
+Poi apri: http://localhost:8080
+
+**Opzione 2 — Node.js (se installato):**
+```
+npx serve .
+```
+Poi apri l'URL indicato nel terminale.
 
 ---
 

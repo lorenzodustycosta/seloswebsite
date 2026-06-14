@@ -5,15 +5,15 @@
 // ── STATO DELL'APPLICAZIONE ────────────────────────────────────────────────
 
 const state = {
-  lang:      'it',      // lingua attiva: 'it' | 'en' | 'tr'
-  page:      'home',    // pagina attiva: 'home' | 'team' | 'projects' | 'project' | 'contact'
+  lang: 'it',      // lingua attiva: 'it' | 'en' | 'tr'
+  page: 'home',    // pagina attiva: 'home' | 'team' | 'projects' | 'project' | 'contact'
   projectId: null       // id del progetto aperto (solo quando page === 'project')
 };
 
 // Stato del lightbox (separato per evitare re-render della pagina)
 const lbState = {
   images: [],  // array di { src, caption }
-  index:  0
+  index: 0
 };
 
 // Contatore per generare id SVG univoci ad ogni render
@@ -38,6 +38,28 @@ function t(obj) {
 // Restituisce il pacchetto linguistico attivo
 function lang() {
   return window['LANG_' + state.lang.toUpperCase()];
+}
+
+// Aggiorna <title> e <meta description> in base alla pagina corrente
+function updateMeta() {
+  const metas = {
+    home:     { title: "Selo's Design — Studio di Interior Design | Magenta, Milano",    desc: "Studio di interior design a Magenta, Milano. Progettiamo spazi su misura che riflettono chi li vive: progettazione, rendering e consulenza d'arredo." },
+    team:     { title: "Il Team — Selo's Design",                                        desc: "Selin Hilal e Lorenzo Costa: il team di interior design dietro ogni progetto Selo's Design, tra Magenta e Milano." },
+    projects: { title: "Progetti — Selo's Design",                                       desc: "Il portfolio di Selo's Design: interior design residenziale e commerciale tra Italia ed Europa." },
+    contact:  { title: "Contatti — Selo's Design",                                       desc: "Contatta Selo's Design per email, WhatsApp o tramite il modulo. Operiamo a Magenta, Milano e zona." },
+    privacy:  { title: "Privacy & Cookie Policy — Selo's Design",                        desc: "Informativa sulla privacy e sui cookie di Selo's Design." }
+  };
+  let m;
+  if (state.page === 'project' && state.projectId) {
+    const proj = (window.PROJECTS || []).find(p => p.id === state.projectId);
+    const name = proj ? (proj.title.it || proj.title.en || '') : 'Progetto';
+    m = { title: `${name} — Selo's Design`, desc: "Scopri questo progetto di interior design di Selo's Design." };
+  } else {
+    m = metas[state.page] || metas.home;
+  }
+  document.title = m.title;
+  const el = document.querySelector('meta[name="description"]');
+  if (el) el.setAttribute('content', m.desc);
 }
 
 // Cerca uno spec per chiave inglese (per visualizzare location/area nella lista)
@@ -66,7 +88,6 @@ function portraitSvg(color) {
       </pattern>
     </defs>
     <rect width="600" height="750" fill="url(#${id})"/>
-    <text x="300" y="368" text-anchor="middle" font-family="monospace" font-size="13" fill="oklch(35% 0.03 80 / 0.55)">[portrait photo]</text>
   </svg>`;
 }
 
@@ -91,8 +112,6 @@ function renderNav() {
         <button class="lang-btn${state.lang === 'it' ? ' active' : ''}" data-lang="it">IT</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn${state.lang === 'en' ? ' active' : ''}" data-lang="en">EN</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn${state.lang === 'tr' ? ' active' : ''}" data-lang="tr">TR</button>
       </div>
     </nav>`;
 }
@@ -108,10 +127,9 @@ function renderFooter() {
       </div>
       <div class="footer-col">
         <div class="footer-heading">${f.studioLabel}</div>
-        <div class="footer-line">Via Silvio Pellico 40</div>
-        <div class="footer-line">20013 Magenta, Milano</div>
-        <div class="footer-line" style="margin-top:8px">+39 366 23 12 315</div>
-        <div class="footer-line">selosdesign@gmail.com</div>
+        <a href="mailto:selosdesign@gmail.com" class="footer-link">selosdesign@gmail.com</a>
+        <a href="tel:+393662312315" class="footer-link" style="margin-top:4px">+39 366 23 12 315</a>
+        <a href="https://wa.me/393662312315" target="_blank" rel="noreferrer" class="footer-link" style="margin-top:4px">WhatsApp</a>
       </div>
       <div class="footer-col">
         <div class="footer-heading">${f.hoursLabel}</div>
@@ -126,7 +144,7 @@ function renderFooter() {
         <a class="social-link" href="https://www.instagram.com/selos_design/" target="_blank" rel="noreferrer">Instagram</a>
         <a class="social-link" href="https://www.facebook.com/selosdesign" target="_blank" rel="noreferrer">Facebook</a>
         <a class="social-link" href="https://www.linkedin.com/in/selin-hilal" target="_blank" rel="noreferrer">LinkedIn</a>
-        <span class="social-link">${f.privacy}</span>
+        <span class="social-link" data-nav="privacy" style="cursor:pointer">${f.privacy}</span>
       </div>
     </div>`;
 }
@@ -145,8 +163,8 @@ function renderCtaBlock() {
 
 function renderHome() {
   const L = lang();
-  const h  = L.hero;
-  const a  = L.about;
+  const h = L.hero;
+  const a = L.about;
   const pr = L.process;
   const sv = L.services;
   const va = L.values;
@@ -183,7 +201,7 @@ function renderHome() {
             <p>${a.p1}</p>
             <button class="btn-ghost" style="margin-top:8px" data-nav="team">${a.link} →</button>
           </div>
-          <div class="about-img">${portraitSvg('oklch(86% 0.04 85)')}</div>
+          <div class="about-img"><img src="assets/moodboard.png" alt="Moodboard Selos Design" style="width:100%;height:100%;object-fit:cover;display:block"></div>
         </div>
       </section>
 
@@ -248,7 +266,9 @@ function renderTeam() {
       <div class="team-members">
         ${c.members.map(m => `
           <div class="team-member">
-            <div class="team-circle">${portraitSvg(m.color)}</div>
+            <div class="team-circle">${m.photo
+              ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;display:block">`
+              : portraitSvg(m.color)}</div>
             <div class="team-name">${m.name}</div>
             <div class="team-role">${m.role}</div>
             <div class="team-divider"></div>
@@ -263,7 +283,7 @@ function renderTeam() {
 // ── LISTA PROGETTI ─────────────────────────────────────────────────────────
 
 function renderProjects() {
-  const c     = lang().projects;
+  const c = lang().projects;
   const total = PROJECTS.length;
 
   return `
@@ -275,9 +295,9 @@ function renderProjects() {
       </div>
       <div class="projects-index">
         ${PROJECTS.map((p, i) => {
-          const loc  = findSpec(p, ['location']);
-          const area = findSpec(p, ['area']);
-          return `
+    const loc = findSpec(p, ['location']);
+    const area = findSpec(p, ['area']);
+    return `
             <div class="pi-row${i % 2 ? ' reverse' : ''}" data-nav-project="${p.id}">
               <div class="pi-media">
                 <img src="${p.cover}" alt="${t(p.title)}">
@@ -299,7 +319,7 @@ function renderProjects() {
                 <span class="pi-arrow"><span class="line"></span>${c.viewLabel}</span>
               </div>
             </div>`;
-        }).join('')}
+  }).join('')}
       </div>
       ${renderCtaBlock()}
       ${renderFooter()}
@@ -352,14 +372,14 @@ function renderProjectDetail() {
         <div class="pd-section-label">${c.galleryLabel}</div>
         <div class="pd-gallery">
           ${p.gallery.map((g, i) => {
-            // Ultima immagine con numero dispari → occupa entrambe le colonne
-            const span = (i === p.gallery.length - 1) && (p.gallery.length % 2 === 1);
-            return `
+    // Ultima immagine con numero dispari → occupa entrambe le colonne
+    const span = (i === p.gallery.length - 1) && (p.gallery.length % 2 === 1);
+    return `
               <div class="pd-gallery-item${span ? ' span2' : ''}" data-lb-index="${i}">
                 <img src="${g.src}" alt="${t(g.caption)}" loading="lazy">
                 <div class="pd-gallery-cap"><span>${t(g.caption)}</span></div>
               </div>`;
-          }).join('')}
+  }).join('')}
         </div>
       </div>
 
@@ -381,53 +401,91 @@ function renderContact() {
     <div class="page">
       <section class="section">
         <div class="section-label">${c.label}</div>
-        <h1 class="section-title" style="white-space:pre-line;margin-bottom:56px">${c.title}</h1>
-        <div class="contact-grid">
+        <h1 class="section-title" style="white-space:pre-line;margin-bottom:32px">${c.title}</h1>
+        <p class="contact-area-text">${c.areaText}</p>
+        <div class="contact-grid" style="margin-top:48px">
           <div class="contact-info">
             <div class="contact-block">
-              <div class="contact-label">${c.phoneLabel}</div>
-              <div class="contact-value">+39 366 23 12 315</div>
-            </div>
-            <div class="contact-block">
               <div class="contact-label">${c.emailLabel}</div>
-              <div class="contact-value">selosdesign@gmail.com</div>
+              <div class="contact-value">
+                <a href="mailto:selosdesign@gmail.com" class="social-link" style="font-size:inherit;text-transform:none;letter-spacing:0">selosdesign@gmail.com</a>
+              </div>
             </div>
             <div class="contact-block">
-              <div class="contact-label">${c.addressLabel}</div>
-              <div class="contact-value" style="white-space:pre-line">Via Silvio Pellico 40
-20013 Magenta, Milano</div>
+              <div class="contact-label">${c.phoneLabel}</div>
+              <div class="contact-value">
+                <a href="tel:+393662312315" class="social-link" style="font-size:inherit;text-transform:none;letter-spacing:0">+39 366 23 12 315</a>
+              </div>
             </div>
-            <div class="contact-block">
-              <div class="contact-label">${c.hoursLabel}</div>
-              <div class="contact-value" style="white-space:pre-line">${c.hoursValue}</div>
-            </div>
+            <a class="wa-cta" href="https://wa.me/393662312315" target="_blank" rel="noreferrer" style="margin-top:8px">
+              <span class="wa-icon">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.4 31.6l8-2.1c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-7 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7C3 9 8.8 3.3 16 3.3c3.4 0 6.6 1.3 9 3.8 2.4 2.4 3.7 5.6 3.7 9 0 7.2-5.8 12.7-12.7 12.7zm7-9.5c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.6-.2-.8.2-.2.4-.9 1.3-1.1 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.6.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7-.1-.2-.8-2.1-1.2-2.8-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"></path></svg>
+              </span>
+              <span class="wa-text">
+                <span class="wa-label">${c.whatsappLabel}</span>
+                <span class="wa-sub"><span class="wa-dot"></span>${({it:'Di solito rispondiamo in giornata',en:'We usually reply the same day',tr:'Genellikle aynı gün yanıt veriyoruz'})[state.lang] || 'Di solito rispondiamo in giornata'}</span>
+              </span>
+              <span class="wa-arrow" aria-hidden="true">→</span>
+            </a>
             <div class="contact-block" style="margin-top:8px">
               <div class="contact-label">${c.socialLabel}</div>
-              <div style="display:flex;gap:16px;margin-top:4px">
+              <div style="display:flex;gap:16px;margin-top:8px">
                 <a class="social-link" style="font-size:13px" href="https://www.instagram.com/selos_design/" target="_blank" rel="noreferrer">Instagram</a>
                 <a class="social-link" style="font-size:13px" href="https://www.facebook.com/selosdesign" target="_blank" rel="noreferrer">Facebook</a>
-                <a class="social-link" style="font-size:13px" href="https://www.linkedin.com/in/selin-hilal" target="_blank" rel="noreferrer">LinkedIn</a>
               </div>
             </div>
           </div>
-          <form class="contact-form" onsubmit="return false">
+          <form class="contact-form" id="contact-form">
+            <input type="hidden" name="_subject" id="contact-subject">
             <div class="form-row">
-              <div class="form-field"><label>${c.form.name}</label><input type="text"></div>
-              <div class="form-field"><label>${c.form.surname}</label><input type="text"></div>
+              <div class="form-field"><label>${c.form.name}</label><input type="text" name="nome"></div>
+              <div class="form-field"><label>${c.form.surname}</label><input type="text" name="cognome"></div>
             </div>
             <div class="form-row">
-              <div class="form-field"><label>${c.form.email}</label><input type="email"></div>
-              <div class="form-field"><label>${c.form.phone}</label><input type="tel"></div>
+              <div class="form-field"><label>${c.form.email}</label><input type="email" name="email" required></div>
+              <div class="form-field"><label>${c.form.phone}</label><input type="tel" name="telefono"></div>
             </div>
             <div class="form-field">
               <label>${c.form.messageLabel}</label>
-              <textarea placeholder="${c.form.messagePlaceholder}"></textarea>
+              <textarea name="messaggio" placeholder="${c.form.messagePlaceholder}" required></textarea>
             </div>
+            <div id="contact-form-status" style="font-size:15px;line-height:1.6;min-height:24px"></div>
             <button class="btn-primary" type="submit" style="align-self:flex-start">${c.form.send}</button>
           </form>
         </div>
       </section>
       ${renderCtaBlock()}
+      ${renderFooter()}
+    </div>`;
+}
+
+function renderPrivacy() {
+  const p = lang().privacy;
+  const raw = (p.body || '').trim();
+  const toBold = s => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  let content;
+  if (!raw) {
+    content = `<p class="privacy-para" style="font-style:italic">Testo non ancora disponibile.</p>`;
+  } else {
+    content = raw.split('\n\n').map(block => {
+      block = block.trim();
+      if (!block) return '';
+      const lines = block.split('\n');
+      if (lines[0].startsWith('## ')) {
+        const heading = toBold(lines[0].slice(3));
+        const rest = lines.slice(1).join('<br>');
+        return `<h3 class="privacy-heading">${heading}</h3>${rest ? `<p class="privacy-para">${toBold(rest)}</p>` : ''}`;
+      }
+      return `<p class="privacy-para">${toBold(block.replace(/\n/g, '<br>'))}</p>`;
+    }).join('');
+  }
+  return `
+    <div class="page">
+      <section class="section">
+        <div class="section-label">Legal</div>
+        <h1 class="section-title" style="margin-bottom:48px">${p.title}</h1>
+        <div class="privacy-body">${content}</div>
+      </section>
       ${renderFooter()}
     </div>`;
 }
@@ -440,11 +498,12 @@ function render() {
   let html = renderNav();
 
   switch (state.page) {
-    case 'home':     html += renderHome();          break;
-    case 'team':     html += renderTeam();          break;
-    case 'projects': html += renderProjects();      break;
-    case 'project':  html += renderProjectDetail(); break;
-    case 'contact':  html += renderContact();       break;
+    case 'home': html += renderHome(); break;
+    case 'team': html += renderTeam(); break;
+    case 'projects': html += renderProjects(); break;
+    case 'project': html += renderProjectDetail(); break;
+    case 'contact': html += renderContact(); break;
+    case 'privacy': html += renderPrivacy(); break;
   }
 
   document.getElementById('root').innerHTML = html;
@@ -452,8 +511,9 @@ function render() {
 }
 
 function navigate(page, projectId) {
-  state.page      = page;
+  state.page = page;
   state.projectId = projectId || null;
+  updateMeta();
   render();
   window.scrollTo(0, 0);
 }
@@ -467,13 +527,13 @@ function setLang(newLang) {
 
 function openLightbox(images, index) {
   lbState.images = images;
-  lbState.index  = index;
+  lbState.index = index;
   renderLightbox();
 }
 
 function openPlan(src, label) {
   lbState.images = [{ src, caption: label }];
-  lbState.index  = 0;
+  lbState.index = 0;
   renderLightbox();
 }
 
@@ -483,7 +543,7 @@ function renderLightbox() {
 
   overlay.style.display = 'flex';
 
-  const img     = images[index];
+  const img = images[index];
   const caption = typeof img.caption === 'object' ? t(img.caption) : (img.caption || '');
   const showNav = images.length > 1;
 
@@ -499,9 +559,9 @@ function renderLightbox() {
 
 function closeLightbox() {
   lbState.images = [];
-  const overlay  = document.getElementById('lightbox');
+  const overlay = document.getElementById('lightbox');
   overlay.style.display = 'none';
-  overlay.innerHTML     = '';
+  overlay.innerHTML = '';
   document.body.style.overflow = '';
 }
 
@@ -520,9 +580,9 @@ function lbNext() {
 document.addEventListener('click', function (e) {
   // ── LIGHTBOX: gestisci tutti i click al suo interno per primo ──
   if (e.target.closest('#lightbox')) {
-    if (e.target.closest('[data-lb-prev]'))  { lbPrev(); return; }
-    if (e.target.closest('[data-lb-next]'))  { lbNext(); return; }
-    if (e.target.closest('img'))             { return; }  // click sull'immagine: nulla
+    if (e.target.closest('[data-lb-prev]')) { lbPrev(); return; }
+    if (e.target.closest('[data-lb-next]')) { lbNext(); return; }
+    if (e.target.closest('img')) { return; }  // click sull'immagine: nulla
     closeLightbox();                                       // sfondo o pulsante × → chiudi
     return;
   }
@@ -555,13 +615,56 @@ document.addEventListener('click', function (e) {
   }
 });
 
+// ── FORM CONTATTI ──────────────────────────────────────────────────────────
+
+document.addEventListener('submit', async function (e) {
+  const form = e.target.closest('#contact-form');
+  if (!form) return;
+  e.preventDefault();
+
+  const btn = form.querySelector('[type=submit]');
+  const status = document.getElementById('contact-form-status');
+  const L = lang().contact.form;
+
+  const cognome = (form.querySelector('[name=cognome]').value || '').trim();
+  const email   = (form.querySelector('[name=email]').value || '').trim();
+  form.querySelector('#contact-subject').value =
+    `Nuovo Contatto da ${cognome || email} - Selos Design`;
+
+  btn.disabled = true;
+  status.style.color = 'var(--text-light)';
+  status.textContent = L.sending;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xojzpodo', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.reset();
+      status.style.color = 'var(--accent)';
+      status.textContent = L.success;
+      btn.disabled = false;
+    } else {
+      throw new Error();
+    }
+  } catch {
+    status.style.color = 'oklch(55% 0.18 25)';
+    status.textContent = L.error;
+    btn.disabled = false;
+  }
+});
+
 // Tastiera: Esc chiude il lightbox, ← → naviga
 document.addEventListener('keydown', function (e) {
   if (!lbState.images.length) return;
-  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowRight') lbNext();
-  else if (e.key === 'ArrowLeft')  lbPrev();
+  else if (e.key === 'ArrowLeft') lbPrev();
 });
 
 // ── AVVIO ──────────────────────────────────────────────────────────────────
+updateMeta();
 render();
