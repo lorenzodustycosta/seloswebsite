@@ -19,6 +19,23 @@ const lbState = {
 // Contatore per generare id SVG univoci ad ogni render
 let _svgId = 0;
 
+// ── URL ROUTING (hash-based, funziona su file:// e http://) ───────────────
+
+function buildHash(page, projectId) {
+  if (!page || page === 'home') return '#/';
+  if (page === 'project' && projectId) return `#/project/${projectId}`;
+  return `#/${page}`;
+}
+
+function parseHash() {
+  const raw = location.hash.replace(/^#\/?/, '');
+  if (!raw) return { page: 'home', projectId: null };
+  const parts = raw.split('/');
+  if (parts[0] === 'project' && parts[1]) return { page: 'project', projectId: parts[1] };
+  const valid = ['home', 'team', 'projects', 'contact', 'privacy'];
+  return { page: valid.includes(parts[0]) ? parts[0] : 'home', projectId: null };
+}
+
 // ── HELPERS ────────────────────────────────────────────────────────────────
 
 // Restituisce la stringa tradotta per la lingua corrente.
@@ -107,12 +124,15 @@ function renderNav() {
         ${['home', 'team', 'projects', 'contact'].map(p => `
           <span class="nav-link${activePage === p ? ' active' : ''}" data-nav="${p}">${L.nav[p]}</span>
         `).join('')}
+        <div class="nav-lang">
+          <button class="lang-btn${state.lang === 'it' ? ' active' : ''}" data-lang="it">IT</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn${state.lang === 'en' ? ' active' : ''}" data-lang="en">EN</button>
+        </div>
       </div>
-      <div class="nav-lang">
-        <button class="lang-btn${state.lang === 'it' ? ' active' : ''}" data-lang="it">IT</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn${state.lang === 'en' ? ' active' : ''}" data-lang="en">EN</button>
-      </div>
+      <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </nav>`;
 }
 
@@ -288,7 +308,7 @@ function renderProjects() {
 
   return `
     <div class="page">
-      <div class="projects-hero section-dark" style="padding:80px 80px 64px">
+      <div class="projects-hero section-dark">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title">${c.title}</h1>
         <p style="font-size:15px;color:var(--text-light);font-weight:300;max-width:560px;margin-top:8px">${c.desc}</p>
@@ -516,6 +536,8 @@ function navigate(page, projectId) {
   updateMeta();
   render();
   window.scrollTo(0, 0);
+  const hash = buildHash(page, projectId);
+  if (location.hash !== hash) history.pushState(null, '', hash);
 }
 
 function setLang(newLang) {
@@ -584,6 +606,16 @@ document.addEventListener('click', function (e) {
     if (e.target.closest('[data-lb-next]')) { lbNext(); return; }
     if (e.target.closest('img')) { return; }  // click sull'immagine: nulla
     closeLightbox();                                       // sfondo o pulsante × → chiudi
+    return;
+  }
+
+  // ── HAMBURGER TOGGLE ──
+  const hambEl = e.target.closest('.nav-hamburger');
+  if (hambEl) {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.classList.toggle('open');
+    hambEl.classList.toggle('open', isOpen);
+    hambEl.setAttribute('aria-expanded', String(isOpen));
     return;
   }
 
@@ -665,6 +697,20 @@ document.addEventListener('keydown', function (e) {
   else if (e.key === 'ArrowLeft') lbPrev();
 });
 
+// Tasto Indietro/Avanti del browser → ripristina la pagina dall'hash
+window.addEventListener('popstate', function () {
+  const { page, projectId } = parseHash();
+  state.page = page;
+  state.projectId = projectId;
+  updateMeta();
+  render();
+  window.scrollTo(0, 0);
+});
+
 // ── AVVIO ──────────────────────────────────────────────────────────────────
+// Legge l'hash iniziale: permette di condividere/bookmarcare URL come #/project/bilocale
+const _init = parseHash();
+state.page = _init.page;
+state.projectId = _init.projectId;
 updateMeta();
 render();
