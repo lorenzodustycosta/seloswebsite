@@ -62,7 +62,7 @@ window.PROJECTS = [
       { src: "assets/projects/trilocale/kitchen_3.png",    caption: { it: "Colonna elettrodomestici",        en: "Appliance column",                 tr: "Ankastre dolabı" } },
       { src: "assets/projects/trilocale/bedroom_1.png",    caption: { it: "Camera da letto",                 en: "Bedroom",                          tr: "Yatak odası" } },
       { src: "assets/projects/trilocale/bedroom_2.png",    caption: { it: "Camera — cabina armadio",         en: "Bedroom — walk-in closet",         tr: "Yatak odası — giyinme odası" } },
-      { src: "assets/projects/trilocale/bathroom_2.png",   caption: { it: "Bagno",                           en: "Bathroom",                         tr: "Banyo" } },
+      { src: "assets/projects/trilocale/bathroom_2_edited.png",   caption: { it: "Bagno",                           en: "Bathroom",                         tr: "Banyo" } },
       { src: "assets/projects/trilocale/bathroom_1.png",   caption: { it: "Bagno — dettaglio doccia",        en: "Bathroom — shower detail",         tr: "Banyo — duş detayı" } },
       { src: "assets/projects/trilocale/studio_1.png",     caption: { it: "Studio",                          en: "Study",                            tr: "Çalışma odası" } }
     ]
