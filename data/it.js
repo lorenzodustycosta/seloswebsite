@@ -143,7 +143,7 @@ Il Titolare del trattamento dei dati personali raccolti tramite questo sito è *
 Email di contatto: **selosdesign@gmail.com**
 
 ## 2. Quali dati raccogliamo
-Questo sito raccoglie esclusivamente i dati che ci fornisci volontariamente tramite il modulo di contatto: nome e cognome, indirizzo email, numero di telefono (se fornito) e il contenuto del messaggio.
+Questo sito raccoglie esclusivamente i dati che ci fornisci volontariamente tramite il modulo di contatto: nome e cognome, indirizzo email, numero di telefono (se fornito), il contenuto del messaggio e gli eventuali dettagli facoltativi sul progetto (località, ambienti, fase e tempi).
 Non raccogliamo dati di navigazione a fini statistici o di profilazione, non utilizziamo strumenti di analisi del traffico (es. Google Analytics) e non gestiamo newsletter o comunicazioni di marketing.
 
 ## 3. Finalità e base giuridica

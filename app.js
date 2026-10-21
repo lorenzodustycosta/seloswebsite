@@ -32,7 +32,7 @@ function parseHash() {
   if (!raw) return { page: 'home', projectId: null };
   const parts = raw.split('/');
   if (parts[0] === 'project' && parts[1]) return { page: 'project', projectId: parts[1] };
-  const valid = ['home', 'team', 'projects', 'contact', 'privacy'];
+  const valid = ['home', 'team', 'projects', 'contact', 'privacy', 'interior', 'consultation', 'rendering', 'international', 'amsterdam'];
   return { page: valid.includes(parts[0]) ? parts[0] : 'home', projectId: null };
 }
 
@@ -58,25 +58,36 @@ function lang() {
 }
 
 // Aggiorna <title> e <meta description> in base alla pagina corrente
-function updateMeta() {
-  const metas = {
-    home:     { title: "Selo's Design — Studio di Interior Design | Magenta, Milano",    desc: "Studio di interior design a Magenta, Milano. Progettiamo spazi su misura che riflettono chi li vive: progettazione, rendering e consulenza d'arredo." },
-    team:     { title: "Il Team — Selo's Design",                                        desc: "Selin Hilal e Lorenzo Costa: il team di interior design dietro ogni progetto Selo's Design, tra Magenta e Milano." },
-    projects: { title: "Progetti — Selo's Design",                                       desc: "Il portfolio di Selo's Design: interior design residenziale e commerciale tra Italia ed Europa." },
-    contact:  { title: "Contatti — Selo's Design",                                       desc: "Contatta Selo's Design per email, WhatsApp o tramite il modulo. Operiamo a Magenta, Milano e zona." },
-    privacy:  { title: "Privacy & Cookie Policy — Selo's Design",                        desc: "Informativa sulla privacy e sui cookie di Selo's Design." }
-  };
-  let m;
-  if (state.page === 'project' && state.projectId) {
-    const proj = (window.PROJECTS || []).find(p => p.id === state.projectId);
-    const name = proj ? (proj.title.it || proj.title.en || '') : 'Progetto';
-    m = { title: `${name} — Selo's Design`, desc: "Scopri questo progetto di interior design di Selo's Design." };
-  } else {
-    m = metas[state.page] || metas.home;
+const SITE_ORIGIN = 'https://www.selosdesign.com';
+const PAGE_SLUGS = { home: '', team: 'team', projects: 'projects', contact: 'contact', privacy: 'privacy', interior: 'interior-design-milano', consultation: 'consulenza-arredo', rendering: 'rendering', international: 'progetti-internazionali', amsterdam: 'amsterdam' };
+
+function pageUrl(page = state.page, projectId = state.projectId, language = state.lang) {
+  const slug = page === 'project' ? (projectId === 'amsterdam' ? 'amsterdam' : 'project-' + projectId) : PAGE_SLUGS[page];
+  if (!slug) return language === 'en' ? '/home-en/' : '/';
+  return '/' + slug + (language === 'en' ? '-en' : '') + '/';
+}
+
+function pageMeta() {
+  const en = state.lang === 'en';
+  const service = lang().servicePages && lang().servicePages[state.page];
+  if (service) return { title: service.title + ' — Selo’s Design', desc: service.description };
+  if (state.page === 'project') {
+    const p = PROJECTS.find(p => p.id === state.projectId);
+    if (p) return { title: t(p.title) + ' — Selo’s Design', desc: t(p.intro[0]).length > 160 ? t(p.intro[0]).slice(0, 157).replace(/\s+\S*$/, '') + '…' : t(p.intro[0]) };
   }
+  const names = en ? { home: 'Interior Design Studio | Magenta, Milan', team: 'Our Team', projects: 'Interior Design Projects', contact: 'Tell us about your project', privacy: 'Privacy & Cookie Policy' } : { home: 'Studio di Interior Design | Magenta, Milano', team: 'Il Team', projects: 'Progetti di interior design', contact: 'Parlaci del tuo progetto', privacy: 'Privacy & Cookie Policy' };
+  const descriptions = en ? { home: 'Residential interior design in Magenta and Milan. Tailored spaces, furniture selection, visualisation and furnishing consultation.', team: 'Meet Selin Hilal and Lorenzo Costa, the people behind Selo’s Design in Magenta and Milan.', projects: 'Explore real Selo’s Design projects through interior layouts, material choices and visualisations.', contact: 'Discuss your residential interior project with Selo’s Design. Contact us by email, phone or project enquiry form.', privacy: 'How Selo’s Design handles personal information provided through the contact form.' } : { home: 'Interior design residenziale a Magenta e Milano. Spazi su misura, selezione di arredi, rendering e consulenza d’arredo.', team: 'Selin Hilal e Lorenzo Costa: le persone dietro i progetti Selo’s Design a Magenta e Milano.', projects: 'Esplora i progetti reali di Selo’s Design: distribuzione degli spazi, materiali e visualizzazioni di interni.', contact: 'Parla con Selo’s Design del tuo progetto residenziale. Contattaci per email, telefono o con il modulo di richiesta.', privacy: 'Come Selo’s Design tratta le informazioni personali fornite tramite il modulo di contatto.' };
+  return { title: names[state.page] + ' — Selo’s Design', desc: descriptions[state.page] };
+}
+
+function updateMeta() {
+  const m = pageMeta();
   document.title = m.title;
-  const el = document.querySelector('meta[name="description"]');
-  if (el) el.setAttribute('content', m.desc);
+  document.querySelector('meta[name="description"]').content = m.desc;
+  document.querySelector('link[rel="canonical"]').href = SITE_ORIGIN + pageUrl();
+  ['it', 'en'].forEach(code => document.querySelector('link[hreflang="' + code + '"]').href = SITE_ORIGIN + pageUrl(state.page, state.projectId, code));
+  const values = { 'og:title': m.title, 'og:description': m.desc, 'og:url': SITE_ORIGIN + pageUrl(), 'og:locale': state.lang === 'en' ? 'en_GB' : 'it_IT' };
+  Object.entries(values).forEach(([key, value]) => document.querySelector('meta[property="' + key + '"]').content = value);
 }
 
 // Cerca uno spec per chiave inglese (per visualizzare location/area nella lista)
@@ -113,16 +124,16 @@ function portraitSvg(color) {
 function renderNav() {
   const L = lang();
   // Evidenzia "Progetti" anche quando si è su una pagina di dettaglio progetto
-  const activePage = state.page === 'project' ? 'projects' : state.page;
+  const activePage = ['project', 'amsterdam'].includes(state.page) ? 'projects' : state.page;
   return `
     <nav class="nav">
-      <div class="nav-logo" data-nav="home">
+      <a class="nav-logo" href="${pageUrl('home')}" data-nav="home">
         <img src="assets/logo.png" alt="Selos Design">
         <span class="nav-logo-text">Selo's Design</span>
-      </div>
+      </a>
       <div class="nav-links">
         ${['home', 'team', 'projects', 'contact'].map(p => `
-          <span class="nav-link${activePage === p ? ' active' : ''}" data-nav="${p}">${L.nav[p]}</span>
+          <a class="nav-link${activePage === p ? ' active' : ''}" href="${pageUrl(p)}" data-nav="${p}">${L.nav[p]}</a>
         `).join('')}
         <div class="nav-lang">
           <button class="lang-btn${state.lang === 'it' ? ' active' : ''}" data-lang="it">IT</button>
@@ -164,7 +175,7 @@ function renderFooter() {
         <a class="social-link" href="https://www.instagram.com/selos_design/" target="_blank" rel="noreferrer">Instagram</a>
         <a class="social-link" href="https://www.facebook.com/selosdesign" target="_blank" rel="noreferrer">Facebook</a>
         <a class="social-link" href="https://www.linkedin.com/in/selin-hilal" target="_blank" rel="noreferrer">LinkedIn</a>
-        <span class="social-link" data-nav="privacy" style="cursor:pointer">${f.privacy}</span>
+        <a class="social-link" href="${pageUrl('privacy')}" data-nav="privacy">${f.privacy}</a>
       </div>
     </div>`;
 }
@@ -175,7 +186,7 @@ function renderCtaBlock() {
     <div class="pd-cta">
       <h2 class="pd-cta-title">${c.ctaTitle}</h2>
       <p class="pd-cta-text">${c.ctaText}</p>
-      <button class="btn-primary" data-nav="contact">${c.ctaBtn}</button>
+      <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">${c.ctaBtn}</button>
     </div>`;
 }
 
@@ -190,7 +201,7 @@ function renderHome() {
   const va = L.values;
 
   return `
-    <div class="page">
+    <main class="page" id="main-content">
 
       <!-- HERO -->
       <div class="hero">
@@ -204,7 +215,7 @@ function renderHome() {
           <p class="hero-desc">${h.desc}</p>
           <div class="hero-actions">
             <button class="btn-primary" data-nav="projects">${h.cta}</button>
-            <button class="btn-ghost" data-nav="contact">${h.cta2} →</button>
+            <button class="btn-ghost" data-cta="contact" data-cta-location="page" data-nav="contact">${h.cta2} →</button>
           </div>
         </div>
         <div class="hero-right">
@@ -244,12 +255,12 @@ function renderHome() {
         <div class="section-label">${sv.label}</div>
         <h2 class="section-title">${sv.title}</h2>
         <div class="services-grid">
-          ${sv.items.map(s => `
-            <div class="service-card">
+          ${sv.items.map((s, i) => `
+            <a class="service-card" href="${pageUrl(['interior', 'rendering', 'consultation'][i])}" data-nav="${['interior', 'rendering', 'consultation'][i]}">
               <div class="service-num">${s.num}</div>
               <div class="service-title">${s.title}</div>
               <div class="service-desc">${s.desc}</div>
-            </div>`).join('')}
+            </a>`).join('')}
         </div>
       </section>
 
@@ -269,7 +280,7 @@ function renderHome() {
 
       ${renderCtaBlock()}
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 // ── TEAM ───────────────────────────────────────────────────────────────────
@@ -277,7 +288,7 @@ function renderHome() {
 function renderTeam() {
   const c = lang().team;
   return `
-    <div class="page">
+    <main class="page" id="main-content">
       <div class="team-header">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title" style="white-space:pre-line">${c.title}</h1>
@@ -297,33 +308,32 @@ function renderTeam() {
       </div>
       ${renderCtaBlock()}
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 // ── LISTA PROGETTI ─────────────────────────────────────────────────────────
 
 function renderProjects() {
   const c = lang().projects;
-  const total = PROJECTS.length;
 
   return `
-    <div class="page">
+    <main class="page" id="main-content">
       <div class="projects-hero section-dark">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title">${c.title}</h1>
         <p style="font-size:15px;color:var(--text-light);font-weight:300;max-width:560px;margin-top:8px">${c.desc}</p>
+
       </div>
       <div class="projects-index">
         ${PROJECTS.map((p, i) => {
     const loc = findSpec(p, ['location']);
     const area = findSpec(p, ['area']);
     return `
-            <div class="pi-row${i % 2 ? ' reverse' : ''}" data-nav-project="${p.id}">
+            <a class="pi-row${i % 2 ? ' reverse' : ''}" href="${pageUrl('project', p.id)}" data-nav-project="${p.id}" data-cta="project">
               <div class="pi-media">
-                <img src="${p.cover}" alt="${t(p.title)}">
+                <img src="${p.cover}" alt="${t(p.title)}" loading="lazy">
               </div>
               <div class="pi-body">
-                <div class="pi-index">${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}</div>
                 <h2 class="pi-title">${t(p.title)}</h2>
                 <div class="pi-tag">${t(p.tag)}</div>
                 <div class="pi-meta">
@@ -338,24 +348,24 @@ function renderProjects() {
                 </div>
                 <span class="pi-arrow"><span class="line"></span>${c.viewLabel}</span>
               </div>
-            </div>`;
+            </a>`;
   }).join('')}
       </div>
       ${renderCtaBlock()}
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 // ── DETTAGLIO PROGETTO ─────────────────────────────────────────────────────
 
 function renderProjectDetail() {
   const c = lang().projects;
-  const p = PROJECTS.find(x => x.id === state.projectId) || PROJECTS[0];
+  const p = PROJECTS.find(x => x.id === (state.page === 'amsterdam' ? 'amsterdam' : state.projectId)) || PROJECTS[0];
 
   return `
-    <div class="page">
+    <main class="page" id="main-content">
       <div class="pd-cover">
-        <img src="${p.cover}" alt="${t(p.title)}">
+        <img src="${p.cover}" alt="${t(p.title)}" loading="lazy">
       </div>
 
       <div class="pd-head">
@@ -374,7 +384,7 @@ function renderProjectDetail() {
         </div>
         ${p.plan ? `
           <div class="pd-plan-col">
-            <div class="pd-plan-wrap" data-open-plan="${p.plan}" data-plan-label="${c.planLabel}">
+            <div class="pd-plan-wrap" role="button" tabindex="0" aria-label="${c.planLabel}" data-open-plan="${p.plan}" data-plan-label="${c.planLabel}">
               <img src="${p.plan}" alt="${c.planLabel}">
               <span class="pd-plan-zoom">+</span>
               <span class="pd-plan-tag">${c.planLabel}</span>
@@ -395,7 +405,7 @@ function renderProjectDetail() {
     // Ultima immagine con numero dispari → occupa entrambe le colonne
     const span = (i === p.gallery.length - 1) && (p.gallery.length % 2 === 1);
     return `
-              <div class="pd-gallery-item${span ? ' span2' : ''}" data-lb-index="${i}">
+              <div class="pd-gallery-item${span ? ' span2' : ''}" role="button" tabindex="0" aria-label="${t(g.caption)}" data-lb-index="${i}">
                 <img src="${g.src}" alt="${t(g.caption)}" loading="lazy">
                 <div class="pd-gallery-cap"><span>${t(g.caption)}</span></div>
               </div>`;
@@ -406,11 +416,11 @@ function renderProjectDetail() {
       <div class="pd-cta">
         <h2 class="pd-cta-title">${c.ctaTitle}</h2>
         <p class="pd-cta-text">${c.ctaText}</p>
-        <button class="btn-primary" data-nav="contact">${c.ctaBtn}</button>
+        <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">${c.ctaBtn}</button>
       </div>
 
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 // ── CONTATTI ───────────────────────────────────────────────────────────────
@@ -418,7 +428,7 @@ function renderProjectDetail() {
 function renderContact() {
   const c = lang().contact;
   return `
-    <div class="page">
+    <main class="page" id="main-content">
       <section class="section">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title" style="white-space:pre-line;margin-bottom:32px">${c.title}</h1>
@@ -455,28 +465,29 @@ function renderContact() {
               </div>
             </div>
           </div>
-          <form class="contact-form" id="contact-form">
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/xojzpodo" method="post">
             <input type="hidden" name="_subject" id="contact-subject">
             <div class="form-row">
-              <div class="form-field"><label>${c.form.name}</label><input type="text" name="nome"></div>
-              <div class="form-field"><label>${c.form.surname}</label><input type="text" name="cognome"></div>
+              <div class="form-field"><label for="field-nome">${c.form.name}</label><input type="text" id="field-nome" name="nome" autocomplete="given-name"></div>
+              <div class="form-field"><label for="field-cognome">${c.form.surname}</label><input type="text" id="field-cognome" name="cognome" autocomplete="family-name"></div>
             </div>
             <div class="form-row">
-              <div class="form-field"><label>${c.form.email}</label><input type="email" name="email" required></div>
-              <div class="form-field"><label>${c.form.phone}</label><input type="tel" name="telefono"></div>
+              <div class="form-field"><label for="field-email">${c.form.email} *</label><input type="email" id="field-email" name="email" autocomplete="email" required></div>
+              <div class="form-field"><label for="field-telefono">${c.form.phone}</label><input type="tel" id="field-telefono" name="telefono" autocomplete="tel"></div>
             </div>
+            ${renderEnquiryFields()}
             <div class="form-field">
-              <label>${c.form.messageLabel}</label>
-              <textarea name="messaggio" placeholder="${c.form.messagePlaceholder}" required></textarea>
+              <label for="field-message">${c.form.messageLabel} *</label>
+              <textarea id="field-message" name="messaggio" placeholder="${c.form.messagePlaceholder}" required></textarea>
             </div>
-            <div id="contact-form-status" style="font-size:15px;line-height:1.6;min-height:24px"></div>
+            <div role="status" aria-live="polite" id="contact-form-status" style="font-size:15px;line-height:1.6;min-height:24px"></div>
             <button class="btn-primary" type="submit" style="align-self:flex-start">${c.form.send}</button>
           </form>
         </div>
       </section>
       ${renderCtaBlock()}
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 function renderPrivacy() {
@@ -500,14 +511,14 @@ function renderPrivacy() {
     }).join('');
   }
   return `
-    <div class="page">
+    <main class="page" id="main-content">
       <section class="section">
         <div class="section-label">Legal</div>
         <h1 class="section-title" style="margin-bottom:48px">${p.title}</h1>
         <div class="privacy-body">${content}</div>
       </section>
       ${renderFooter()}
-    </div>`;
+    </main>`;
 }
 
 // ── RENDER PRINCIPALE ──────────────────────────────────────────────────────
@@ -521,13 +532,16 @@ function render() {
     case 'home': html += renderHome(); break;
     case 'team': html += renderTeam(); break;
     case 'projects': html += renderProjects(); break;
-    case 'project': html += renderProjectDetail(); break;
+    case 'project':
+    case 'amsterdam': html += renderProjectDetail(); break;
     case 'contact': html += renderContact(); break;
     case 'privacy': html += renderPrivacy(); break;
+    default: html += renderServicePage();
   }
 
   document.getElementById('root').innerHTML = html;
   document.documentElement.lang = state.lang;
+  document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(a => { a.dataset.cta = a.href.startsWith('mailto:') ? 'email' : 'phone'; });
 }
 
 function navigate(page, projectId) {
@@ -536,12 +550,14 @@ function navigate(page, projectId) {
   updateMeta();
   render();
   window.scrollTo(0, 0);
-  const hash = buildHash(page, projectId);
-  if (location.hash !== hash) history.pushState(null, '', hash);
+  const url = location.protocol === 'file:' ? buildHash(page, projectId) : pageUrl(page, projectId);
+  if (location.pathname !== url || location.hash) history.pushState(null, '', url);
 }
 
 function setLang(newLang) {
   state.lang = newLang;
+  if (location.protocol !== 'file:') history.pushState(null, '', pageUrl());
+  updateMeta();
   render();
 }
 
@@ -570,11 +586,11 @@ function renderLightbox() {
   const showNav = images.length > 1;
 
   overlay.innerHTML = `
-    <button class="lb-close" data-close-lb>×</button>
-    ${showNav ? `<button class="lb-nav lb-prev" data-lb-prev>‹</button>` : ''}
+    <button class="lb-close" aria-label="${state.lang === 'en' ? 'Close' : 'Chiudi'}" data-close-lb>×</button>
+    ${showNav ? `<button class="lb-nav lb-prev" aria-label="${state.lang === 'en' ? 'Previous image' : 'Immagine precedente'}" data-lb-prev>‹</button>` : ''}
     <img src="${img.src}" alt="${caption}">
-    ${showNav ? `<button class="lb-nav lb-next" data-lb-next>›</button>` : ''}
-    <div class="lb-caption">${caption}${showNav ? ` · ${index + 1} / ${images.length}` : ''}</div>`;
+    ${showNav ? `<button class="lb-nav lb-next" aria-label="${state.lang === 'en' ? 'Next image' : 'Immagine successiva'}" data-lb-next>›</button>` : ''}
+    <div class="lb-caption">${caption}</div>`;
 
   document.body.style.overflow = 'hidden';
 }
@@ -600,6 +616,8 @@ function lbNext() {
 // ── EVENT DELEGATION ───────────────────────────────────────────────────────
 
 document.addEventListener('click', function (e) {
+  const cta = e.target.closest('[data-cta]');
+  if (cta) emitInteraction(cta.dataset.cta + '_click', { location: cta.dataset.ctaLocation || 'page' });
   // ── LIGHTBOX: gestisci tutti i click al suo interno per primo ──
   if (e.target.closest('#lightbox')) {
     if (e.target.closest('[data-lb-prev]')) { lbPrev(); return; }
@@ -621,11 +639,11 @@ document.addEventListener('click', function (e) {
 
   // ── NAVIGAZIONE ──
   const navEl = e.target.closest('[data-nav]');
-  if (navEl) { navigate(navEl.dataset.nav); return; }
+  if (navEl && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) { e.preventDefault(); navigate(navEl.dataset.nav); return; }
 
   // ── APERTURA PROGETTO ──
   const projEl = e.target.closest('[data-nav-project]');
-  if (projEl) { navigate('project', projEl.dataset.navProject); return; }
+  if (projEl && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) { e.preventDefault(); navigate('project', projEl.dataset.navProject); return; }
 
   // ── CAMBIO LINGUA ──
   const langEl = e.target.closest('[data-lang]');
@@ -634,7 +652,7 @@ document.addEventListener('click', function (e) {
   // ── APRI GALLERIA ──
   const lbEl = e.target.closest('[data-lb-index]');
   if (lbEl) {
-    const p = PROJECTS.find(x => x.id === state.projectId);
+    const p = PROJECTS.find(x => x.id === (state.page === 'amsterdam' ? 'amsterdam' : state.projectId));
     if (p) openLightbox(p.gallery, parseInt(lbEl.dataset.lbIndex, 10));
     return;
   }
@@ -675,6 +693,7 @@ document.addEventListener('submit', async function (e) {
     });
 
     if (res.ok) {
+      emitInteraction('contact_form_submission');
       form.reset();
       status.style.color = 'var(--accent)';
       status.textContent = L.success;
@@ -691,6 +710,7 @@ document.addEventListener('submit', async function (e) {
 
 // Tastiera: Esc chiude il lightbox, ← → naviga
 document.addEventListener('keydown', function (e) {
+  if (e.target instanceof Element && e.target.matches('[role=button]') && ['Enter', ' '].includes(e.key)) { e.preventDefault(); e.target.click(); }
   if (!lbState.images.length) return;
   if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowRight') lbNext();
@@ -699,7 +719,7 @@ document.addEventListener('keydown', function (e) {
 
 // Tasto Indietro/Avanti del browser → ripristina la pagina dall'hash
 window.addEventListener('popstate', function () {
-  const { page, projectId } = parseHash();
+  const { page, projectId } = resolveRoute();
   state.page = page;
   state.projectId = projectId;
   updateMeta();
@@ -709,8 +729,67 @@ window.addEventListener('popstate', function () {
 
 // ── AVVIO ──────────────────────────────────────────────────────────────────
 // Legge l'hash iniziale: permette di condividere/bookmarcare URL come #/project/bilocale
-const _init = parseHash();
+const _init = resolveRoute();
 state.page = _init.page;
 state.projectId = _init.projectId;
 updateMeta();
 render();
+
+// Static URLs mirror the hash routes; old shared links remain valid.
+function resolveRoute() {
+  const slug = location.pathname.split('/').filter(Boolean).pop() || '';
+  if (slug === 'index.html') {
+    state.lang = document.documentElement.lang;
+    if (location.hash) return parseHash();
+    return { page: document.body.dataset.page || 'home', projectId: document.body.dataset.project || null };
+  }
+  state.lang = /-en$/.test(slug) ? 'en' : 'it';
+  if (location.hash) return parseHash();
+  const base = slug.replace(/-en$/, '');
+  if (base.startsWith('project-')) {
+    const id = base.slice(8);
+    if (PROJECTS.some(p => p.id === id)) return { page: 'project', projectId: id };
+  }
+  const page = Object.keys(PAGE_SLUGS).find(key => PAGE_SLUGS[key] === base);
+  return { page: page || 'home', projectId: null };
+}
+
+function renderEnquiryFields() {
+  const q = lang().enquiry || window.LANG_IT.enquiry;
+  const field = (name, label) => `<div class="form-field"><label for="field-${name}">${label}</label><input id="field-${name}" name="${name}" type="text"></div>`;
+  const select = (name, label, options) => `<div class="form-field"><label for="field-${name}">${label}</label><select id="field-${name}" name="${name}"><option value="">—</option>${options.map(v => `<option>${v}</option>`).join('')}</select></div>`;
+  return `<div class="enquiry-details"><div class="contact-form"><div class="form-row">${field('localita', q.location)}${field('tempi', q.timing)}</div><div class="form-row">${select('tipologia', q.type, q.types)}${select('fase', q.stage, q.stages)}</div></div></div>`;
+}
+
+function renderServicePage() {
+  const L = lang();
+  const c = L.servicePages[state.page];
+  const u = L.serviceUI;
+  const isInternational = ['international', 'amsterdam'].includes(state.page);
+  const contact = where => `<a class="btn-primary service-button" href="${pageUrl('contact')}" data-nav="contact" data-cta="contact" data-cta-location="${where}">${u.cta}</a>`;
+  return `<main class="page service-page" id="main-content">
+    <header class="projects-hero section-dark">
+      <div class="section-label">Selo’s Design · ${isInternational ? u.international : 'Magenta · Milano'}</div>
+      <h1 class="section-title">${c.title}</h1>
+      <p class="service-intro">${c.intro}</p>
+      <div class="hero-actions">${contact('hero')}<a class="btn-ghost service-button" href="${pageUrl('projects')}" data-nav="projects">${u.portfolio} →</a></div>
+    </header>
+    <section class="section"><div class="about-grid"><div><h2 class="section-title">${c.audienceTitle}</h2><p class="service-copy">${c.audience}</p>${state.page === 'international' ? `<a class="text-link" href="${pageUrl('amsterdam')}" data-nav="amsterdam">${u.amsterdam} →</a>` : ''}</div><div><h2 class="service-subtitle">${c.scopeTitle}</h2><ul class="service-scope">${c.scope.map(v => `<li>${v}</li>`).join('')}</ul></div></div></section>
+    ${c.process ? `<section class="hww-section"><h2 class="section-title">${u.process}</h2><div class="service-process">${c.process.map(([title, desc], i) => `<div class="hww-step"><div class="hww-num">0${i + 1}</div><h3 class="hww-title">${title}</h3><p class="hww-desc">${desc}</p></div>`).join('')}</div></section>` : ''}
+    ${!isInternational ? `<section class="section"><h2 class="section-title">${u.projects}</h2><div class="service-projects">${['trilocale-magenta', 'bilocale-milano', 'monolocale-milano'].map(id => { const p = PROJECTS.find(p => p.id === id); return `<a href="${pageUrl('project', id)}" data-nav-project="${id}" data-cta="project"><img src="${p.cover}" alt="${t(p.title)} — ${state.lang === 'en' ? 'interior visualisation' : 'visualizzazione di interni'}" loading="lazy" width="${id === 'bilocale-milano' ? 2400 : 2500}" height="${id === 'bilocale-milano' ? 1350 : 1406}"><h3 class="service-subtitle">${t(p.title)}</h3><p class="service-copy">${t(p.tag)}</p></a>`; }).join('')}</div></section>` : ''}
+    <section class="section"><h2 class="section-title">${c.whyTitle}</h2><p class="service-copy service-readable">${c.why}</p></section>
+    <section class="section service-related"><h2 class="service-subtitle">${u.related}</h2><div>${['interior', 'consultation', 'rendering', 'international'].filter(key => key !== state.page).map(key => `<a class="text-link" href="${pageUrl(key)}" data-nav="${key}">${key === 'international' ? u.international : L.servicePages[key].title} →</a>`).join('')}</div></section>
+    <div class="pd-cta"><h2 class="pd-cta-title">${u.cta}</h2>${contact('footer')}</div>
+    ${renderFooter()}
+  </main>`;
+}
+
+// Local hooks only. No network requests, analytics SDK or personal data.
+function emitInteraction(name, detail = {}) {
+  document.dispatchEvent(new CustomEvent('selos:interaction', { detail: { event: name, page: state.page, language: state.lang, ...detail } }));
+}
+
+document.addEventListener('focusin', e => {
+  const form = e.target.closest('#contact-form');
+  if (form && !form.dataset.started) { form.dataset.started = 'true'; emitInteraction('contact_form_start'); }
+});

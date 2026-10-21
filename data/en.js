@@ -142,7 +142,7 @@ The controller of personal data collected through this website is **Ummusan Seli
 Contact email: **selosdesign@gmail.com**
 
 ## 2. What data we collect
-This website only collects the data you voluntarily provide through the contact form: first and last name, email address, phone number (if provided) and the content of your message.
+This website only collects the data you voluntarily provide through the contact form: first and last name, email address, phone number (if provided), the content of your message and any optional project details (location, spaces, stage and timing).
 We do not collect browsing data for statistical or profiling purposes, we do not use traffic analysis tools (e.g. Google Analytics), and we do not run newsletters or marketing communications.
 
 ## 3. Purpose and legal basis

@@ -2,25 +2,92 @@
 // DATI PROGETTI — projects.js
 //
 // Ogni elemento dell'array PROJECTS è un progetto del portfolio.
-// Per aggiungere un nuovo progetto: copia un blocco esistente, incollalo in fondo
-// all'array (prima del "];" finale) e compila i campi.
+// Per aggiungere un nuovo progetto: copia un blocco esistente, incollalo ovunque
+// nell'array (l'ordine non conta, vedi sotto) e compila i campi.
 //
 // Struttura di ogni campo multilingua: { it: "...", en: "...", tr: "" }
 // I campi senza traduzione (tr: "") appaiono vuoti quando il sito è in turco —
 // questo è intenzionale per segnalare le traduzioni mancanti.
 //
-// Campi NON tradotti (valore singolo, uguale in tutte le lingue): area, anno.
+// Campi NON tradotti (valore singolo, uguale in tutte le lingue): area, anno, year.
+//
+// Il campo "year" (numero) determina l'ordine di visualizzazione: i progetti
+// vengono ordinati automaticamente dal più recente al più vecchio, quindi non
+// serve posizionarli manualmente nell'array.
 // ─────────────────────────────────────────────────────────────────────────────
 
 window.PROJECTS = [
 
+  {
+    id: "amsterdam",
+    title: { it: "Amsterdam — Residenza privata", en: "Amsterdam — Private Residence", tr: "Amsterdam" },
+    tag: { it: "Residenziale · In corso", en: "Residential · In progress", tr: "Devam ediyor" },
+    inProgress: true,
+    year: null,
+    cover: "assets/projects/amsterdam/placeholder.svg",
+    plan: null,
+    specs: [
+      { label: { it: "Cliente", en: "Client" }, value: { it: "Privato", en: "Private" } },
+      { label: { it: "Località", en: "Location" }, value: { it: "Amsterdam, Paesi Bassi", en: "Amsterdam, the Netherlands" } },
+      { label: { it: "Tipologia", en: "Type" }, value: { it: "Residenza privata", en: "Private residence" } },
+      { label: { it: "Stato", en: "Status" }, value: { it: "In corso", en: "In progress" } },
+      { label: { it: "Servizi", en: "Services" }, value: { it: "Cucina e interior design", en: "Kitchen & interior design" } },
+      { label: { it: "Cucina selezionata", en: "Selected kitchen" }, value: "Valcucine" }
+    ],
+    intro: [
+      { it: "Un progetto di cucina e interior design per una residenza privata ad Amsterdam, attualmente in corso. La cucina selezionata per il progetto è Valcucine.", en: "A kitchen and interior design project for a private residence in Amsterdam, currently in progress. Valcucine is the kitchen brand selected for the project." },
+      { it: "Le immagini sono segnaposto. Il racconto del progetto sarà completato con fotografie e approfondimenti sulle scelte di spazio, materiali e dettagli quando disponibili.", en: "The images are placeholders. Photography and a fuller account of the spatial decisions, materials and details will be added as they become available." }
+    ],
+    gallery: [
+      { src: "assets/projects/amsterdam/placeholder.svg", caption: { it: "Immagini del progetto — in preparazione", en: "Project images — coming soon" } }
+    ]
+  },
+
   // ── PROGETTO 1 ──────────────────────────────────────────────────────────
+  {
+    id: "camera-corbetta",
+
+    title: { it: "Camera Corbetta",       en: "Corbetta Bedroom",     tr: "Corbetta Yatak Odası" },
+    tag:   { it: "Residenziale · 2025",   en: "Residential · 2025",   tr: "Konut · 2025" },
+    year:  2025, // usato per ordinare automaticamente i progetti dal più recente
+
+    cover: "assets/projects/camera-corbetta/living_room_1.png",
+    plan:   "assets/projects/camera-corbetta/plan.png",
+    specs: [
+      { label: { it: "Cliente",    en: "Client",   tr: "Müşteri" }, value: { it: "Privato",                                                                    en: "Private",                                                        tr: "Özel" } },
+      { label: { it: "Località",   en: "Location", tr: "Konum" }, value: { it: "Corbetta, Milano",                                                           en: "Corbetta, Milan",                                                tr: "Corbetta, Milano" } },
+      { label: { it: "Superficie", en: "Area",     tr: "Alan" }, value: "95 m²" },
+      { label: { it: "Tipologia",  en: "Type",     tr: "Tip" }, value: { it: "Nuova camera (concept iniziale)",                                            en: "New bedroom (initial concept)",                                  tr: "Yeni yatak odası (ilk konsept)" } },
+      { label: { it: "Anno",       en: "Year",     tr: "Yıl" }, value: "2025" },
+      { label: { it: "Servizi",    en: "Services", tr: "Hizmetler" }, value: { it: "Progettazione · Rendering · Arredo · Gestione e coordinamento pratiche e cantiere", en: "Design · Rendering · Furnishing · Permits & site management",   tr: "Tasarım · Render · Dekorasyon · İzin ve şantiye yönetimi" } }
+    ],
+
+    intro: [
+      {
+        it: "Il cliente aveva bisogno di una camera in più, per dare a ciascun figlio il proprio spazio. La soluzione è nata ricavando una nuova stanza da una porzione del soggiorno, sfruttando la finestra già presente per garantire luce naturale e areazione autonome al nuovo ambiente. L'accesso dal corridoio non era percorribile per l'ingombro di un'armadiatura esistente: la stanza si apre quindi direttamente sul soggiorno, con una porta scorrevole filomuro che minimizza l'impatto visivo. Trattandosi della camera di un ragazzo appassionato di musica, il nuovo muro è stato progettato più spesso del necessario, con lastre e materiali fonoisolanti per garantire il comfort acustico di entrambi gli ambienti. Il linguaggio materico è stato mantenuto coerente tra i due spazi: stesso pavimento, stesso zoccolino, stessa cornice in legno con LED integrato corre sia all'interno della nuova camera sia sul nuovo muro del soggiorno, così che l'intervento si legga come continuità e non come aggiunta. Anche la palette resta neutra e chiara in entrambi gli ambienti, lasciando all'arredamento il compito di creare gli stacchi cromatici. Un elemento chiave del progetto è la libreria a nicchia ricavata nello spessore del nuovo muro: nel soggiorno diventa spazio di contenimento, nella camera offre flessibilità per l'arredo del ragazzo.",
+        en: "The clients needed an additional bedroom, so each of their children could have their own space. The solution carved a new room out of part of the living room, using the existing window to give the new space its own natural light and ventilation. Access from the hallway wasn't possible due to a large built-in wardrobe, so the room opens directly onto the living room instead, through a flush sliding door that keeps the visual impact minimal. As the room was designed for a teenager passionate about music, the new wall was built thicker than strictly necessary, with acoustic panels and sound-insulating materials to protect the comfort of both spaces. The material language stays consistent throughout: the same flooring, the same skirting board, and the same wood cornice with integrated LED lighting run both inside the new bedroom and along the new living-room wall, so the intervention reads as continuity rather than addition. The palette remains light and neutral in both rooms, leaving the furniture free to create colour contrast. A key feature of the project is a built-in niche bookshelf carved into the thickness of the new wall — storage space on the living-room side, flexible furnishing options on the bedroom side.",
+        tr: "Müşterinin, her çocuğuna kendi alanını verebilmek için fazladan bir odaya ihtiyacı vardı. Çözüm, salonun bir bölümünden yeni bir oda kazanılarak ortaya çıktı; mevcut pencere, yeni mekâna kendi doğal ışığını ve havalandırmasını sağlamak için kullanıldı. Koridordan erişim, mevcut büyük bir gömme dolabın hacmi nedeniyle mümkün değildi: bu yüzden oda doğrudan salona açılıyor, görsel etkiyi en aza indiren duvarla bütünleşik bir sürgülü kapı ile. Müziğe tutkun bir gencin odası olduğundan, yeni duvar gerekenden daha kalın tasarlandı; her iki mekânın da akustik konforunu sağlamak için ses yalıtımlı paneller ve malzemeler kullanıldı. Malzeme dili iki mekân arasında tutarlı tutuldu: aynı zemin, aynı süpürgelik, entegre LED aydınlatmalı aynı ahşap kornis hem yeni yatak odasının içinde hem de salonun yeni duvarı boyunca devam ediyor; böylece müdahale bir ekleme değil bir süreklilik olarak okunuyor. Palet her iki mekânda da açık ve nötr kalıyor, renk kontrastlarını yaratma görevini mobilyalara bırakıyor. Projenin kilit unsurlarından biri, yeni duvarın kalınlığından yararlanılarak oluşturulan niş kitaplıktır: salon tarafında depolama alanı olurken, oda tarafında gencin eşyaları için esneklik sunuyor."
+      }
+    ],
+
+    gallery: [
+      { src: "assets/projects/camera-corbetta/living_room_1.png",  caption: { it: "Soggiorno — nuovo muro e libreria a nicchia", en: "Living room — new wall and niche bookshelf", tr: "Salon — yeni duvar ve niş kitaplık" } },
+      { src: "assets/projects/camera-corbetta/living_room_2.png", caption: { it: "Vista del soggiorno",                     en: "Living room view",                                tr: "Salon görünümü" } },
+      { src: "assets/projects/camera-corbetta/camera_1.png", caption: { it: "Camera - Vista Entrata",                 en: "Bedroom — entrance with flush sliding door",       tr: "Yatak odası — duvarla bütünleşik sürgülü kapı girişi" } },
+      { src: "assets/projects/camera-corbetta/camera_2.png",  caption: { it: "Camera - Vista Zona Studio / DJ",           en: "Bedroom — study / DJ area",                   tr: "Yatak odası — çalışma / DJ alanı" } },
+      { src: "assets/projects/camera-corbetta/camera_3.png",  caption: { it: "Camera - Vista Letto",           en: "Bedroom — Bed side",                   tr: "Yatak odası — Yatak" } }
+
+    ]
+  },
+
+  // ── PROGETTO 2 ──────────────────────────────────────────────────────────
   {
     // Identificativo univoco — usato nell'URL interno. Solo lettere minuscole e trattini.
     id: "trilocale-magenta",
 
     title: { it: "Trilocale Magenta",     en: "Magenta Three-Room Flat", tr: "Magenta 3+1 Daire" },
     tag:   { it: "Residenziale · 2024",   en: "Residential · 2024",      tr: "Konut · 2024" },
+    year:  2024,
 
     // Immagine di copertina (nella lista progetti e in cima al dettaglio)
     cover: "assets/projects/trilocale/open_space_1.png",
@@ -68,12 +135,13 @@ window.PROJECTS = [
     ]
   },
 
-  // ── PROGETTO 2 ──────────────────────────────────────────────────────────
+  // ── PROGETTO 3 ──────────────────────────────────────────────────────────
   {
     id: "bilocale-milano",
 
     title: { it: "Bilocale Milano",       en: "Milan Two-Room Flat",  tr: "Milano 1+1 Daire" },
     tag:   { it: "Residenziale · 2023",   en: "Residential · 2023",   tr: "Konut · 2023" },
+    year:  2023,
 
     cover: "assets/projects/bilocale/living_1.png",
     plan:  "assets/projects/bilocale/plan.png",
@@ -112,12 +180,13 @@ window.PROJECTS = [
     ]
   },
 
-  // ── PROGETTO 3 ──────────────────────────────────────────────────────────
+  // ── PROGETTO 4 ──────────────────────────────────────────────────────────
   {
     id: "monolocale-milano",
 
     title: { it: "Monolocale Milano",     en: "Milan Studio Flat",    tr: "Milano Stüdyo Daire" },
     tag:   { it: "Residenziale · 2022",   en: "Residential · 2022",   tr: "Konut · 2022" },
+    year:  2022,
 
     cover: "assets/projects/monolocale/living_1.png",
     plan:  "assets/projects/monolocale/plan.png",
@@ -152,12 +221,13 @@ window.PROJECTS = [
     ]
   },
 
-  // ── PROGETTO 4 ──────────────────────────────────────────────────────────
+  // ── PROGETTO 5 ──────────────────────────────────────────────────────────
   {
     id: "living-eindhoven",
 
     title: { it: "Living Eindhoven",      en: "Eindhoven Living",     tr: "Eindhoven Yaşam Alanı" },
     tag:   { it: "Residenziale · 2022",   en: "Residential · 2022",   tr: "Konut · 2022" },
+    year:  2022,
 
     cover: "assets/projects/eindhoven/living_2.png",
     plan:  "assets/projects/eindhoven/plan.png",
@@ -195,3 +265,7 @@ window.PROJECTS = [
   // ── AGGIUNGI NUOVI PROGETTI QUI (copia il blocco sopra, incolla e compila) ──
 
 ];
+
+// Mostra prima i progetti in corso, poi ordina per "year" dal più recente —
+// così l'ordine nell'array sopra non ha importanza.
+window.PROJECTS.sort((a, b) => Number(Boolean(b.inProgress)) - Number(Boolean(a.inProgress)) || b.year - a.year);

@@ -1,4 +1,10 @@
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: OAI-AdsBot
+Allow: /
+
 User-agent: *
 Allow: /
 
-Sitemap: https://selosdesign.com/sitemap.xml
+Sitemap: https://www.selosdesign.com/sitemap.xml

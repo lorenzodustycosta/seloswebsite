@@ -1,6 +1,6 @@
 # Selo's Design — Guida alla manutenzione
 
-Sito vetrina statico: nessun server, nessuna build. Si carica aprendo `index.html` in un browser o tramite Cloudflare Pages.
+Sito vetrina statico: nessun framework o server applicativo. In produzione Cloudflare Pages esegue una breve build che genera le pagine SEO statiche; in locale si può aprire `index.html` oppure usare un server HTTP.
 
 ---
 
@@ -133,8 +133,52 @@ Poi apri l'URL indicato nel terminale.
 ## Deploy su Cloudflare Pages
 
 1. Crea un repository git con tutti i file del sito
-2. Su Cloudflare Pages: connetti il repository, seleziona il branch principale
-3. Build command: *(lascia vuoto)*
-4. Build output directory: `/` oppure `.`
+2. Su Cloudflare Pages: connetti il repository e seleziona il branch principale
+3. Build command: `node scripts/export-pages.js`
+4. Build output directory: `dist`
 
-Cloudflare servirà `index.html` come pagina principale.
+Cloudflare eseguirà lo script, genererà le cartelle `index.html` per le pagine bilingui e aggiornerà `dist/sitemap.xml`, poi pubblicherà `dist/`. La cartella generata è esclusa da Git e non va modificata manualmente.
+
+## Pagine pubbliche e SEO
+
+La navigazione e le traduzioni restano in `app.js` e `data/it.js` / `data/en.js`.
+I nuovi contenuti di servizio sono in `data/services.js`, che estende gli stessi dizionari.
+I vecchi URL `#/team`, `#/projects`, `#/project/...` e `#/contact` continuano a funzionare.
+Ogni pagina ha anche un URL statico, con `index.html` in una cartella: `/team/`,
+`/projects/`, `/project-bilocale-milano/`, `/contact/`, ecc.
+La versione inglese usa il suffisso `-en`, ad esempio `/contact-en/`; la homepage
+inglese è `/home-en/`. Il selettore lingua mantiene la pagina corrente e lo storico.
+Non ci sono dipendenze, framework o build richieste da Cloudflare Pages.
+
+Dopo aver modificato testi, progetti o template, aggiorna la cartella di build e il sitemap:
+
+```
+node scripts/export-pages.js
+python3 scripts/check-pages.py
+python3 -m http.server 8080 --directory dist
+```
+
+I file HTML generati sono artefatti di build dentro `dist/` e non sono versionati. Non modificarli direttamente: aggiorna i dizionari o il template condiviso.
+`index.html` è anch’esso esportato con il template originale della homepage.
+Canonical, Open Graph e sitemap usano `https://www.selosdesign.com`.
+
+Amsterdam è un progetto in `data/projects.js`, con `inProgress: true`, senza anno
+e con immagini segnaposto esplicite. Usa lo stesso template degli altri progetti
+e mantiene gli URL `/amsterdam/` e `/amsterdam-en/`.
+Quando saranno disponibili fotografie e contenuti approvati, il template può ospitare
+sezioni aggiuntive senza pubblicare oggi gallerie vuote o immagini di altri progetti.
+Il progetto Eindhoven già esistente rimane nel portfolio e non è stato rinominato.
+
+### Eventi per una futura integrazione
+
+`document` emette l’evento locale `selos:interaction`. `event.detail` contiene
+`event`, `page`, `language` e, per i CTA, `location`. I nomi sono
+`contact_click`, `project_click`, `email_click`, `phone_click`,
+`contact_form_start`, `contact_form_submission` (solo dopo risposta positiva).
+Nessun evento contiene campi del modulo; nessun evento viene memorizzato o inviato.
+Un’eventuale integrazione con tracking va definita e approvata separatamente.
+Il modulo conserva endpoint Formspree e chiavi originali; i dettagli aggiuntivi
+sono facoltativi e inviati nella stessa FormData.
+
+Il modulo mostra subito località, tempi, ambienti e fase del progetto. Non richiede
+un budget. Solo email e messaggio sono obbligatori e contrassegnati da un asterisco.

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#f1f3f1"/>
+  <g fill="none" stroke="#aab8ad" stroke-width="2">
+    <rect x="690" y="335" width="220" height="150"/>
+    <circle cx="845" cy="375" r="16"/>
+    <path d="m690 455 66-63 68 70 36-34 50 57"/>
+  </g>
+  <text x="800" y="560" text-anchor="middle" fill="#39493d" font-family="Georgia,serif" font-size="46">Amsterdam</text>
+  <text x="800" y="610" text-anchor="middle" fill="#69776c" font-family="Arial,sans-serif" font-size="17" letter-spacing="4">FOTO / PHOTO · PLACEHOLDER</text>
+</svg>

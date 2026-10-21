@@ -4,3 +4,6 @@ Typography Reference.html
 tweaks-panel.jsx
 .thumbnail
 uploads/
+# Static SEO pages are generated during the Cloudflare Pages build.
+/dist/
+
