@@ -7,4 +7,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.selosdesign.com/sitemap.xml
+Sitemap: https://selosdesign.com/sitemap.xml

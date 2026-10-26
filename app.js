@@ -58,7 +58,7 @@ function lang() {
 }
 
 // Aggiorna <title> e <meta description> in base alla pagina corrente
-const SITE_ORIGIN = 'https://www.selosdesign.com';
+const SITE_ORIGIN = 'https://selosdesign.com';
 const PAGE_SLUGS = { home: '', team: 'team', projects: 'projects', contact: 'contact', privacy: 'privacy', interior: 'interior-design-milano', consultation: 'consulenza-arredo', rendering: 'rendering', international: 'progetti-internazionali', amsterdam: 'amsterdam' };
 
 function pageUrl(page = state.page, projectId = state.projectId, language = state.lang) {

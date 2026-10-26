@@ -196,7 +196,7 @@ python3 -m http.server 8080 --directory dist
 
 I file HTML generati sono artefatti di build dentro `dist/` e non sono versionati. Non modificarli direttamente: aggiorna i dizionari o il template condiviso.
 `index.html` è anch’esso esportato con il template originale della homepage.
-Canonical, Open Graph e sitemap usano `https://www.selosdesign.com`.
+Canonical, Open Graph e sitemap usano `https://selosdesign.com`.
 
 Amsterdam è un progetto in `data/projects.js`, con `inProgress: true`, senza anno.
 Nell'elenco appare nella sezione «In corso». La scheda mostra testo e informazioni,

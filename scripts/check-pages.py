@@ -7,7 +7,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / 'dist'
-ORIGIN = 'https://www.selosdesign.com'
+ORIGIN = 'https://selosdesign.com'
 
 class Page(HTMLParser):
     def __init__(self, source):
