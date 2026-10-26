@@ -4,6 +4,12 @@ Typography Reference.html
 tweaks-panel.jsx
 .thumbnail
 uploads/
-# Static SEO pages are generated during the Cloudflare Pages build.
+# Static SEO pages are generated during the Cloudflare build.
 /dist/
 
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
