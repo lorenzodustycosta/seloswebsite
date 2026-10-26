@@ -1,4 +1,6 @@
-# Selo's Design — Guida alla manutenzione
+# Selo’s Design — Guida alla manutenzione
+
+Il nome dello studio è **Selo’s Design**, da SElin + LOrenzo + ’s. Usa questa dicitura nei testi, nei metadati e nei dati strutturati.
 
 Sito vetrina statico: nessun framework o server applicativo. In produzione Cloudflare Pages esegue una breve build che genera le pagine SEO statiche; in locale si può aprire `index.html` oppure usare un server HTTP.
 
@@ -35,6 +37,7 @@ Incolla un nuovo blocco progetto prima della riga `];` finale. Copia la struttur
     { label: { it: "Anno",       en: "Year",     tr: "" }, value: "2025" },
     { label: { it: "Servizi",    en: "Services", tr: "" }, value: { it: "...",     en: "...",     tr: "" } }
   ],
+  subtitle: { it: "...", en: "...", tr: "" }, // facoltativo: titolo del racconto al posto di «Il progetto»
   intro: [
     { it: "Primo paragrafo descrittivo...", en: "First descriptive paragraph...", tr: "" },
     { it: "Secondo paragrafo...",           en: "Second paragraph...",            tr: "" }
@@ -47,6 +50,18 @@ Incolla un nuovo blocco progetto prima della riga `];` finale. Copia la struttur
 ```
 
 **3. Salva e ricarica il browser.** Il progetto appare automaticamente nella lista e nella pagina di dettaglio.
+
+Per introdurre una sottosezione nel racconto, aggiungi `heading: { it: "Il concept", en: "The concept", tr: "Konsept" }` al relativo paragrafo di `intro`. Il titolo viene mostrato prima del testo.
+
+La homepage usa `assets/hero.png` come immagine d'atmosfera in apertura. Sotto
+presenta Trilocale Magenta e Camera Corbetta con lo stesso peso visivo. La selezione
+è in `renderHome()` in `app.js`; titoli, copertine e collegamenti vengono dai dati
+del portfolio. I progetti con `inProgress: true` sono esclusi. I testi della
+homepage sono nei dizionari di lingua.
+
+Nelle schede il racconto è affiancato dalla planimetria e seguito dalla galleria.
+Il campo `cover` serve alla homepage e all'elenco; per mostrare quella stessa
+immagine anche nella scheda, includila in `gallery`.
 
 ---
 
@@ -130,6 +145,14 @@ Poi apri l'URL indicato nel terminale.
 
 ---
 
+## Anteprima dei font
+
+Apri la homepage aggiungendo `?fonts=1` all’URL, per esempio `http://localhost:8080/?fonts=1` se stai servendo `dist` in locale. Compare un pannello richiudibile per cambiare separatamente il font dei titoli e quello di testi e menu, applicare un font a tutto o ripristinare DM Sans.
+
+Le scelte si vedono subito e vengono ricordate nel browser, anche passando a un’altra pagina o ricaricandola. Non serve rigenerare il sito per ogni prova. «Esci dall’anteprima» riporta al sito normale. Questa modalità non cambia i font predefiniti del sito né i suoi URL canonical.
+
+Sono disponibili DM Sans, Manrope, Work Sans, Source Sans 3, Lora e Cormorant Garamond. DM Sans e Cormorant sono locali; le altre famiglie vengono caricate da Google Fonts solo quando selezionate nell’anteprima e richiedono una connessione a Internet.
+
 ## Deploy su Cloudflare Pages
 
 1. Crea un repository git con tutti i file del sito
@@ -143,6 +166,9 @@ Cloudflare eseguirà lo script, genererà le cartelle `index.html` per le pagine
 
 La navigazione e le traduzioni restano in `app.js` e `data/it.js` / `data/en.js`.
 I nuovi contenuti di servizio sono in `data/services.js`, che estende gli stessi dizionari.
+Le tre pagine di interior design, rendering e consulenza hanno un’apertura con immagine,
+un racconto breve e un solo progetto di esempio. `SERVICE_IMAGES` in `data/services.js`
+seleziona le immagini; le didascalie e i collegamenti provengono dai dati del progetto.
 I vecchi URL `#/team`, `#/projects`, `#/project/...` e `#/contact` continuano a funzionare.
 Ogni pagina ha anche un URL statico, con `index.html` in una cartella: `/team/`,
 `/projects/`, `/project-bilocale-milano/`, `/contact/`, ecc.
@@ -162,11 +188,12 @@ I file HTML generati sono artefatti di build dentro `dist/` e non sono versionat
 `index.html` è anch’esso esportato con il template originale della homepage.
 Canonical, Open Graph e sitemap usano `https://www.selosdesign.com`.
 
-Amsterdam è un progetto in `data/projects.js`, con `inProgress: true`, senza anno
-e con immagini segnaposto esplicite. Usa lo stesso template degli altri progetti
-e mantiene gli URL `/amsterdam/` e `/amsterdam-en/`.
+Amsterdam è un progetto in `data/projects.js`, con `inProgress: true`, senza anno.
+Nell'elenco appare nella sezione «In corso». La scheda mostra testo e informazioni,
+senza copertina o galleria segnaposto, e mantiene gli URL `/amsterdam/` e
+`/amsterdam-en/`.
 Quando saranno disponibili fotografie e contenuti approvati, il template può ospitare
-sezioni aggiuntive senza pubblicare oggi gallerie vuote o immagini di altri progetti.
+le immagini rimuovendo il flag `inProgress` e sostituendo i riferimenti segnaposto.
 Il progetto Eindhoven già esistente rimane nel portfolio e non è stato rinominato.
 
 ### Eventi per una futura integrazione

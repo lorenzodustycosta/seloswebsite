@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app.js — Selo's Design SPA (vanilla JS, no framework, no build step)
+// app.js — Selo’s Design SPA (vanilla JS, no framework, no build step)
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── STATO DELL'APPLICAZIONE ────────────────────────────────────────────────
@@ -96,6 +96,34 @@ function findSpec(project, keys) {
   return s ? t(s.value) : null;
 }
 
+// The typography tools are loaded only when explicitly opened with ?fonts=1.
+function fontPreviewUrl(url) {
+  if (!new URLSearchParams(location.search).has('fonts')) return url;
+  if (url.startsWith('#')) return location.search + url;
+  const target = new URL(url, location.href);
+  target.searchParams.set('fonts', '1');
+  return target.pathname + target.search + target.hash;
+}
+
+function syncFontPreview() {
+  const enabled = new URLSearchParams(location.search).has('fonts');
+  if (!enabled && !window.SelosFontPreview) return;
+  document.querySelectorAll('a[data-nav], a[data-nav-project]').forEach(link => {
+    const target = new URL(link.href, location.href);
+    if (enabled) target.searchParams.set('fonts', '1');
+    else target.searchParams.delete('fonts');
+    link.setAttribute('href', target.pathname + target.search + target.hash);
+  });
+  if (window.SelosFontPreview) {
+    window.SelosFontPreview.sync();
+  } else if (enabled && !document.getElementById('font-preview-script')) {
+    const script = document.createElement('script');
+    script.id = 'font-preview-script';
+    script.src = 'preview/typography.js';
+    document.body.append(script);
+  }
+}
+
 // Converte il testo di una bio (paragrafi separati da \n\n) in elementi <p>
 function bioParagraphs(text) {
   if (!text) return '';
@@ -128,8 +156,8 @@ function renderNav() {
   return `
     <nav class="nav">
       <a class="nav-logo" href="${pageUrl('home')}" data-nav="home">
-        <img src="assets/logo.png" alt="Selos Design">
-        <span class="nav-logo-text">Selo's Design</span>
+        <img src="assets/logo.png" alt="Selo’s Design">
+        <span class="nav-logo-text">Selo’s Design</span>
       </a>
       <div class="nav-links">
         ${['home', 'team', 'projects', 'contact'].map(p => `
@@ -153,7 +181,7 @@ function renderFooter() {
     <footer class="footer">
       <div class="footer-logo">
         <img src="assets/logo.png" alt="" style="height:52px;width:52px;object-fit:contain">
-        <div class="footer-logo-text">Selo's Design</div>
+        <div class="footer-logo-text">Selo’s Design</div>
         <div class="footer-tagline">${f.tagline}</div>
       </div>
       <div class="footer-col">
@@ -180,10 +208,9 @@ function renderFooter() {
     </div>`;
 }
 
-function renderCtaBlock() {
-  const c = lang().projects;
+function renderCtaBlock(c = lang().projects, className = '') {
   return `
-    <div class="pd-cta">
+    <div class="pd-cta${className ? ' ' + className : ''}">
       <h2 class="pd-cta-title">${c.ctaTitle}</h2>
       <p class="pd-cta-text">${c.ctaText}</p>
       <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">${c.ctaBtn}</button>
@@ -198,10 +225,12 @@ function renderHome() {
   const a = L.about;
   const pr = L.process;
   const sv = L.services;
-  const va = L.values;
+  const selectedProjects = ['trilocale-magenta', 'camera-corbetta']
+    .map(id => PROJECTS.find(p => p.id === id))
+    .filter(p => p && !p.inProgress);
 
   return `
-    <main class="page" id="main-content">
+    <main class="page home-page" id="main-content">
 
       <!-- HERO -->
       <div class="hero">
@@ -209,8 +238,7 @@ function renderHome() {
           <div class="hero-eyebrow">${h.eyebrow}</div>
           <h1 class="hero-title">
             ${h.title1}<br>
-            <em>${h.title2}</em><br>
-            ${h.title3}
+            ${h.title2} ${h.title3}
           </h1>
           <p class="hero-desc">${h.desc}</p>
           <div class="hero-actions">
@@ -218,67 +246,82 @@ function renderHome() {
             <button class="btn-ghost" data-cta="contact" data-cta-location="page" data-nav="contact">${h.cta2} →</button>
           </div>
         </div>
-        <div class="hero-right">
-          <img src="assets/hero.png" alt="Interior design — soggiorno" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="hero-visual">
+          <img class="hero-image" src="assets/hero.png" alt="${h.heroImageAlt}" width="2500" height="3125" fetchpriority="high">
         </div>
       </div>
 
-      <!-- SU SELOS -->
-      <section class="section">
-        <div class="about-grid">
-          <div class="about-text">
-            <div class="section-label">${a.label}</div>
-            <h2 class="section-title" style="white-space:pre-line">${a.title}</h2>
-            <p>${a.p1}</p>
-            <button class="btn-ghost" style="margin-top:8px" data-nav="team">${a.link} →</button>
+      <!-- DUE PROGETTI CON LO STESSO PESO VISIVO -->
+      ${selectedProjects.length ? `<section class="home-section home-work" aria-labelledby="home-work-title">
+        <div class="home-section-heading">
+          <div>
+            <div class="section-label">${L.homeProjects.label}</div>
+            <h2 class="section-title" id="home-work-title">${L.homeProjects.title}</h2>
           </div>
-          <div class="about-img"><img src="assets/moodboard.png" alt="Moodboard Selos Design" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <a class="home-text-link" href="${pageUrl('projects')}" data-nav="projects">${L.homeProjects.all} <span aria-hidden="true">→</span></a>
         </div>
-      </section>
+        <div class="home-projects">
+          ${selectedProjects.map(p => `
+            <a class="home-project" href="${pageUrl('project', p.id)}" data-nav-project="${p.id}" data-cta="project" data-cta-location="home-selection">
+              <img src="${p.cover}" alt="${t(p.title)} — ${h.imageLabel}" width="2500" height="1406" loading="lazy" decoding="async">
+              <div class="home-project-heading">
+                <h3>${t(p.title)}</h3>
+                <span aria-hidden="true">→</span>
+              </div>
+              <p>${findSpec(p, ['services']) || ''}</p>
+            </a>`).join('')}
+        </div>
+      </section>` : ''}
 
-      <!-- COME LAVORIAMO -->
-      <section class="hww-section">
-        <div class="section-label">${pr.label}</div>
-        <h2 class="section-title">${pr.title}</h2>
-        <div class="hww-steps">
-          ${pr.steps.map(s => `
-            <div class="hww-step">
-              <div class="hww-num">${s.num}</div>
-              <div class="hww-title">${s.title}</div>
-              <div class="hww-desc">${s.desc}</div>
-            </div>`).join('')}
-        </div>
+      <!-- LO STUDIO -->
+      <section class="home-section home-studio" aria-labelledby="home-studio-title">
+          <div>
+            <div class="section-label">${a.label}</div>
+            <h2 class="section-title" id="home-studio-title" style="white-space:pre-line">${a.title}</h2>
+          </div>
+          <div class="home-studio-copy">
+            <p>${a.p1}</p>
+            <p>${a.p2}</p>
+            <a class="home-text-link" href="${pageUrl('team')}" data-nav="team">${a.link} <span aria-hidden="true">→</span></a>
+          </div>
       </section>
 
       <!-- SERVIZI -->
-      <section class="section">
-        <div class="section-label">${sv.label}</div>
-        <h2 class="section-title">${sv.title}</h2>
-        <div class="services-grid">
+      <section class="home-section home-services" aria-labelledby="home-services-title">
+        <div>
+          <div class="section-label">${sv.label}</div>
+          <h2 class="section-title" id="home-services-title">${sv.title}</h2>
+        </div>
+        <div class="home-service-list">
           ${sv.items.map((s, i) => `
-            <a class="service-card" href="${pageUrl(['interior', 'rendering', 'consultation'][i])}" data-nav="${['interior', 'rendering', 'consultation'][i]}">
-              <div class="service-num">${s.num}</div>
-              <div class="service-title">${s.title}</div>
-              <div class="service-desc">${s.desc}</div>
+            <a class="home-service" href="${pageUrl(['interior', 'rendering', 'consultation'][i])}" data-nav="${['interior', 'rendering', 'consultation'][i]}">
+              <div>
+                <h3>${s.title}</h3>
+                <p>${s.desc}</p>
+              </div>
+              <span aria-hidden="true">→</span>
             </a>`).join('')}
         </div>
       </section>
 
-      <!-- VALORI -->
-      <section class="section">
-        <div class="section-label">${va.label}</div>
-        <h2 class="section-title">${va.title}</h2>
-        <div class="values-grid">
-          ${va.items.map(v => `
-            <div class="value-item">
-              <div class="value-line"></div>
-              <div class="value-title">${v.title}</div>
-              <div class="value-desc">${v.desc}</div>
-            </div>`).join('')}
+      <!-- COME LAVORIAMO -->
+      <section class="home-section home-process" aria-labelledby="home-process-title">
+        <img class="home-materials" src="assets/moodboard.png" alt="${pr.imageAlt}" width="1254" height="1254" loading="lazy" decoding="async">
+        <div>
+          <div class="section-label">${pr.label}</div>
+          <h2 class="section-title" id="home-process-title">${pr.title}</h2>
+          <p class="home-process-intro">${pr.intro}</p>
+          <ol class="home-process-list">
+            ${pr.steps.map(s => `
+              <li>
+                <h3>${s.title}</h3>
+                <p>${s.desc}</p>
+              </li>`).join('')}
+          </ol>
         </div>
       </section>
 
-      ${renderCtaBlock()}
+      ${renderCtaBlock(L.homeContact, 'home-contact')}
       ${renderFooter()}
     </main>`;
 }
@@ -292,7 +335,7 @@ function renderTeam() {
       <div class="team-header">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title" style="white-space:pre-line">${c.title}</h1>
-        <p style="font-size:15px;color:var(--text-light);font-weight:300;max-width:560px;margin-top:8px">${c.desc}</p>
+        <p class="team-intro">${c.desc}</p>
       </div>
       <div class="team-members">
         ${c.members.map(m => `
@@ -314,44 +357,40 @@ function renderTeam() {
 // ── LISTA PROGETTI ─────────────────────────────────────────────────────────
 
 function renderProjects() {
-  const c = lang().projects;
+  const L = lang();
+  const c = L.projects;
+  const publishedProjects = PROJECTS.filter(p => !p.inProgress);
+  const ongoingProjects = PROJECTS.filter(p => p.inProgress);
 
   return `
-    <main class="page" id="main-content">
-      <div class="projects-hero section-dark">
+    <main class="page portfolio-page" id="main-content">
+      <header class="projects-hero">
         <div class="section-label">${c.label}</div>
         <h1 class="section-title">${c.title}</h1>
-        <p style="font-size:15px;color:var(--text-light);font-weight:300;max-width:560px;margin-top:8px">${c.desc}</p>
-
-      </div>
+        <p class="projects-intro">${c.desc}</p>
+      </header>
       <div class="projects-index">
-        ${PROJECTS.map((p, i) => {
-    const loc = findSpec(p, ['location']);
-    const area = findSpec(p, ['area']);
-    return `
-            <a class="pi-row${i % 2 ? ' reverse' : ''}" href="${pageUrl('project', p.id)}" data-nav-project="${p.id}" data-cta="project">
-              <div class="pi-media">
-                <img src="${p.cover}" alt="${t(p.title)}" loading="lazy">
-              </div>
-              <div class="pi-body">
-                <h2 class="pi-title">${t(p.title)}</h2>
-                <div class="pi-tag">${t(p.tag)}</div>
-                <div class="pi-meta">
-                  ${loc ? `<div class="pi-meta-item">
-                    <div class="pi-meta-label">${c.metaLocation}</div>
-                    <div class="pi-meta-value">${loc}</div>
-                  </div>` : ''}
-                  ${area ? `<div class="pi-meta-item">
-                    <div class="pi-meta-label">${c.metaArea}</div>
-                    <div class="pi-meta-value">${area}</div>
-                  </div>` : ''}
-                </div>
-                <span class="pi-arrow"><span class="line"></span>${c.viewLabel}</span>
-              </div>
-            </a>`;
-  }).join('')}
+        ${publishedProjects.map(p => {
+          const meta = [t(p.tag), findSpec(p, ['location']), findSpec(p, ['area'])].filter(Boolean);
+          return `
+          <a class="pi-row" href="${pageUrl('project', p.id)}" data-nav-project="${p.id}" data-cta="project">
+            <div class="pi-media"><img src="${p.cover}" alt="${t(p.title)}" width="2500" height="1406" loading="lazy" decoding="async"></div>
+            <div class="pi-body">
+              <div class="pi-heading"><h2 class="pi-title">${t(p.title)}</h2><span aria-hidden="true">→</span></div>
+              <p class="pi-meta">${meta.join(' · ')}</p>
+            </div>
+          </a>`;
+        }).join('')}
       </div>
-      ${renderCtaBlock()}
+      ${ongoingProjects.length ? `<section class="projects-current" aria-labelledby="ongoing-projects-title">
+        <h2 class="pd-section-heading" id="ongoing-projects-title">${c.inProgressLabel}</h2>
+        <div>
+          ${ongoingProjects.map(p => `<a class="projects-current-link" href="${pageUrl('project', p.id)}" data-nav-project="${p.id}" data-cta="project">
+            <div><h3>${t(p.title)}</h3><p>${t(p.intro[0])}</p></div><span aria-hidden="true">→</span>
+          </a>`).join('')}
+        </div>
+      </section>` : ''}
+      ${renderCtaBlock(L.homeContact, 'home-contact')}
       ${renderFooter()}
     </main>`;
 }
@@ -359,66 +398,52 @@ function renderProjects() {
 // ── DETTAGLIO PROGETTO ─────────────────────────────────────────────────────
 
 function renderProjectDetail() {
-  const c = lang().projects;
+  const L = lang();
+  const c = L.projects;
   const p = PROJECTS.find(x => x.id === (state.page === 'amsterdam' ? 'amsterdam' : state.projectId)) || PROJECTS[0];
+  const context = [findSpec(p, ['location']), findSpec(p, ['area'])].filter(Boolean);
 
   return `
-    <main class="page" id="main-content">
-      <div class="pd-cover">
-        <img src="${p.cover}" alt="${t(p.title)}" loading="lazy">
-      </div>
-
-      <div class="pd-head">
-        <button class="pd-back" data-nav="projects">← ${c.back}</button>
-        <div class="project-tag" style="color:var(--accent);margin-top:20px">${t(p.tag)}</div>
-        <h1 class="pd-title">${t(p.title)}</h1>
-      </div>
-
-      <div class="pd-overview">
-        <div class="pd-specs">
-          ${p.specs.map(s => `
-            <div class="pd-spec">
-              <div class="pd-spec-label">${t(s.label)}</div>
-              <div class="pd-spec-value">${t(s.value)}</div>
-            </div>`).join('')}
+    <main class="page portfolio-page" id="main-content">
+      <header class="pd-head">
+        <a class="pd-back" href="${pageUrl('projects')}" data-nav="projects">← ${c.back}</a>
+        <div class="pd-title-row">
+          <div><p class="pd-tag">${t(p.tag)}</p><h1 class="pd-title">${t(p.title)}</h1></div>
+          ${context.length ? `<p class="pd-context">${context.join(' · ')}</p>` : ''}
         </div>
-        ${p.plan ? `
-          <div class="pd-plan-col">
-            <div class="pd-plan-wrap" role="button" tabindex="0" aria-label="${c.planLabel}" data-open-plan="${p.plan}" data-plan-label="${c.planLabel}">
-              <img src="${p.plan}" alt="${c.planLabel}">
-              <span class="pd-plan-zoom">+</span>
-              <span class="pd-plan-tag">${c.planLabel}</span>
-            </div>
-          </div>` : ''}
+      </header>
+      <div class="pd-overview${p.plan ? ' has-plan' : ''}">
+        <section class="pd-story" aria-labelledby="project-story-title">
+          <h2 class="pd-section-heading" id="project-story-title">${p.subtitle ? t(p.subtitle) : c.overviewLabel}</h2>
+          ${p.intro.map(para => `${para.heading ? `<h3 class="pd-story-subheading">${t(para.heading)}</h3>` : ''}<p class="pd-intro">${t(para)}</p>`).join('')}
+        </section>
+        <section class="pd-facts" aria-labelledby="project-details-title">
+          <h2 class="pd-section-heading" id="project-details-title">${c.detailsTitle}</h2>
+          <dl class="pd-specs">
+            ${p.specs.map(s => `<div class="pd-spec"><dt class="pd-spec-label">${t(s.label)}</dt><dd class="pd-spec-value">${t(s.value)}</dd></div>`).join('')}
+          </dl>
+        </section>
+        ${p.plan ? `<section class="pd-plan-col" aria-labelledby="project-plan-title">
+          <h2 class="pd-section-heading" id="project-plan-title">${c.planLabel}</h2>
+          <button class="pd-plan-wrap" type="button" aria-label="${c.openImage}: ${c.planLabel}" data-open-plan="${p.plan}" data-plan-label="${c.planLabel}">
+            <img src="${p.plan}" alt="${c.planLabel}" loading="lazy">
+            <span class="pd-plan-zoom" aria-hidden="true">+</span>
+          </button>
+        </section>` : ''}
       </div>
 
-      <div class="pd-intro-section">
-        <div class="pd-intro-label">${c.overviewLabel}</div>
-        ${p.intro.map((para, i) => `
-          <p class="pd-intro"${i > 0 ? ' style="margin-top:24px"' : ''}>${t(para)}</p>`).join('')}
-      </div>
-
-      <div class="pd-gallery-section">
-        <div class="pd-section-label">${c.galleryLabel}</div>
+      ${!p.inProgress && p.gallery.length ? `<section class="pd-gallery-section" aria-labelledby="project-images-title">
+        <h2 class="pd-section-heading" id="project-images-title">${c.galleryLabel}</h2>
         <div class="pd-gallery">
-          ${p.gallery.map((g, i) => {
-    // Ultima immagine con numero dispari → occupa entrambe le colonne
-    const span = (i === p.gallery.length - 1) && (p.gallery.length % 2 === 1);
-    return `
-              <div class="pd-gallery-item${span ? ' span2' : ''}" role="button" tabindex="0" aria-label="${t(g.caption)}" data-lb-index="${i}">
-                <img src="${g.src}" alt="${t(g.caption)}" loading="lazy">
-                <div class="pd-gallery-cap"><span>${t(g.caption)}</span></div>
-              </div>`;
-  }).join('')}
+          ${p.gallery.map((g, i) => `<figure class="pd-gallery-item">
+            <button class="pd-gallery-button" type="button" aria-label="${c.openImage}: ${t(g.caption)}" data-lb-index="${i}">
+              <img src="${g.src}" alt="${t(g.caption)}" loading="lazy" decoding="async">
+            </button>
+            <figcaption class="pd-gallery-cap">${t(g.caption)}</figcaption>
+          </figure>`).join('')}
         </div>
-      </div>
-
-      <div class="pd-cta">
-        <h2 class="pd-cta-title">${c.ctaTitle}</h2>
-        <p class="pd-cta-text">${c.ctaText}</p>
-        <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">${c.ctaBtn}</button>
-      </div>
-
+      </section>` : ''}
+      ${renderCtaBlock(L.homeContact, 'home-contact')}
       ${renderFooter()}
     </main>`;
 }
@@ -453,7 +478,7 @@ function renderContact() {
               </span>
               <span class="wa-text">
                 <span class="wa-label">${c.whatsappLabel}</span>
-                <span class="wa-sub"><span class="wa-dot"></span>${({it:'Di solito rispondiamo in giornata',en:'We usually reply the same day',tr:'Genellikle aynı gün yanıt veriyoruz'})[state.lang] || 'Di solito rispondiamo in giornata'}</span>
+                <span class="wa-sub">${c.whatsappReply}</span>
               </span>
               <span class="wa-arrow" aria-hidden="true">→</span>
             </a>
@@ -480,12 +505,12 @@ function renderContact() {
               <label for="field-message">${c.form.messageLabel} *</label>
               <textarea id="field-message" name="messaggio" placeholder="${c.form.messagePlaceholder}" required></textarea>
             </div>
+            <p class="form-privacy">${c.form.privacyText} <a href="${pageUrl('privacy')}" target="_blank" rel="noopener" aria-label="${c.form.privacyNewTab}">${c.form.privacyLink} <span aria-hidden="true">↗</span></a></p>
             <div role="status" aria-live="polite" id="contact-form-status" style="font-size:15px;line-height:1.6;min-height:24px"></div>
             <button class="btn-primary" type="submit" style="align-self:flex-start">${c.form.send}</button>
           </form>
         </div>
       </section>
-      ${renderCtaBlock()}
       ${renderFooter()}
     </main>`;
 }
@@ -542,6 +567,7 @@ function render() {
   document.getElementById('root').innerHTML = html;
   document.documentElement.lang = state.lang;
   document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(a => { a.dataset.cta = a.href.startsWith('mailto:') ? 'email' : 'phone'; });
+  syncFontPreview();
 }
 
 function navigate(page, projectId) {
@@ -550,13 +576,13 @@ function navigate(page, projectId) {
   updateMeta();
   render();
   window.scrollTo(0, 0);
-  const url = location.protocol === 'file:' ? buildHash(page, projectId) : pageUrl(page, projectId);
+  const url = fontPreviewUrl(location.protocol === 'file:' ? buildHash(page, projectId) : pageUrl(page, projectId));
   if (location.pathname !== url || location.hash) history.pushState(null, '', url);
 }
 
 function setLang(newLang) {
   state.lang = newLang;
-  if (location.protocol !== 'file:') history.pushState(null, '', pageUrl());
+  if (location.protocol !== 'file:') history.pushState(null, '', fontPreviewUrl(pageUrl()));
   updateMeta();
   render();
 }
@@ -679,7 +705,7 @@ document.addEventListener('submit', async function (e) {
   const cognome = (form.querySelector('[name=cognome]').value || '').trim();
   const email   = (form.querySelector('[name=email]').value || '').trim();
   form.querySelector('#contact-subject').value =
-    `Nuovo Contatto da ${cognome || email} - Selos Design`;
+    `Nuovo Contatto da ${cognome || email} - Selo’s Design`;
 
   btn.disabled = true;
   status.style.color = 'var(--text-light)';
@@ -758,13 +784,14 @@ function renderEnquiryFields() {
   const q = lang().enquiry || window.LANG_IT.enquiry;
   const field = (name, label) => `<div class="form-field"><label for="field-${name}">${label}</label><input id="field-${name}" name="${name}" type="text"></div>`;
   const select = (name, label, options) => `<div class="form-field"><label for="field-${name}">${label}</label><select id="field-${name}" name="${name}"><option value="">—</option>${options.map(v => `<option>${v}</option>`).join('')}</select></div>`;
-  return `<div class="enquiry-details"><div class="contact-form"><div class="form-row">${field('localita', q.location)}${field('tempi', q.timing)}</div><div class="form-row">${select('tipologia', q.type, q.types)}${select('fase', q.stage, q.stages)}</div></div></div>`;
+  return `<fieldset class="enquiry-details" aria-describedby="enquiry-help"><legend>${q.title}</legend><p class="enquiry-intro" id="enquiry-help">${q.intro}</p><div class="contact-form"><div class="form-row">${field('localita', q.location)}${field('tempi', q.timing)}</div><div class="form-row">${select('tipologia', q.type, q.types)}${select('fase', q.stage, q.stages)}</div></div></fieldset>`;
 }
 
 function renderServicePage() {
   const L = lang();
   const c = L.servicePages[state.page];
   const u = L.serviceUI;
+  if (window.SERVICE_IMAGES[state.page]) return renderServiceDetail(c, u, window.SERVICE_IMAGES[state.page]);
   const isInternational = ['international', 'amsterdam'].includes(state.page);
   const contact = where => `<a class="btn-primary service-button" href="${pageUrl('contact')}" data-nav="contact" data-cta="contact" data-cta-location="${where}">${u.cta}</a>`;
   return `<main class="page service-page" id="main-content">
@@ -780,6 +807,64 @@ function renderServicePage() {
     <section class="section"><h2 class="section-title">${c.whyTitle}</h2><p class="service-copy service-readable">${c.why}</p></section>
     <section class="section service-related"><h2 class="service-subtitle">${u.related}</h2><div>${['interior', 'consultation', 'rendering', 'international'].filter(key => key !== state.page).map(key => `<a class="text-link" href="${pageUrl(key)}" data-nav="${key}">${key === 'international' ? u.international : L.servicePages[key].title} →</a>`).join('')}</div></section>
     <div class="pd-cta"><h2 class="pd-cta-title">${u.cta}</h2>${contact('footer')}</div>
+    ${renderFooter()}
+  </main>`;
+}
+
+function renderServiceDetail(c, u, images) {
+  const L = lang();
+  const project = PROJECTS.find(p => p.id === images.projectId);
+  const projectUrl = pageUrl('project', project.id);
+  const caption = image => image.plan ? L.projects.planLabel : L.hero.imageLabel;
+  const imageAlt = image => {
+    if (image.plan) return L.projects.planLabel + ' — ' + t(project.title);
+    const view = project.gallery.find(item => item.src === image.src);
+    return L.hero.imageLabel + ': ' + (view ? t(view.caption) + ' — ' : '') + t(project.title);
+  };
+  const imageTag = (image, first = false) => `<img src="${image.plan ? project.plan : image.src}" alt="${imageAlt(image)}" width="${image.width}" height="${image.height}" ${first ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>`;
+  const projectCaption = image => `<figcaption><a href="${projectUrl}" data-nav-project="${project.id}">${caption(image)} · ${t(project.title)} <span aria-hidden="true">→</span></a></figcaption>`;
+  return `<main class="page service-page service-detail-page" id="main-content">
+    <header class="service-lead">
+      <div class="service-lead-copy">
+        <p class="section-label">${u.area}</p>
+        <h1 class="service-lead-title">${c.displayTitle}</h1>
+        <p class="service-intro">${c.intro}</p>
+        <a class="home-text-link" href="${pageUrl('contact')}" data-nav="contact" data-cta="contact" data-cta-location="service-intro">${u.cta} <span aria-hidden="true">→</span></a>
+      </div>
+      <figure class="service-lead-visual">
+        ${imageTag(images.hero, true)}
+        ${projectCaption(images.hero)}
+      </figure>
+    </header>
+    <section class="service-body" aria-labelledby="service-audience-title">
+      <div class="service-story">
+        <h2 class="section-title" id="service-audience-title">${c.audienceTitle}</h2>
+        <p class="service-copy">${c.audience}</p>
+        <h3 class="service-story-heading">${c.whyTitle}</h3>
+        <p class="service-copy">${c.why}</p>
+      </div>
+      <div class="service-outline">
+        <h2 class="service-story-heading">${c.scopeTitle}</h2>
+        <ul class="service-scope">${c.scope.map(item => `<li>${item}</li>`).join('')}</ul>
+      </div>
+    </section>
+    <section class="service-example" aria-labelledby="service-example-title">
+      <figure class="service-example-visual${images.detail.plan ? ' is-plan' : ''}">
+        <a href="${projectUrl}" data-nav-project="${project.id}" data-cta="project" data-cta-location="service-example">${imageTag(images.detail)}</a>
+        ${projectCaption(images.detail)}
+      </figure>
+      <div class="service-example-copy">
+        <p class="section-label">${u.example}</p>
+        <h2 class="section-title" id="service-example-title">${t(project.title)}</h2>
+        <p class="service-copy">${c.example}</p>
+        <a class="home-text-link" href="${projectUrl}" data-nav-project="${project.id}" data-cta="project" data-cta-location="service-example">${u.projectLink} <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <nav class="service-navigation" aria-label="${u.related}">
+      <p class="section-label">${u.related}</p>
+      <div>${['interior', 'rendering', 'consultation', 'international'].filter(key => key !== state.page).map(key => `<a class="home-text-link" href="${pageUrl(key)}" data-nav="${key}">${key === 'international' ? u.international : L.servicePages[key].displayTitle} <span aria-hidden="true">→</span></a>`).join('')}</div>
+    </nav>
+    ${renderCtaBlock(L.homeContact, 'home-contact')}
     ${renderFooter()}
   </main>`;
 }

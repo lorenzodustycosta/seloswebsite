@@ -25,42 +25,81 @@ window.LANG_TR = {
     title1:  "Hikâye anlatan",
     title2:  "",
     title3:  "mekânlar.",
-    desc:    "Selo's Design, içinde yaşayanları yansıtan mekânlara duyulan tutkudan doğdu: estetik, işlevsellik ve özenle seçilmiş malzemeler, denge içinde.",
+    desc:    "Magenta ve Milano’da konut iç mekânları tasarlıyoruz. Mekânları yeniden düşünmenize, eviniz için mobilya, renk ve malzeme seçmenize yardımcı oluyoruz.",
     cta:     "Projeleri Keşfet",
-    cta2:    "Bize Ulaşın"
+    cta2:    "Bize Ulaşın",
+    imageLabel: "Render",
+    heroImageAlt: "Açık renkli bir kanepe ve lambader bulunan iç mekân detayı"
+  },
+
+  homeProjects: {
+    label: "Projeler",
+    title: "Projelerimizden birkaçı",
+    all: "Tüm projeler"
+  },
+
+  homeContact: {
+    ctaTitle: "Hangi mekândan başlamak istersiniz?",
+    ctaText: "Bir oda, bir ev ya da birkaç mobilya seçimi. Aklınızdakini bize anlatın; nasıl yardımcı olabileceğimizi birlikte değerlendirelim.",
+    ctaBtn: "Konuşalım"
   },
 
   about: {
-    label: "Selo's Design Hakkında",
-    title: "Yaratıcılık ve uyumun\nbuluştuğu yer",
-    p1:    "Selo's Design, her mekânın bir huzur ve ilham alanına dönüşebileceği inancından doğdu. Her müşteri için, özenle seçilmiş malzemeleri, işlevsel çözümleri ve modaların ötesine geçen bir estetiği bir araya getirerek özel tasarımlar yapıyoruz. Her zaman dinleyerek başlıyoruz: kim olduğunuzu, nasıl yaşadığınızı, sizi neyin ilham verdiğini.",
-    link:  "Daha fazla"
+    label: "Stüdyo",
+    title: "Biz Selin ve Lorenzo’yuz. Biz Selo’s Design’ız.",
+    p1: "Selo’s Design, Magenta (Milano) merkezli, İtalya’da ve Avrupa’da projeler yürüten bir iç mimarlık stüdyosudur. Selin iç mekân tasarımıyla ilgilenir. Lorenzo ise organizasyonu yürütür, tedarikçilerle ve ustalarla ilişkileri sürdürür.",
+    p2: "Evinizden ve evdeki yaşamınızdan yola çıkıyoruz: neler iyi işliyor, neleri değiştirmek istiyorsunuz, hangi mobilyaları kullanmaya devam etmek istiyorsunuz? Bu temeller üzerine projeyi geliştiriyor ve seçimleri sizinle birlikte yapıyoruz.",
+    link: "Hakkımızda biraz daha"
   },
 
   process: {
-    label: "Nasıl Çalışıyoruz",
-    title: "Sürecimiz",
+    label: "Nasıl çalışıyoruz",
+    title: "Fikirlerden eviniz için seçimlere",
+    intro: "Her projenin kapsamı farklıdır. Tasarımı geliştirmeden önce ihtiyaçları birlikte belirliyoruz.",
+    imageAlt: "Ahşap, taş ve yeşil tonlardan oluşan malzeme ve renk panosu",
     steps: [
-      { num: "01", title: "İlk Görüşme",  desc: "İhtiyaçlarınızı, yaşam tarzınızı ve beklentilerinizi dinliyoruz. Yükümlülük gerektirmeyen bir tanışma görüşmesi." },
-      { num: "02", title: "Konsept",       desc: "Proje vizyonunu geliştiriyoruz: moodboard, malzeme paleti ve ilk mekânsal fikir." },
-      { num: "03", title: "Tasarım",       desc: "Detaylı kat planları, fotogerçekçi render'lar ve her mekân için teknik şartnameler." },
-      { num: "04", title: "Uygulama",      desc: "Ustalar, tedarikçiler ve inşaat firmalarıyla koordinasyon — şantiyenin her aşamasında yanınızdayız." },
-      { num: "05", title: "Teslim",        desc: "Mekânınız, yaşamaya hazır. Anahtar teslimine kadar her detayı takip ediyoruz." }
+      {
+        num: "01",
+        title: "Evinizi tanıyoruz",
+        desc: "İhtiyaçlarınızı dinliyor; mekânları, alışkanlıklarınızı ve korumak istediğiniz mobilyaları birlikte inceliyoruz."
+      },
+      {
+        num: "02",
+        title: "Fikirleri netleştiriyoruz",
+        desc: "Planlar, malzemeler ve görselleştirmelerle alternatifleri karşılaştırıyor ve birlikte bir yön belirliyoruz."
+      },
+      {
+        num: "03",
+        title: "Seçimleri geliştiriyoruz",
+        desc: "Mobilya ve detayları netleştiriyoruz. Kararlaştırılan iş kapsamına dâhilse tedarikçiler ve ustalarla da koordinasyon sağlıyoruz."
+      }
     ]
   },
 
   services: {
     label: "Hizmetler",
-    title: "Ne yapıyoruz",
+    title: "Nereden başlayabiliriz",
     items: [
-      { num: "01", title: "İç Mekân Tasarımı",     desc: "Özel mekânlar tasarlıyoruz; yaşam biçiminize uygun, işlevsel ve uyumlu ortamlar yaratmak için mekân ve mobilya yerleşimini optimize ediyoruz." },
-      { num: "02", title: "Render",                desc: "Projenizi, daha işe başlamadan önce sonucu detaylı ve gerçekçi biçimde gösteren fotogerçekçi render'larla hayata geçiriyoruz." },
-      { num: "03", title: "Dekorasyon Danışmanlığı", desc: "Malzeme, renk ve tedarikçi seçiminde size rehberlik ediyoruz; zevkinize ve yaşam tarzınıza tam uyumlu, eşsiz ortamlar yaratıyoruz." }
+      {
+        num: "01",
+        title: "İç mekân tasarımı",
+        desc: "Bir oda veya tüm ev için mekân düzenini, mobilya, ışık ve malzeme arasındaki ilişkiyi yeniden düşünüyoruz."
+      },
+      {
+        num: "02",
+        title: "Görselleştirme",
+        desc: "Son seçimlerden önce alternatifleri, oranları ve uyumları karşılaştırmak için tasarımın görsellerini hazırlıyoruz."
+      },
+      {
+        num: "03",
+        title: "Dekorasyon danışmanlığı",
+        desc: "Mevcut eşyalarınızla eklemek istediklerinizi bir arada düşünerek mobilya, renk ve yüzey seçimlerinde yardımcı oluyoruz."
+      }
     ]
   },
 
   values: {
-    label: "Neden Selo's Design",
+    label: "Neden Selo’s Design",
     title: "Değerlerimiz",
     items: [
       { title: "Kişiselleştirme", desc: "Her müşterinin kendine özgü ihtiyaçlarına göre tasarlanmış özel çözümler. Her proje, içinde yaşayanın tarzını ve kişiliğini yansıtır." },
@@ -77,14 +116,14 @@ window.LANG_TR = {
       {
         name:  "Selin Hilal",
         role:  "İç Mimar · Kurucu",
-        bio:   "Ben Selin, Selo's Design'ın kurucusuyum. Köklerim Akdeniz'de, Antalya'da: tasarıma olan tutkum orada, deniz ile babamın mobilya mağazası arasında doğdu.\n\nBu tutkuyu Ankara'da Bilkent Üniversitesi'nde İç Mimarlık yüksek lisansıyla geliştirdim, ardından İstanbul'da birkaç yıl boyunca lüks oteller, villalar ve ofisler için iç mekânlar tasarladım. 2016'da ikinci evim olan İtalya'ya geldim ve Politecnico di Milano'da Mimarlık yüksek lisansımı tamamladım.\n\nO günden beri İtalya ve Avrupa genelinde, konut ve ticari projelerde serbest çalışıyorum. Vizyonum, Türk köklerimin canlı enerjisini İtalyan zevkinin zarafetiyle birleştiriyor: her mekânı eşsiz kılmak için deneyimimi ve yaratıcılığımı her müşteriye sunuyorum.",
+        bio:   "Antalya’da, Akdeniz kıyısında doğup büyüdüm: tasarıma olan tutkum da orada, denizle babamın mobilya mağazası arasında başladı.\n\nAnkara’daki Bilkent Üniversitesi’nin İç Mimarlık bölümünden mezun oldum ve birkaç yıl boyunca İstanbul’da otel, villa ve ofis projelerinde çalıştım. 2016’da İtalya’ya taşındım ve burada Politecnico di Milano’da Mimarlık alanında yüksek lisansımı tamamladım.\n\nO zamandan beri İtalya’da ve Avrupa’da konut ve ticari mekân projelerinde çalışıyorum. Mekânların yerleşimi, mobilyalar, malzemeler ve aydınlatmayla ilgileniyorum. Önerileri birlikte kolayca değerlendirebilmek için planlar, ilham panoları ve render görselleri kullanıyorum: bir odanın nasıl işlediğini, hangi mobilyaların sığabileceğini, renk ve yüzeylerin bir arada nasıl göründüğünü birlikte değerlendiriyoruz.",
         color: "oklch(84% 0.04 85)",
         photo: "assets/selin.png"
       },
       {
         name:  "Lorenzo Costa",
         role:  "Proje Yöneticisi · Kurucu Ortak",
-        bio:   "Stüdyonun operasyonel tarafıyla ilgileniyorum. Müşteriyle ilk temastan projenin teslimine kadar; teklifleri, tedarikçi ve usta ilişkilerini, şantiye ziyaretlerini, süre ve bütçe kontrolünü yönetiyorum.\n\nAnalitik ve düzenli bir yaklaşımla, her projenin netlik ve dakiklikle ilerlemesini sağlıyorum; böylece Selin yaratıcı tarafa odaklanmakta özgür kalıyor. Müşteri için bu, her şeyi kontrol altında tutan bir başvuru noktasının her zaman var olması demek.",
+        bio:   "Her projenin teklif, süre ve maliyet takibini yapıyor; tedarikçiler ve ustalarla iletişimi yürütüyorum. İşin gerektirdiği durumlarda yerinde incelemeleri ve müşterilerle, tedarikçilerle koordinasyonu da üstleniyorum.\n\nBilgileri topluyor, açık konuları takip ediyor ve üzerinde anlaşılanları yazılı hâle getiriyorum. Böylece Selin’in tasarım kararlarının, belirlenen süre ve bütçe içinde hayata geçirilebilecek bir çalışmaya dönüşmesini sağlıyorum.\n\nMüşteri için organizasyonla ilgili tüm konularda başvurabileceği kişi benim: kime danışacağını ve projenin hangi aşamada olduğunu her zaman bilir.",
         color: "oklch(84% 0.03 220)",
         photo: "assets/lorenzo.png"
       }
@@ -93,11 +132,14 @@ window.LANG_TR = {
 
   projects: {
     label:         "Projeler",
-    title:         "Portföyümüz",
-    desc:          "Her proje eşsizdir — orada yaşayan insanlar düşünülerek tasarlanmış bir mekân, ışık ve malzeme hikâyesi.",
+    title:         "Projelerimiz",
+    desc:          "Evler ve tek tek mekânlar için planlar, görselleştirmeler ve malzeme seçimleriyle anlattığımız konut tasarımları ve dekorasyon önerileri.",
+    inProgressLabel: "Devam eden projeler",
+    detailsTitle: "Proje bilgileri",
+    openImage: "Görseli aç",
     back:          "Tüm projeler",
     planLabel:     "Kat planı",
-    galleryLabel:  "Galeri",
+    galleryLabel:  "Proje görselleri",
     overviewLabel: "Proje",
     metaLocation:  "Konum",
     metaArea:      "Alan",
@@ -107,13 +149,26 @@ window.LANG_TR = {
     ctaBtn:        "Bize Ulaşın"
   },
 
+  enquiry: {
+    title: 'Proje detayları (isteğe bağlı)',
+    intro: 'İsterseniz mekân ve zamanlama hakkında birkaç ayrıntı ekleyebilirsiniz. Bu bilgiler isteğe bağlıdır ve projeyi anlamamıza yardımcı olur.',
+    location: 'Projenin konumu',
+    type: 'Tasarlanacak mekânlar',
+    stage: 'Projenin mevcut aşaması',
+    timing: 'Öngörülen zamanlama',
+    optional: 'İsteğe bağlı',
+    types: ['Evin tamamı', 'Yaşam alanı', 'Mutfak', 'Yatak odası', 'Bazı mekânlar', 'Diğer'],
+    stages: ['Konut satın alma', 'İlk fikirler', 'Tadilat', 'Mobilya ve dekorasyon', 'Çalışmalar başladı', 'Diğer']
+  },
+
   contact: {
     label:          "İletişim",
     title:          "Projenizden\nkonuşalım",
-    areaText:       "Magenta, Milano ve çevre bölgede hizmet veriyoruz — keşif için size geliyoruz. Yurt dışı projeler de takip ediyoruz.",
+    areaText:       "Magenta, Milano ve çevresinde çalışıyor, yurt dışındaki projeleri de takip ediyoruz.",
     emailLabel:     "E-posta",
     phoneLabel:     "Telefon",
     whatsappLabel:  "WhatsApp'tan Yazın",
+    whatsappReply:  "Genellikle aynı gün yanıt veriyoruz",
     socialLabel:    "Bizi Takip Edin",
     form: {
       name:               "Ad",
@@ -121,7 +176,10 @@ window.LANG_TR = {
       email:              "E-posta",
       phone:              "Telefon",
       messageLabel:       "Mesaj",
-      messagePlaceholder: "Bana projenizden bahsedin…",
+      messagePlaceholder: "Bize projenizden bahsedin…",
+      privacyText:        "Paylaştığınız bilgileri talebinize yanıt vermek için kullanırız.",
+      privacyLink:        "Gizlilik politikası",
+      privacyNewTab:      "Gizlilik politikası (yeni sekmede açılır)",
       send:               "Mesaj Gönder",
       sending:            "Gönderiliyor…",
       success:            "Mesajınız iletildi! En kısa sürede size döneceğiz.",
@@ -136,7 +194,7 @@ window.LANG_TR = {
     hoursLine1:  "Pzt – Cum: 9:00 – 19:00",
     hoursLine2:  "Cumartesi: randevu ile",
     privacy:     "Gizlilik Politikası",
-    rights:      `© ${new Date().getFullYear()} Selo's Design. Tüm hakları saklıdır.`
+    rights:      `© ${new Date().getFullYear()} Selo’s Design. Tüm hakları saklıdır.`
   },
 
   privacy: {

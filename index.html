@@ -11,7 +11,7 @@
 <link rel="alternate" hreflang="it" href="https://www.selosdesign.com/">
 <link rel="alternate" hreflang="en" href="https://www.selosdesign.com/home-en/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Selo's Design">
+<meta property="og:site_name" content="Selo’s Design">
 <meta property="og:locale" content="it_IT">
 <meta property="og:url" content="https://www.selosdesign.com/">
 <meta property="og:title" content="Studio di Interior Design | Magenta, Milano — Selo’s Design">
@@ -19,14 +19,14 @@
 <meta property="og:image" content="https://www.selosdesign.com/assets/logo.png">
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://www.selosdesign.com/#studio","name":"Selo's Design","url":"https://www.selosdesign.com/","logo":"https://www.selosdesign.com/assets/logo.png","email":"selosdesign@gmail.com","telephone":"+393662312315","address":{"@type":"PostalAddress","streetAddress":"Via Silvio Pellico 40","addressLocality":"Magenta","postalCode":"20013","addressRegion":"MI","addressCountry":"IT"},"areaServed":["Magenta","Milano"],"sameAs":["https://www.instagram.com/selos_design/","https://www.facebook.com/selosdesign","https://www.linkedin.com/in/selin-hilal"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://www.selosdesign.com/#studio","name":"Selo’s Design","url":"https://www.selosdesign.com/","logo":"https://www.selosdesign.com/assets/logo.png","email":"selosdesign@gmail.com","telephone":"+393662312315","address":{"@type":"PostalAddress","streetAddress":"Via Silvio Pellico 40","addressLocality":"Magenta","postalCode":"20013","addressRegion":"MI","addressCountry":"IT"},"areaServed":["Magenta","Milano"],"sameAs":["https://www.instagram.com/selos_design/","https://www.facebook.com/selosdesign","https://www.linkedin.com/in/selin-hilal"]}</script>
 </head>
 <body data-theme="lineare" data-page="home" data-project="">
 <div id="root">
     <nav class="nav">
       <a class="nav-logo" href="/" data-nav="home">
-        <img src="assets/logo.png" alt="Selos Design">
-        <span class="nav-logo-text">Selo's Design</span>
+        <img src="assets/logo.png" alt="Selo’s Design">
+        <span class="nav-logo-text">Selo’s Design</span>
       </a>
       <div class="nav-links">
 
@@ -48,7 +48,7 @@
         <span></span><span></span><span></span>
       </button>
     </nav>
-    <main class="page" id="main-content">
+    <main class="page home-page" id="main-content">
 
       <!-- HERO -->
       <div class="hero">
@@ -56,127 +56,130 @@
           <div class="hero-eyebrow">Studio di Interior Design · Magenta · Milano</div>
           <h1 class="hero-title">
             Spazi che<br>
-            <em>raccontano</em><br>
-            storie.
+            raccontano storie.
           </h1>
-          <p class="hero-desc">Selo's Design nasce dalla passione per ambienti che riflettono chi li vive: estetica, funzionalità e materiali scelti con cura, in equilibrio.</p>
+          <p class="hero-desc">Progettiamo interni a Magenta e Milano. Ti aiutiamo a ripensare gli spazi e a scegliere arredi, colori e materiali per la tua casa.</p>
           <div class="hero-actions">
             <button class="btn-primary" data-nav="projects">Scopri i Progetti</button>
             <button class="btn-ghost" data-cta="contact" data-cta-location="page" data-nav="contact">Contattaci →</button>
           </div>
         </div>
-        <div class="hero-right">
-          <img src="assets/hero.png" alt="Interior design — soggiorno" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="hero-visual">
+          <img class="hero-image" src="assets/hero.png" alt="Dettaglio di un interno con divano chiaro e lampada da terra" width="2500" height="3125" fetchpriority="high">
         </div>
       </div>
 
-      <!-- SU SELOS -->
-      <section class="section">
-        <div class="about-grid">
-          <div class="about-text">
-            <div class="section-label">Su Selo's Design</div>
-            <h2 class="section-title" style="white-space:pre-line">Dove creatività
-e armonia si incontrano</h2>
-            <p>Selo's Design nasce dalla convinzione che ogni spazio possa diventare un luogo di benessere e ispirazione. Progettiamo su misura per ogni cliente, unendo materiali scelti con cura, soluzioni funzionali e un'estetica che attraversa le mode. Partiamo sempre dall'ascolto: chi sei, come vivi, cosa ti ispira.</p>
-            <button class="btn-ghost" style="margin-top:8px" data-nav="team">Scopri di più →</button>
+      <!-- DUE PROGETTI CON LO STESSO PESO VISIVO -->
+      <section class="home-section home-work" aria-labelledby="home-work-title">
+        <div class="home-section-heading">
+          <div>
+            <div class="section-label">Progetti</div>
+            <h2 class="section-title" id="home-work-title">Alcuni dei nostri lavori</h2>
           </div>
-          <div class="about-img"><img src="assets/moodboard.png" alt="Moodboard Selos Design" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <a class="home-text-link" href="/projects/" data-nav="projects">Tutti i progetti <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="home-projects">
+
+            <a class="home-project" href="/project-trilocale-magenta/" data-nav-project="trilocale-magenta" data-cta="project" data-cta-location="home-selection">
+              <img src="assets/projects/trilocale/open_space_1.png" alt="Trilocale Magenta — Rendering" width="2500" height="1406" loading="lazy" decoding="async">
+              <div class="home-project-heading">
+                <h3>Trilocale Magenta</h3>
+                <span aria-hidden="true">→</span>
+              </div>
+              <p>Progettazione · Rendering · Arredo</p>
+            </a>
+            <a class="home-project" href="/project-camera-corbetta/" data-nav-project="camera-corbetta" data-cta="project" data-cta-location="home-selection">
+              <img src="assets/projects/camera-corbetta/living_room_1.png" alt="Camera Corbetta — Rendering" width="2500" height="1406" loading="lazy" decoding="async">
+              <div class="home-project-heading">
+                <h3>Camera Corbetta</h3>
+                <span aria-hidden="true">→</span>
+              </div>
+              <p>Progettazione · Rendering · Arredo · Gestione e coordinamento pratiche e cantiere</p>
+            </a>
+        </div>
+      </section>
+
+      <!-- LO STUDIO -->
+      <section class="home-section home-studio" aria-labelledby="home-studio-title">
+          <div>
+            <div class="section-label">Lo studio</div>
+            <h2 class="section-title" id="home-studio-title" style="white-space:pre-line">Siamo Selin e Lorenzo, siamo Selo’s Design.</h2>
+          </div>
+          <div class="home-studio-copy">
+            <p>Selo’s Design è uno studio di interior design con base a Magenta (Milano), che lavora su progetti in Italia e in Europa. Selin si occupa del progetto degli interni, Lorenzo dell’organizzazione e dei rapporti con fornitori e artigiani.</p>
+            <p>Partiamo dalla tua casa e da come la vivi: cosa funziona, cosa vorresti cambiare, quali arredi vuoi tenere. Su queste basi costruiamo il progetto e facciamo le scelte insieme a te.</p>
+            <a class="home-text-link" href="/team/" data-nav="team">Qualcosa in più su di noi <span aria-hidden="true">→</span></a>
+          </div>
+      </section>
+
+      <!-- SERVIZI -->
+      <section class="home-section home-services" aria-labelledby="home-services-title">
+        <div>
+          <div class="section-label">Servizi</div>
+          <h2 class="section-title" id="home-services-title">Da dove possiamo partire</h2>
+        </div>
+        <div class="home-service-list">
+
+            <a class="home-service" href="/interior-design-milano/" data-nav="interior">
+              <div>
+                <h3>Progettazione di interni</h3>
+                <p>Ripensiamo la disposizione degli ambienti e il rapporto tra arredi, luce e materiali, per una stanza o per tutta la casa.</p>
+              </div>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="home-service" href="/rendering/" data-nav="rendering">
+              <div>
+                <h3>Rendering</h3>
+                <p>Visualizziamo il progetto per confrontare soluzioni, proporzioni e abbinamenti prima di fare le scelte definitive.</p>
+              </div>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="home-service" href="/consulenza-arredo/" data-nav="consultation">
+              <div>
+                <h3>Consulenza d’arredo</h3>
+                <p>Ti aiutiamo a scegliere mobili, colori e finiture, tenendo insieme quello che c’è già e quello che vorresti aggiungere.</p>
+              </div>
+              <span aria-hidden="true">→</span>
+            </a>
         </div>
       </section>
 
       <!-- COME LAVORIAMO -->
-      <section class="hww-section">
-        <div class="section-label">Come Lavoriamo</div>
-        <h2 class="section-title">Il nostro processo</h2>
-        <div class="hww-steps">
+      <section class="home-section home-process" aria-labelledby="home-process-title">
+        <img class="home-materials" src="assets/moodboard.png" alt="Moodboard di materiali e colori: legno, pietra e toni verdi" width="1254" height="1254" loading="lazy" decoding="async">
+        <div>
+          <div class="section-label">Come lavoriamo</div>
+          <h2 class="section-title" id="home-process-title">Dalle idee alle scelte per la casa</h2>
+          <p class="home-process-intro">Ogni incarico ha dimensioni diverse. Definiamo insieme cosa serve, prima di sviluppare il progetto.</p>
+          <ol class="home-process-list">
 
-            <div class="hww-step">
-              <div class="hww-num">01</div>
-              <div class="hww-title">Primo Incontro</div>
-              <div class="hww-desc">Ascoltiamo le tue esigenze, il tuo stile di vita e le tue aspettative. Un incontro conoscitivo senza impegno.</div>
-            </div>
-            <div class="hww-step">
-              <div class="hww-num">02</div>
-              <div class="hww-title">Concept</div>
-              <div class="hww-desc">Sviluppiamo la visione del progetto: moodboard, palette materiali e prima idea spaziale.</div>
-            </div>
-            <div class="hww-step">
-              <div class="hww-num">03</div>
-              <div class="hww-title">Progettazione</div>
-              <div class="hww-desc">Planimetrie dettagliate, rendering fotorealistici e specifiche tecniche per ogni ambiente.</div>
-            </div>
-            <div class="hww-step">
-              <div class="hww-num">04</div>
-              <div class="hww-title">Realizzazione</div>
-              <div class="hww-desc">Coordinamento con artigiani, fornitori e imprese edili: ti seguiamo in ogni fase del cantiere.</div>
-            </div>
-            <div class="hww-step">
-              <div class="hww-num">05</div>
-              <div class="hww-title">Consegna</div>
-              <div class="hww-desc">Il tuo spazio, pronto da vivere. Curiamo ogni dettaglio fino alla consegna.</div>
-            </div>
-        </div>
-      </section>
-
-      <!-- SERVIZI -->
-      <section class="section">
-        <div class="section-label">Servizi</div>
-        <h2 class="section-title">Cosa facciamo</h2>
-        <div class="services-grid">
-
-            <a class="service-card" href="/interior-design-milano/" data-nav="interior">
-              <div class="service-num">01</div>
-              <div class="service-title">Progettazione di Interni</div>
-              <div class="service-desc">Spazi su misura: ottimizziamo la disposizione di ambienti e arredo per creare interni funzionali e armoniosi, adatti a come vivi.</div>
-            </a>
-            <a class="service-card" href="/rendering/" data-nav="rendering">
-              <div class="service-num">02</div>
-              <div class="service-title">Rendering</div>
-              <div class="service-desc">Diamo vita al progetto con rendering fotorealistici che mostrano il risultato finale prima ancora di iniziare i lavori.</div>
-            </a>
-            <a class="service-card" href="/consulenza-arredo/" data-nav="consultation">
-              <div class="service-num">03</div>
-              <div class="service-title">Consulenza d'arredo</div>
-              <div class="service-desc">Ti guidiamo nella scelta di materiali, colori e fornitori, per ambienti unici e in linea con il tuo stile di vita.</div>
-            </a>
-        </div>
-      </section>
-
-      <!-- VALORI -->
-      <section class="section">
-        <div class="section-label">Perché scegliere Selo's Design</div>
-        <h2 class="section-title">I nostri valori</h2>
-        <div class="values-grid">
-
-            <div class="value-item">
-              <div class="value-line"></div>
-              <div class="value-title">Personalizzazione</div>
-              <div class="value-desc">Soluzioni di design su misura, pensate sulle esigenze di ogni cliente. Ogni progetto riflette lo stile e la personalità di chi lo vive.</div>
-            </div>
-            <div class="value-item">
-              <div class="value-line"></div>
-              <div class="value-title">Qualità</div>
-              <div class="value-desc">Dalla progettazione ai materiali, dalla cura del cliente alla scelta dei fornitori: manteniamo standard elevati in ogni fase del lavoro.</div>
-            </div>
-            <div class="value-item">
-              <div class="value-line"></div>
-              <div class="value-title">Progetto a 360°</div>
-              <div class="value-desc">Grazie a una rete di collaboratori qualificati, offriamo soluzioni complete integrando aspetti tecnici, fornitura di mobili e coordinamento lavori.</div>
-            </div>
+              <li>
+                <h3>Conosciamo la casa</h3>
+                <p>Ci racconti le tue esigenze e guardiamo gli spazi, le abitudini e gli arredi da cui partire.</p>
+              </li>
+              <li>
+                <h3>Mettiamo a fuoco le idee</h3>
+                <p>Planimetrie, materiali e rendering ci aiutano a confrontare le alternative e a scegliere una direzione.</p>
+              </li>
+              <li>
+                <h3>Sviluppiamo le scelte</h3>
+                <p>Definiamo arredi e dettagli. Se l’incarico lo prevede, ci coordiniamo anche con fornitori e artigiani.</p>
+              </li>
+          </ol>
         </div>
       </section>
 
 
-    <div class="pd-cta">
-      <h2 class="pd-cta-title">Ti piace quello che vedi?</h2>
-      <p class="pd-cta-text">Raccontaci il tuo spazio. Il primo incontro è conoscitivo e senza impegno.</p>
-      <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">Contattaci</button>
+    <div class="pd-cta home-contact">
+      <h2 class="pd-cta-title">Da quale spazio vorresti partire?</h2>
+      <p class="pd-cta-text">Una stanza, una casa o qualche scelta d’arredo. Scrivici cosa hai in mente: capiremo insieme come possiamo aiutarti.</p>
+      <button class="btn-primary" data-cta="contact" data-cta-location="page" data-nav="contact">Parliamone</button>
     </div>
 
     <footer class="footer">
       <div class="footer-logo">
         <img src="assets/logo.png" alt="" style="height:52px;width:52px;object-fit:contain">
-        <div class="footer-logo-text">Selo's Design</div>
+        <div class="footer-logo-text">Selo’s Design</div>
         <div class="footer-tagline">Studio di Interior Design · Magenta · Milano.</div>
       </div>
       <div class="footer-col">
@@ -193,7 +196,7 @@ e armonia si incontrano</h2>
       </div>
     </footer>
     <div class="footer-bottom">
-      <div class="footer-bottom-text">© 2026 Selo's Design. Tutti i diritti riservati.</div>
+      <div class="footer-bottom-text">© 2026 Selo’s Design. Tutti i diritti riservati.</div>
       <div class="footer-socials">
         <a class="social-link" href="https://www.instagram.com/selos_design/" target="_blank" rel="noreferrer">Instagram</a>
         <a class="social-link" href="https://www.facebook.com/selosdesign" target="_blank" rel="noreferrer">Facebook</a>

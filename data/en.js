@@ -21,42 +21,81 @@ window.LANG_EN = {
     title1:  "Spaces that",
     title2:  "tell",
     title3:  "stories.",
-    desc:    "Selo's Design was born from a passion for spaces that reflect those who live in them: aesthetics, function and carefully chosen materials, in balance.",
+    desc:    "We design home interiors in Magenta and Milan. We help you rethink your space and choose furniture, colours and materials for your home.",
     cta:     "View Projects",
-    cta2:    "Contact us"
+    cta2:    "Contact us",
+    imageLabel: "Visualisation",
+    heroImageAlt: "Interior detail with a light-coloured sofa and a floor lamp"
+  },
+
+  homeProjects: {
+    label: "Projects",
+    title: "A few of our projects",
+    all: "All projects"
+  },
+
+  homeContact: {
+    ctaTitle: "What would you like to change?",
+    ctaText: "A room, a home or a few furnishing choices. Tell us what you have in mind and we’ll work out how we can help.",
+    ctaBtn: "Let’s talk"
   },
 
   about: {
-    label: "About Selo's Design",
-    title: "Where creativity\nand harmony meet",
-    p1:    "Selo's Design grew out of the belief that every space can become a place of wellbeing and inspiration. We design bespoke for each client, bringing together carefully chosen materials, functional solutions and an aesthetic that outlasts trends. We always start by listening — who you are, how you live, what inspires you.",
-    link:  "Learn more"
+    label: "The studio",
+    title: "We’re Selin and Lorenzo. We’re Selo’s Design.",
+    p1: "Selo’s Design is an interior design studio based in Magenta (Milan), working on projects in Italy and across Europe. Selin handles the interior design, while Lorenzo manages organisation and relationships with suppliers and craftspeople.",
+    p2: "We start with your home and how you live in it: what works, what you would like to change and which pieces of furniture you want to keep. We build the design around this and make decisions together with you.",
+    link: "A little more about us"
   },
 
   process: {
-    label: "How We Work",
-    title: "Our process",
+    label: "How we work",
+    title: "From ideas to choices for your home",
+    intro: "Every commission has a different scope. We agree what you need before developing the design.",
+    imageAlt: "Material and colour moodboard with wood, stone and green tones",
     steps: [
-      { num: "01", title: "First Meeting",  desc: "We listen to your needs, your lifestyle and your expectations. A no-obligation introductory meeting." },
-      { num: "02", title: "Concept",        desc: "We develop the project vision: moodboard, material palette and initial spatial concept." },
-      { num: "03", title: "Design",         desc: "Detailed floor plans, photorealistic renderings and technical specifications for every space." },
-      { num: "04", title: "Execution",      desc: "Coordination with craftsmen, suppliers and builders — we guide you through every phase on site." },
-      { num: "05", title: "Handover",       desc: "Your space, ready to live in. We follow every detail through to the final handover." }
+      {
+        num: "01",
+        title: "Getting to know your home",
+        desc: "You tell us what you need. We look at the space, your routines and the furniture you want to work with."
+      },
+      {
+        num: "02",
+        title: "Shaping the ideas",
+        desc: "Layouts, materials and visualisations help us compare options and find a direction together."
+      },
+      {
+        num: "03",
+        title: "Developing the details",
+        desc: "We refine the furniture and details. Where it is part of the agreed scope, we also coordinate with suppliers and craftspeople."
+      }
     ]
   },
 
   services: {
     label: "Services",
-    title: "What we do",
+    title: "Where we can start",
     items: [
-      { num: "01", title: "Interior Design",       desc: "We design bespoke spaces, optimising room layouts and furnishings to create functional and harmonious environments tailored to your needs." },
-      { num: "02", title: "3D Rendering",           desc: "We bring your project to life with photorealistic renderings that provide a detailed, realistic vision of the final result before any work begins." },
-      { num: "03", title: "Furnishing Consultancy", desc: "We guide you in choosing materials, colours, and suppliers, creating unique environments perfectly aligned with your taste and lifestyle." }
+      {
+        num: "01",
+        title: "Interior design",
+        desc: "We rethink layouts and the relationship between furniture, light and materials, for a single room or a whole home."
+      },
+      {
+        num: "02",
+        title: "Visualisation",
+        desc: "We create images of the design to compare options, proportions and combinations before you make the final choices."
+      },
+      {
+        num: "03",
+        title: "Furnishing advice",
+        desc: "We help you choose furniture, colours and finishes, bringing the pieces you already have together with those you’d like to add."
+      }
     ]
   },
 
   values: {
-    label: "Why choose Selo's Design",
+    label: "Why choose Selo’s Design",
     title: "Our values",
     items: [
       { title: "Personalisation",   desc: "We create bespoke design solutions tailored to each client's unique needs. Every project reflects the style and personality of those who inhabit it." },
@@ -73,14 +112,14 @@ window.LANG_EN = {
       {
         name:  "Selin Hilal",
         role:  "Interior Designer · Founder",
-        bio:   "I'm Selin, the founder of Selo's Design. My roots are in Antalya, on the Mediterranean: it was there, between the sea and my father's furniture shop, that my passion for design was born.\n\nI nurtured it in Ankara, with a master's in Interior Architecture at Bilkent University, and then in Istanbul, where for a few years I designed interiors for luxury hotels, villas and offices. In 2016 I came to Italy — my second home — and earned a master's in Architecture at the Politecnico di Milano.\n\nSince then I've worked freelance between Italy and the rest of Europe, on residential and commercial projects. My vision blends the vibrant energy of my Turkish roots with the elegance of Italian taste: I bring my experience and creativity to every client, to make each space unique.",
+        bio:   "I was born and raised in Antalya, on the Mediterranean: it was there, between the sea and my father’s furniture shop, that my passion for design began.\n\nI graduated in Interior Architecture from Bilkent University in Ankara and spent several years in Istanbul working on projects for hotels, villas and offices. In 2016 I moved to Italy, where I earned a master’s degree in Architecture at Politecnico di Milano.\n\nSince then, I have worked on residential and commercial projects in Italy and across Europe. I work on space planning, furniture, materials and lighting. I use floor plans, moodboards and renderings to help us assess proposals together: how a room works, which furniture will fit, and how colours and finishes work together.",
         color: "oklch(84% 0.04 85)",
         photo: "assets/selin.png"
       },
       {
         name:  "Lorenzo Costa",
         role:  "Project Manager · Co-founder",
-        bio:   "I look after the operational side of the studio. From the first client contact to project delivery, I manage quotes, supplier and craftsmen relations, site visits, and the control of timelines and budget.\n\nWith an analytical, organised approach, I make sure every project moves forward with clarity and punctuality, leaving Selin free to focus on the creative side. For the client, it means always having a point of reference who keeps everything under control.",
+        bio:   "I handle quotes, timelines and costs for each project and maintain relationships with suppliers and craftspeople. When the work calls for it, I also carry out site visits and coordinate with clients and suppliers.\n\nI gather information, follow up on outstanding matters and put agreements in writing, so that Selin’s design choices can be put into practice within the planned timeframe and budget.\n\nFor clients, I am the point of contact for everything to do with organisation: they always know whom to ask and where the project stands.",
         color: "oklch(84% 0.03 220)",
         photo: "assets/lorenzo.png"
       }
@@ -89,11 +128,14 @@ window.LANG_EN = {
 
   projects: {
     label:         "Projects",
-    title:         "Our portfolio",
-    desc:          "Every project is unique — a story of space, light and materials designed around the people who live there.",
+    title:         "Our projects",
+    desc:          "Residential designs and furnishing proposals, told through layouts, visualisations and material choices for homes and individual rooms.",
+    inProgressLabel: "In progress",
+    detailsTitle: "Project details",
+    openImage: "Open image",
     back:          "All projects",
     planLabel:     "Floor plan",
-    galleryLabel:  "Gallery",
+    galleryLabel:  "Project images",
     overviewLabel: "Overview",
     metaLocation:  "Location",
     metaArea:      "Area",
@@ -106,10 +148,11 @@ window.LANG_EN = {
   contact: {
     label:          "Contact",
     title:          "Let's talk about\nyour project",
-    areaText:       "We work in Magenta, Milan and the surrounding area — we come to you for the site visit. We also follow projects abroad.",
+    areaText:       "We work in Magenta, Milan and the surrounding area, and on projects abroad.",
     emailLabel:     "Email",
     phoneLabel:     "Phone",
     whatsappLabel:  "Message us on WhatsApp",
+    whatsappReply:  "We usually reply the same day",
     socialLabel:    "Follow us",
     form: {
       name:               "Name",
@@ -117,7 +160,10 @@ window.LANG_EN = {
       email:              "Email",
       phone:              "Phone",
       messageLabel:       "Message",
-      messagePlaceholder: "Tell me about your project…",
+      messagePlaceholder: "Tell us about your project…",
+      privacyText:        "We use the information you send to respond to your enquiry.",
+      privacyLink:        "Privacy policy",
+      privacyNewTab:      "Privacy policy (opens in a new tab)",
       send:               "Send Message",
       sending:            "Sending…",
       success:            "Message sent! We'll get back to you soon.",
@@ -132,7 +178,7 @@ window.LANG_EN = {
     hoursLine1:  "Mon – Fri: 9:00 – 19:00",
     hoursLine2:  "Saturday: by appointment",
     privacy:     "Privacy Policy",
-    rights:      `© ${new Date().getFullYear()} Selo's Design. All rights reserved.`
+    rights:      `© ${new Date().getFullYear()} Selo’s Design. All rights reserved.`
   },
 
   privacy: {

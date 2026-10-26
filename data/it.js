@@ -21,42 +21,81 @@ window.LANG_IT = {
     title1:  "Spazi che",
     title2:  "raccontano",
     title3:  "storie.",
-    desc:    "Selo's Design nasce dalla passione per ambienti che riflettono chi li vive: estetica, funzionalità e materiali scelti con cura, in equilibrio.",
+    desc:    "Progettiamo interni a Magenta e Milano. Ti aiutiamo a ripensare gli spazi e a scegliere arredi, colori e materiali per la tua casa.",
     cta:     "Scopri i Progetti",
-    cta2:    "Contattaci"
+    cta2:    "Contattaci",
+    imageLabel: "Rendering",
+    heroImageAlt: "Dettaglio di un interno con divano chiaro e lampada da terra"
+  },
+
+  homeProjects: {
+    label: "Progetti",
+    title: "Alcuni dei nostri lavori",
+    all: "Tutti i progetti"
+  },
+
+  homeContact: {
+    ctaTitle: "Da quale spazio vorresti partire?",
+    ctaText: "Una stanza, una casa o qualche scelta d’arredo. Scrivici cosa hai in mente: capiremo insieme come possiamo aiutarti.",
+    ctaBtn: "Parliamone"
   },
 
   about: {
-    label: "Su Selo's Design",
-    title: "Dove creatività\ne armonia si incontrano",
-    p1:    "Selo's Design nasce dalla convinzione che ogni spazio possa diventare un luogo di benessere e ispirazione. Progettiamo su misura per ogni cliente, unendo materiali scelti con cura, soluzioni funzionali e un'estetica che attraversa le mode. Partiamo sempre dall'ascolto: chi sei, come vivi, cosa ti ispira.",
-    link:  "Scopri di più"
+    label: "Lo studio",
+    title: "Siamo Selin e Lorenzo, siamo Selo’s Design.",
+    p1: "Selo’s Design è uno studio di interior design con base a Magenta (Milano), che lavora su progetti in Italia e in Europa. Selin si occupa del progetto degli interni, Lorenzo dell’organizzazione e dei rapporti con fornitori e artigiani.",
+    p2: "Partiamo dalla tua casa e da come la vivi: cosa funziona, cosa vorresti cambiare, quali arredi vuoi tenere. Su queste basi costruiamo il progetto e facciamo le scelte insieme a te.",
+    link: "Qualcosa in più su di noi"
   },
 
   process: {
-    label: "Come Lavoriamo",
-    title: "Il nostro processo",
+    label: "Come lavoriamo",
+    title: "Dalle idee alle scelte per la casa",
+    intro: "Ogni incarico ha dimensioni diverse. Definiamo insieme cosa serve, prima di sviluppare il progetto.",
+    imageAlt: "Moodboard di materiali e colori: legno, pietra e toni verdi",
     steps: [
-      { num: "01", title: "Primo Incontro",  desc: "Ascoltiamo le tue esigenze, il tuo stile di vita e le tue aspettative. Un incontro conoscitivo senza impegno." },
-      { num: "02", title: "Concept",         desc: "Sviluppiamo la visione del progetto: moodboard, palette materiali e prima idea spaziale." },
-      { num: "03", title: "Progettazione",   desc: "Planimetrie dettagliate, rendering fotorealistici e specifiche tecniche per ogni ambiente." },
-      { num: "04", title: "Realizzazione",   desc: "Coordinamento con artigiani, fornitori e imprese edili: ti seguiamo in ogni fase del cantiere." },
-      { num: "05", title: "Consegna",        desc: "Il tuo spazio, pronto da vivere. Curiamo ogni dettaglio fino alla consegna." }
+      {
+        num: "01",
+        title: "Conosciamo la casa",
+        desc: "Ci racconti le tue esigenze e guardiamo gli spazi, le abitudini e gli arredi da cui partire."
+      },
+      {
+        num: "02",
+        title: "Mettiamo a fuoco le idee",
+        desc: "Planimetrie, materiali e rendering ci aiutano a confrontare le alternative e a scegliere una direzione."
+      },
+      {
+        num: "03",
+        title: "Sviluppiamo le scelte",
+        desc: "Definiamo arredi e dettagli. Se l’incarico lo prevede, ci coordiniamo anche con fornitori e artigiani."
+      }
     ]
   },
 
   services: {
     label: "Servizi",
-    title: "Cosa facciamo",
+    title: "Da dove possiamo partire",
     items: [
-      { num: "01", title: "Progettazione di Interni", desc: "Spazi su misura: ottimizziamo la disposizione di ambienti e arredo per creare interni funzionali e armoniosi, adatti a come vivi." },
-      { num: "02", title: "Rendering",                desc: "Diamo vita al progetto con rendering fotorealistici che mostrano il risultato finale prima ancora di iniziare i lavori." },
-      { num: "03", title: "Consulenza d'arredo",      desc: "Ti guidiamo nella scelta di materiali, colori e fornitori, per ambienti unici e in linea con il tuo stile di vita." }
+      {
+        num: "01",
+        title: "Progettazione di interni",
+        desc: "Ripensiamo la disposizione degli ambienti e il rapporto tra arredi, luce e materiali, per una stanza o per tutta la casa."
+      },
+      {
+        num: "02",
+        title: "Rendering",
+        desc: "Visualizziamo il progetto per confrontare soluzioni, proporzioni e abbinamenti prima di fare le scelte definitive."
+      },
+      {
+        num: "03",
+        title: "Consulenza d’arredo",
+        desc: "Ti aiutiamo a scegliere mobili, colori e finiture, tenendo insieme quello che c’è già e quello che vorresti aggiungere."
+      }
     ]
   },
 
   values: {
-    label: "Perché scegliere Selo's Design",
+    label: "Perché scegliere Selo’s Design",
     title: "I nostri valori",
     items: [
       { title: "Personalizzazione", desc: "Soluzioni di design su misura, pensate sulle esigenze di ogni cliente. Ogni progetto riflette lo stile e la personalità di chi lo vive." },
@@ -74,14 +113,14 @@ window.LANG_IT = {
         name:  "Selin Hilal",
         role:  "Interior Designer · Fondatrice",
         // I paragrafi sono separati da una riga vuota (\n\n)
-        bio:   "Le mie origini sono di Antalya, sul Mediterraneo: è lì, tra il mare e il negozio di arredamenti di mio padre, che è nata la mia passione per il design.\n\nL'ho coltivata ad Ankara, con la laurea magistrale in Architettura d'Interni alla Bilkent University, e poi a Istanbul, dove per alcuni anni ho progettato interni per hotel di lusso, ville e uffici. Nel 2016 sono arrivata in Italia — la mia seconda casa — e al Politecnico di Milano ho conseguito la laurea magistrale in Architettura.\n\nDa allora lavoro come libera professionista tra l'Italia e l'Europa, su progetti residenziali e commerciali. La mia visione unisce l'energia vibrante delle radici turche all'eleganza del gusto italiano: metto esperienza e creatività al servizio dei clienti per rendere ogni spazio unico.",
+        bio:   "Sono nata e cresciuta ad Antalya, sul Mediterraneo: è lì, tra il mare e il negozio di arredamenti di mio padre, che è nata la mia passione per il design.\n\nMi sono laureata in Architettura d’Interni alla Bilkent University di Ankara e ho lavorato per alcuni anni a Istanbul su progetti per hotel, ville e uffici. Nel 2016 mi sono trasferita in Italia, dove ho conseguito la laurea magistrale in Architettura al Politecnico di Milano.\n\nDa allora lavoro su progetti residenziali e commerciali in Italia e in Europa. Mi occupo della distribuzione degli spazi, degli arredi, dei materiali e della luce. Uso planimetrie, moodboard e rendering per rendere le proposte facili da valutare insieme: come funziona una stanza, quali mobili possono starci, come stanno insieme colori e finiture.",
         color: "oklch(84% 0.04 85)",
         photo: "assets/selin.png"
       },
       {
         name:  "Lorenzo Costa",
         role:  "Project Manager · Co-fondatore",
-        bio:   "Mi occupo del lato operativo dello studio. Dal primo contatto con il cliente alla consegna del progetto, gestisco preventivi, rapporti con fornitori e artigiani, sopralluoghi in cantiere e il controllo di tempistiche e budget.\n\nCon un approccio analitico e organizzato, mi assicuro che ogni progetto proceda con chiarezza e puntualità, lasciando a Selin la libertà di concentrarsi sulla parte creativa. Per il cliente significa avere sempre un punto di riferimento che tiene tutto sotto controllo.",
+        bio:   "Seguo preventivi, tempi e costi di ogni progetto e tengo i rapporti con fornitori e artigiani. Quando il lavoro lo richiede, mi occupo anche dei sopralluoghi e del coordinamento con clienti e fornitori.\n\nRaccolgo le informazioni, seguo le questioni aperte e metto per iscritto gli accordi, così che le scelte progettuali di Selin si traducano in un lavoro realizzabile, nei tempi e nel budget previsti.\n\nPer il cliente, sono il riferimento per tutto ciò che riguarda l’organizzazione: sa sempre a chi chiedere e a che punto è il progetto.",
         color: "oklch(84% 0.03 220)",
         photo: "assets/lorenzo.png"
       }
@@ -90,11 +129,14 @@ window.LANG_IT = {
 
   projects: {
     label:         "Progetti",
-    title:         "Il nostro portfolio",
-    desc:          "Ogni progetto è unico — un racconto di spazio, luce e materiali pensato intorno alle persone.",
+    title:         "I nostri progetti",
+    desc:          "Progetti residenziali e proposte d’arredo. Qui raccogliamo planimetrie, rendering e scelte di materiali per case e singoli ambienti.",
+    inProgressLabel: "In corso",
+    detailsTitle: "Dati del progetto",
+    openImage: "Apri immagine",
     back:          "Tutti i progetti",
     planLabel:     "Planimetria",
-    galleryLabel:  "Galleria",
+    galleryLabel:  "Immagini del progetto",
     overviewLabel: "Il progetto",
     metaLocation:  "Località",
     metaArea:      "Superficie",
@@ -107,10 +149,11 @@ window.LANG_IT = {
   contact: {
     label:          "Contatti",
     title:          "Parliamo del\ntuo progetto",
-    areaText:       "Operiamo a Magenta, Milano e in tutta la zona — veniamo noi da te per il sopralluogo. Seguiamo progetti anche all'estero.",
+    areaText:       "Lavoriamo a Magenta, Milano e dintorni e seguiamo progetti anche all’estero.",
     emailLabel:     "Email",
     phoneLabel:     "Telefono",
     whatsappLabel:  "Scrivici su WhatsApp",
+    whatsappReply:  "Di solito rispondiamo in giornata",
     socialLabel:    "Seguici",
     form: {
       name:               "Nome",
@@ -118,7 +161,10 @@ window.LANG_IT = {
       email:              "Email",
       phone:              "Telefono",
       messageLabel:       "Messaggio",
-      messagePlaceholder: "Raccontami del tuo progetto…",
+      messagePlaceholder: "Raccontaci del tuo progetto…",
+      privacyText:        "Usiamo i dati che ci invii per rispondere alla tua richiesta.",
+      privacyLink:        "Informativa sulla privacy",
+      privacyNewTab:      "Informativa sulla privacy (si apre in una nuova scheda)",
       send:               "Invia Messaggio",
       sending:            "Invio in corso…",
       success:            "Messaggio inviato! Ti risponderemo presto.",
@@ -133,7 +179,7 @@ window.LANG_IT = {
     hoursLine1:  "Lun – Ven: 9:00 – 19:00",
     hoursLine2:  "Sabato: su appuntamento",
     privacy:     "Privacy Policy",
-    rights:      `© ${new Date().getFullYear()} Selo's Design. Tutti i diritti riservati.`
+    rights:      `© ${new Date().getFullYear()} Selo’s Design. Tutti i diritti riservati.`
   },
 
   privacy: {

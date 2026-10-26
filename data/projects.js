@@ -36,7 +36,7 @@ window.PROJECTS = [
     ],
     intro: [
       { it: "Un progetto di cucina e interior design per una residenza privata ad Amsterdam, attualmente in corso. La cucina selezionata per il progetto è Valcucine.", en: "A kitchen and interior design project for a private residence in Amsterdam, currently in progress. Valcucine is the kitchen brand selected for the project." },
-      { it: "Le immagini sono segnaposto. Il racconto del progetto sarà completato con fotografie e approfondimenti sulle scelte di spazio, materiali e dettagli quando disponibili.", en: "The images are placeholders. Photography and a fuller account of the spatial decisions, materials and details will be added as they become available." }
+      { it: "Il racconto del progetto sarà completato con fotografie e approfondimenti sulle scelte di spazio, materiali e dettagli quando disponibili.", en: "Photography and a fuller account of the spatial decisions, materials and details will be added as they become available." }
     ],
     gallery: [
       { src: "assets/projects/amsterdam/placeholder.svg", caption: { it: "Immagini del progetto — in preparazione", en: "Project images — coming soon" } }
@@ -62,21 +62,37 @@ window.PROJECTS = [
       { label: { it: "Servizi",    en: "Services", tr: "Hizmetler" }, value: { it: "Progettazione · Rendering · Arredo · Gestione e coordinamento pratiche e cantiere", en: "Design · Rendering · Furnishing · Permits & site management",   tr: "Tasarım · Render · Dekorasyon · İzin ve şantiye yönetimi" } }
     ],
 
+    subtitle: { it: "UNA STANZA IN PIÙ", en: "AN EXTRA ROOM", tr: "BİR ODA DAHA" },
     intro: [
       {
-        it: "Il cliente aveva bisogno di una camera in più, per dare a ciascun figlio il proprio spazio. La soluzione è nata ricavando una nuova stanza da una porzione del soggiorno, sfruttando la finestra già presente per garantire luce naturale e areazione autonome al nuovo ambiente. L'accesso dal corridoio non era percorribile per l'ingombro di un'armadiatura esistente: la stanza si apre quindi direttamente sul soggiorno, con una porta scorrevole filomuro che minimizza l'impatto visivo. Trattandosi della camera di un ragazzo appassionato di musica, il nuovo muro è stato progettato più spesso del necessario, con lastre e materiali fonoisolanti per garantire il comfort acustico di entrambi gli ambienti. Il linguaggio materico è stato mantenuto coerente tra i due spazi: stesso pavimento, stesso zoccolino, stessa cornice in legno con LED integrato corre sia all'interno della nuova camera sia sul nuovo muro del soggiorno, così che l'intervento si legga come continuità e non come aggiunta. Anche la palette resta neutra e chiara in entrambi gli ambienti, lasciando all'arredamento il compito di creare gli stacchi cromatici. Un elemento chiave del progetto è la libreria a nicchia ricavata nello spessore del nuovo muro: nel soggiorno diventa spazio di contenimento, nella camera offre flessibilità per l'arredo del ragazzo.",
-        en: "The clients needed an additional bedroom, so each of their children could have their own space. The solution carved a new room out of part of the living room, using the existing window to give the new space its own natural light and ventilation. Access from the hallway wasn't possible due to a large built-in wardrobe, so the room opens directly onto the living room instead, through a flush sliding door that keeps the visual impact minimal. As the room was designed for a teenager passionate about music, the new wall was built thicker than strictly necessary, with acoustic panels and sound-insulating materials to protect the comfort of both spaces. The material language stays consistent throughout: the same flooring, the same skirting board, and the same wood cornice with integrated LED lighting run both inside the new bedroom and along the new living-room wall, so the intervention reads as continuity rather than addition. The palette remains light and neutral in both rooms, leaving the furniture free to create colour contrast. A key feature of the project is a built-in niche bookshelf carved into the thickness of the new wall — storage space on the living-room side, flexible furnishing options on the bedroom side.",
-        tr: "Müşterinin, her çocuğuna kendi alanını verebilmek için fazladan bir odaya ihtiyacı vardı. Çözüm, salonun bir bölümünden yeni bir oda kazanılarak ortaya çıktı; mevcut pencere, yeni mekâna kendi doğal ışığını ve havalandırmasını sağlamak için kullanıldı. Koridordan erişim, mevcut büyük bir gömme dolabın hacmi nedeniyle mümkün değildi: bu yüzden oda doğrudan salona açılıyor, görsel etkiyi en aza indiren duvarla bütünleşik bir sürgülü kapı ile. Müziğe tutkun bir gencin odası olduğundan, yeni duvar gerekenden daha kalın tasarlandı; her iki mekânın da akustik konforunu sağlamak için ses yalıtımlı paneller ve malzemeler kullanıldı. Malzeme dili iki mekân arasında tutarlı tutuldu: aynı zemin, aynı süpürgelik, entegre LED aydınlatmalı aynı ahşap kornis hem yeni yatak odasının içinde hem de salonun yeni duvarı boyunca devam ediyor; böylece müdahale bir ekleme değil bir süreklilik olarak okunuyor. Palet her iki mekânda da açık ve nötr kalıyor, renk kontrastlarını yaratma görevini mobilyalara bırakıyor. Projenin kilit unsurlarından biri, yeni duvarın kalınlığından yararlanılarak oluşturulan niş kitaplıktır: salon tarafında depolama alanı olurken, oda tarafında gencin eşyaları için esneklik sunuyor."
+        it: "In un appartamento di 95 m² a Corbetta, la famiglia aveva bisogno di una camera in più, per dare a ciascun figlio uno spazio proprio.",
+        en: "In a 95 m² apartment in Corbetta, the family needed an extra bedroom so that each child could have a space of their own.",
+        tr: "Corbetta’daki 95 m²’lik bir dairede yaşayan ailenin, her çocuğun kendine ait bir alanı olması için bir odaya daha ihtiyacı vardı."
+      },
+      {
+        it: "La nuova stanza è ricavata da una porzione del soggiorno e sfrutta una finestra esistente, che le garantisce luce naturale e aerazione autonome. L’accesso dal corridoio non è praticabile per l’ingombro di un’armadiatura esistente. La camera si apre quindi sul soggiorno, con una porta scorrevole filomuro che ne riduce al minimo l’impatto visivo.",
+        en: "The new room occupies part of the living room and uses an existing window to provide its own natural light and ventilation. Access from the hallway is not possible because of an existing wardrobe. The bedroom therefore opens onto the living room through a flush sliding door that keeps its visual impact to a minimum.",
+        tr: "Yeni oda, salonun bir bölümünden elde ediliyor ve mevcut bir pencereden yararlanarak kendi doğal ışığına ve havalandırmasına sahip oluyor. Mevcut bir gardırobun kapladığı alan nedeniyle koridordan giriş mümkün değil. Bu nedenle yatak odası, görsel etkisi en aza indirilen, duvarla aynı hizada bir sürgülü kapıyla salona açılıyor."
+      },
+      {
+        it: "La stanza è pensata per un ragazzo appassionato di musica. Per questo la nuova parete integra lastre e materiali fonoisolanti, a tutela del comfort acustico di entrambi gli ambienti. Pavimento e zoccolino proseguono senza interruzioni, perché l’intervento si legga come continuità della casa e non come un’aggiunta.",
+        en: "The room is designed for a boy with a passion for music. The new wall therefore incorporates sound-insulating boards and materials to protect the acoustic comfort of both spaces. The flooring and skirting board continue without interruption, so that the intervention feels like a continuation of the home rather than an addition.",
+        tr: "Oda, müziğe ilgi duyan bir genç için düşünülüyor. Bu nedenle yeni bölme duvar, her iki mekânın akustik konforunu korumak için ses yalıtım levhaları ve malzemeleri içeriyor. Zemin kaplaması ve süpürgelik kesintisiz devam ediyor; böylece müdahale, sonradan eklenen bir bölümden çok evin devamı olarak algılanıyor."
+      },
+      {
+        heading: { it: "Il concept", en: "The concept", tr: "Konsept" },
+        it: "La proposta progettuale sviluppava la nuova parete come elemento d’arredo. Lo spessore aggiuntivo ospitava una libreria a nicchia, che verso il soggiorno diventava spazio di contenimento e verso la camera lasciava libertà nell’arredo. Una cornice in legno con LED integrato correva sia nella camera sia sul lato del soggiorno, unendo i due ambienti in un unico linguaggio materico.",
+        en: "The design proposal developed the new wall as a furnishing element. Its additional thickness accommodated a recessed bookcase, providing storage on the living-room side while leaving flexibility for furnishing the bedroom. A wooden trim with integrated LED lighting ran through the bedroom and along the living-room side, uniting the two spaces through a shared material language.",
+        tr: "Tasarım önerisinde yeni duvar bir mobilya öğesi olarak ele alınıyordu. Ek duvar kalınlığına yerleştirilen niş kitaplık, salon tarafında depolama alanı sağlıyor, yatak odası tarafında ise mobilya yerleşimine esneklik bırakıyordu. Entegre LED aydınlatmalı ahşap bir çerçeve hem yatak odasında hem de salon tarafında devam ederek iki mekânı ortak bir malzeme diliyle birleştiriyordu."
       }
     ],
 
     gallery: [
-      { src: "assets/projects/camera-corbetta/living_room_1.png",  caption: { it: "Soggiorno — nuovo muro e libreria a nicchia", en: "Living room — new wall and niche bookshelf", tr: "Salon — yeni duvar ve niş kitaplık" } },
-      { src: "assets/projects/camera-corbetta/living_room_2.png", caption: { it: "Vista del soggiorno",                     en: "Living room view",                                tr: "Salon görünümü" } },
-      { src: "assets/projects/camera-corbetta/camera_1.png", caption: { it: "Camera - Vista Entrata",                 en: "Bedroom — entrance with flush sliding door",       tr: "Yatak odası — duvarla bütünleşik sürgülü kapı girişi" } },
-      { src: "assets/projects/camera-corbetta/camera_2.png",  caption: { it: "Camera - Vista Zona Studio / DJ",           en: "Bedroom — study / DJ area",                   tr: "Yatak odası — çalışma / DJ alanı" } },
-      { src: "assets/projects/camera-corbetta/camera_3.png",  caption: { it: "Camera - Vista Letto",           en: "Bedroom — Bed side",                   tr: "Yatak odası — Yatak" } }
-
+      { src: "assets/projects/camera-corbetta/living_room_1.png", caption: { it: "Concept — Soggiorno: nuova parete e libreria a nicchia", en: "Concept — Living room: new wall and recessed bookcase", tr: "Konsept — Salon: yeni duvar ve niş kitaplık" } },
+      { src: "assets/projects/camera-corbetta/living_room_2.png", caption: { it: "Concept — Vista del soggiorno", en: "Concept — Living room view", tr: "Konsept — Salon görünümü" } },
+      { src: "assets/projects/camera-corbetta/camera_1.png", caption: { it: "Concept — Camera: ingresso con porta scorrevole filomuro", en: "Concept — Bedroom: entrance with flush sliding door", tr: "Konsept — Yatak odası: duvarla aynı hizada sürgülü kapı girişi" } },
+      { src: "assets/projects/camera-corbetta/camera_2.png", caption: { it: "Concept — Camera: zona studio / DJ", en: "Concept — Bedroom: study / DJ area", tr: "Konsept — Yatak odası: çalışma / DJ alanı" } },
+      { src: "assets/projects/camera-corbetta/camera_3.png", caption: { it: "Concept — Camera: zona letto", en: "Concept — Bedroom: sleeping area", tr: "Konsept — Yatak odası: yatak alanı" } }
     ]
   },
 
@@ -106,20 +122,30 @@ window.PROJECTS = [
     ],
 
     // Testo introduttivo — array di paragrafi
+    subtitle: { it: "APERTURA E COLORE", en: "OPENNESS AND COLOUR", tr: "AÇIKLIK VE RENK" },
     intro: [
       {
-        it: "Un trilocale di 95 m² in uno stabile signorile a Magenta, ripensato per una giovane coppia. L'intervento chiave è l'abbattimento della parete tra cucina e soggiorno: un unico open space luminoso e conviviale al posto della distribuzione tradizionale. Una palette neutra di bianchi e grigi caldi fa da sfondo ad accenti vivaci — giallo, verde, corallo — di ispirazione pop-art, mentre la zona notte resta intima, con arredi su misura e contenimento integrato.",
-        en: "A 95 m² three-room flat in an elegant period building in Magenta, reimagined for a young couple. The key move is removing the wall between kitchen and living room: a single, bright, convivial open space in place of the traditional layout. A neutral palette of whites and warm greys sets the stage for vivid accents — yellow, green, coral — with a pop-art feel, while the sleeping area stays intimate, with bespoke furniture and integrated storage.",
-        tr: "Magenta'da şık ve eski bir binada yer alan 95 m²'lik bir 3+1 daire, genç bir çift için yeniden tasarlandı. Projenin kilit hamlesi, mutfak ile salon arasındaki duvarın kaldırılması: geleneksel düzenin yerini aydınlık ve davetkâr tek bir açık mekân alıyor. Beyaz ve sıcak grilerden oluşan nötr bir palet, pop-art esintili canlı vurgulara — sarı, yeşil, mercan — zemin oluştururken, yatak bölgesi özel mobilyalar ve entegre depolama çözümleriyle samimi kalıyor."
+        it: "Il progetto ripensa un trilocale di 95 m² in uno stabile signorile di Magenta per le esigenze di una giovane coppia. La distribuzione tradizionale lascia spazio a una zona giorno aperta, mentre la zona notte mantiene la propria riservatezza.",
+        en: "The project reimagines a 95 m² three-room flat in an elegant apartment building in Magenta for a young couple. The traditional layout gives way to an open living area, while the bedrooms retain their privacy.",
+        tr: "Proje, Magenta’daki şık bir apartmanda bulunan 95 m²’lik üç odalı bir daireyi genç bir çiftin ihtiyaçları doğrultusunda yeniden ele alıyor. Geleneksel yerleşim, açık bir yaşam alanına dönüşürken yatak odaları mahremiyetini koruyor."
       },
       {
-        it: "La zona living è pavimentata in SPC effetto legno per continuità visiva e resistenza, mentre le camere adottano un parquet che ne scalda l'atmosfera. Il bagno è stato rinnovato con doccia walk-in in vetro trasparente, mobile su misura e finiture effetto ceppo di Gré, valorizzate da nicchie decorative. L'illuminazione alterna faretti a incasso, per le aree funzionali, e corpi decorativi che definiscono i punti focali di ogni ambiente.",
-        en: "On the technical side, the living area is laid with wood-effect SPC flooring for visual continuity and durability, while the bedrooms use parquet to warm the atmosphere. The bathroom was renovated with a clear-glass walk-in shower, a bespoke vanity and ceppo di Gré stone-effect finishes, enhanced by decorative niches. Lighting alternates recessed spots for the functional areas with decorative fixtures that define the focal points of each room.",
-        tr: "Teknik açıdan, yaşam alanı görsel süreklilik ve dayanıklılık için ahşap görünümlü SPC zeminle döşenirken, yatak odalarında atmosferi ısıtan parke kullanıldı. Banyo; şeffaf camlı bir walk-in duş, özel tasarım lavabo dolabı ve dekoratif nişlerle zenginleştirilmiş ceppo di Gré taş görünümlü yüzeylerle yenilendi. Aydınlatma, işlevsel alanlar için gömme spotlarla her mekânın odak noktalarını tanımlayan dekoratif armatürleri bir araya getiriyor."
+        it: "L’intervento principale è l’eliminazione della parete tra cucina e soggiorno. Ne nasce un unico open space luminoso, pensato sia per la vita quotidiana sia per ricevere. La cucina con isola e la colonna elettrodomestici organizzano l’ambiente senza dividerlo.",
+        en: "The main intervention is the removal of the wall between the kitchen and living room. This creates a single, bright open-plan space for everyday life and entertaining. The kitchen with its island and tall appliance unit organises the room without dividing it.",
+        tr: "Müdahalenin odağında, mutfakla salon arasındaki duvarın kaldırılması yer alıyor. Böylece hem günlük yaşam hem de misafir ağırlamak için düşünülen, aydınlık ve bütünleşik bir açık alan ortaya çıkıyor. Adalı mutfak ve ankastre cihazların yer aldığı boy dolabı, mekânı bölmeden düzenliyor."
+      },
+      {
+        it: "La palette si fonda su bianchi e grigi caldi, su cui si innestano accenti di giallo, verde e corallo di ispirazione pop art. Nella zona notte, gli arredi su misura e la cabina armadio integrano il contenimento nell’architettura della casa. Completa la pianta un piccolo studio.",
+        en: "The palette is based on whites and warm greys, punctuated by pop art-inspired accents of yellow, green and coral. In the bedrooms, bespoke furniture and a walk-in wardrobe integrate storage into the architecture of the home. A small study completes the layout.",
+        tr: "Paletin temelini beyazlar ve sıcak griler oluşturuyor; pop art’tan ilham alan sarı, yeşil ve mercan vurgular bu zemini canlandırıyor. Yatak odalarında özel tasarım mobilyalar ve giyinme odası, depolamayı evin mimarisine dâhil ediyor. Küçük bir çalışma odası da planı tamamlıyor."
+      },
+      {
+        it: "I materiali sono scelti in base all’uso. Nel living il pavimento in SPC effetto legno garantisce continuità visiva e resistenza, mentre nelle camere il parquet rende l’atmosfera più calda. Il bagno ha una doccia walk-in in vetro trasparente, un mobile su misura e finiture effetto ceppo di Gré, scandite da nicchie decorative. L’illuminazione alterna faretti a incasso nelle zone funzionali e corpi decorativi che segnano i punti focali di ogni ambiente.",
+        en: "Materials are chosen according to how each space is used. In the living area, wood-effect SPC flooring provides visual continuity and durability, while parquet brings warmth to the bedrooms. The bathroom features a clear-glass walk-in shower, a bespoke vanity and Ceppo di Gré stone-effect finishes, punctuated by decorative niches. The lighting combines recessed spotlights in functional areas with decorative fixtures that mark the focal points of each room.",
+        tr: "Malzemeler kullanım amacına göre seçiliyor. Yaşam alanında ahşap görünümlü SPC zemin kaplaması görsel süreklilik ve dayanıklılık sağlarken yatak odalarındaki parke atmosfere sıcaklık katıyor. Banyoda şeffaf camlı bir walk-in duş, özel tasarım bir lavabo dolabı ve dekoratif nişlerle hareketlenen Ceppo di Gré görünümlü yüzeyler yer alıyor. Aydınlatmada, işlevsel alanlardaki gömme spotlarla her mekânın odak noktalarını belirleyen dekoratif aydınlatma elemanları bir araya geliyor."
       }
     ],
 
-    // Galleria fotografica
     gallery: [
       { src: "assets/projects/trilocale/open_space_1.png", caption: { it: "Open space — living e cucina",    en: "Open space — living and kitchen",  tr: "Açık mekân — salon ve mutfak" } },
       { src: "assets/projects/trilocale/living_1.png",     caption: { it: "Zona living",                     en: "Living area",                      tr: "Yaşam alanı" } },
@@ -155,16 +181,27 @@ window.PROJECTS = [
       { label: { it: "Servizi",    en: "Services", tr: "Hizmetler" }, value: { it: "Proposta d'arredo · Rendering",     en: "Furnishing proposal · Rendering", tr: "Dekorasyon önerisi · Render" } }
     ],
 
+    subtitle: { it: "STORIA E LEGGEREZZA", en: "HERITAGE AND LIGHTNESS", tr: "TARİH VE HAFİFLİK" },
     intro: [
       {
-        it: "Un bilocale di 55 m² in una casa di corte in stile vecchia Milano, nella zona di Corso Sempione. Commissionato da un'agenzia immobiliare per rendere l'appartamento più attraente e vendibile, il progetto è un restyling mirato che rispetta la planimetria esistente e valorizza ogni metro quadro, mettendo in dialogo i dettagli storici dell'edificio con un'estetica contemporanea.",
-        en: "A 55 m² flat in an old-Milan courtyard building near Corso Sempione. Commissioned by a real estate agency to make the apartment more appealing and sellable, the project is a targeted restyling that respects the existing layout and makes the most of every square metre, putting the building's historic details in dialogue with a contemporary aesthetic.",
-        tr: "Corso Sempione yakınında, eski Milano tarzı avlulu bir binada 55 m²'lik bir daire. Daireyi daha çekici ve satılabilir kılmak için bir emlak ofisi tarafından sipariş edilen proje, mevcut planı koruyan ve her metrekareyi değerlendiren hedefe yönelik bir yenileme; binanın tarihî detaylarını çağdaş bir estetikle diyaloğa sokuyor."
+        it: "Un bilocale di 55 m² in una casa di corte della vecchia Milano, a pochi passi da Corso Sempione. Il progetto, commissionato da un’agenzia immobiliare, è una proposta d’arredo pensata per valorizzare l’appartamento in vista della vendita.",
+        en: "A 55 m² two-room flat in a traditional courtyard building in old Milan, a short walk from Corso Sempione. Commissioned by a real estate agency, the project is a furnishing proposal designed to enhance the apartment ahead of its sale.",
+        tr: "Eski Milano’da, Corso Sempione’ye birkaç adım mesafedeki avlulu bir yapıda yer alan 55 m²’lik iki odalı bir daire. Bir emlak ajansı tarafından talep edilen proje, daireyi satış öncesinde daha iyi değerlendirmeyi amaçlayan bir dekorasyon önerisi."
       },
       {
-        it: "La palette è delicata — bianco, beige e verde tenue — per un ambiente equilibrato e rilassante. La zona giorno unisce cucina e soggiorno: pensili bianchi con dettagli in legno chiaro, arredi dalle linee pulite e complementi moderni. La camera è ottimizzata con armadio su misura e scrivania integrata, mentre il bagno rinnovato alterna ceramica bianca e legno naturale, con nicchie illuminate e storage a scomparsa. Il parquet, uniformato in tutti gli ambienti, garantisce continuità visiva e un tocco naturale.",
-        en: "The palette is gentle — white, beige and soft green — for a balanced, relaxing feel. The living area merges kitchen and lounge: white cabinets with light-wood details, clean-lined furniture and modern accents. The bedroom is optimised with a bespoke wardrobe and integrated desk, while the renovated bathroom alternates white ceramic and natural wood, with lit niches and concealed storage. Parquet, unified across all rooms, ensures visual continuity and a natural touch.",
-        tr: "Palet yumuşak — beyaz, bej ve hafif yeşil — dengeli ve dinlendirici bir his için. Yaşam alanı mutfak ile salonu birleştiriyor: açık ahşap detaylı beyaz dolaplar, sade hatlı mobilyalar ve modern tamamlayıcılar. Yatak odası özel tasarım gardırop ve entegre çalışma masasıyla optimize edildi; yenilenen banyoda ise aydınlatmalı nişler ve gizli depolama alanlarıyla beyaz seramik ve doğal ahşap dönüşümlü olarak kullanıldı. Tüm mekânlarda aynılaştırılan parke, görsel süreklilik ve doğal bir dokunuş sağlıyor."
+        it: "La planimetria resta invariata. L’intervento lavora su arredi, colori e materiali per sfruttare ogni metro quadro e far dialogare i dettagli storici dell’edificio con un linguaggio contemporaneo.",
+        en: "The floor plan remains unchanged. The proposal uses furniture, colours and materials to make the most of every square metre and bring the building’s historic details together with a contemporary design language.",
+        tr: "Dairenin planı değişmeden korunuyor. Müdahale, her metrekareyi değerlendirmek ve yapının tarihî detaylarını çağdaş bir tasarım diliyle buluşturmak için mobilya, renk ve malzemelere odaklanıyor."
+      },
+      {
+        it: "La palette è delicata, fatta di bianco, beige e verde tenue, per un ambiente equilibrato e riposante. La zona giorno riunisce cucina e soggiorno, con pensili bianchi dai dettagli in legno chiaro, arredi dalle linee essenziali e pochi complementi contemporanei. In camera, un armadio su misura con scrivania integrata ottimizza lo spazio e ricava anche un angolo relax.",
+        en: "A soft palette of white, beige and muted green creates a balanced, restful interior. The living area brings the kitchen and sitting room together, with white wall cabinets featuring pale wood details, clean-lined furniture and a few contemporary accessories. In the bedroom, a bespoke wardrobe with an integrated desk optimises the space and creates a corner for relaxation.",
+        tr: "Beyaz, bej ve açık yeşilden oluşan yumuşak palet, dengeli ve dinlendirici bir atmosfer yaratıyor. Yaşam alanı mutfakla salonu bir araya getiriyor; açık renkli ahşap detaylara sahip beyaz üst dolaplar, yalın çizgili mobilyalar ve az sayıda çağdaş aksesuar kullanılıyor. Yatak odasında, entegre çalışma masasına sahip özel tasarım gardırop alanı verimli kullanıyor ve bir dinlenme köşesine de yer açıyor."
+      },
+      {
+        it: "Nel bagno la ceramica bianca si alterna al legno naturale, con nicchie illuminate e contenitori a scomparsa. Il parquet, esteso a tutti gli ambienti, dà continuità all’insieme e introduce un elemento naturale.",
+        en: "The bathroom combines white ceramic and natural wood, with illuminated niches and concealed storage. Parquet flooring runs throughout the apartment, bringing continuity and a natural element to the interior.",
+        tr: "Banyoda beyaz seramik, doğal ahşapla bir araya geliyor; aydınlatılmış nişler ve gizli depolama çözümleri kullanılıyor. Tüm mekânlara yayılan parke, evin bütününde süreklilik sağlıyor ve doğal bir unsur katıyor."
       }
     ],
 
@@ -200,16 +237,27 @@ window.PROJECTS = [
       { label: { it: "Servizi",    en: "Services", tr: "Hizmetler" }, value: { it: "Ristrutturazione · Rendering",     en: "Renovation · Rendering",          tr: "Renovasyon · Render" } }
     ],
 
+    subtitle: { it: "COMPATTO E VERSATILE", en: "COMPACT AND VERSATILE", tr: "KOMPAKT VE ÇOK YÖNLÜ" },
     intro: [
       {
-        it: "Un monolocale di 35 m² nel cuore di Paolo Sarpi, quartiere vivace e multiculturale di Milano, pensato come B&B per soggiorni brevi. L'intervento ottimizza uno spazio compatto in un ambiente coeso e versatile, dove cucina, zona pranzo e zona notte si integrano in un'unica fluidità visiva — fresca e contemporanea, in sintonia con l'energia del quartiere.",
-        en: "A 35 m² studio flat in the heart of Paolo Sarpi, one of Milan's liveliest, most multicultural neighbourhoods, designed as a B&B for short stays. The project optimises a compact space into a cohesive, versatile environment where kitchen, dining and sleeping areas merge into a single visual flow — fresh and contemporary, in tune with the area's energy.",
-        tr: "Milano'nun en hareketli ve çok kültürlü semtlerinden Paolo Sarpi'nin kalbinde, kısa konaklamalar için B&B olarak tasarlanmış 35 m²'lik bir stüdyo daire. Proje, kompakt bir alanı; mutfak, yemek ve yatak bölgelerinin tek bir görsel akışta birleştiği bütünlüklü ve çok yönlü bir ortama dönüştürüyor — semtin enerjisiyle uyumlu, taze ve çağdaş."
+        it: "Un monolocale di 35 m² nel cuore di Paolo Sarpi, uno dei quartieri più vivaci e multiculturali di Milano, pensato come B&B per soggiorni brevi.",
+        en: "A 35 m² studio flat in the heart of Paolo Sarpi, one of Milan’s liveliest and most multicultural neighbourhoods, designed as a B&B for short stays.",
+        tr: "Milano’nun en canlı ve çok kültürlü semtlerinden Paolo Sarpi’nin kalbinde, kısa süreli konaklamalar için B&B olarak düşünülen 35 m²’lik bir stüdyo daire."
       },
       {
-        it: "Il fulcro è la cucina in verde oliva con piani effetto marmo Calacatta e un'isola che funge anche da postazione di lavoro; un divano-letto trasforma la zona giorno in camera, affiancato da mensole su misura. Il pavimento in terrazzo unifica tutti gli ambienti, reinterpretando la tradizione milanese in chiave contemporanea, mentre lampade dalle forme geometriche in giallo e verde danno carattere. Il bagno, minimalista, alterna piastrelle bianche con fughe verdi e mobile lavabo verde, celando con discrezione l'area lavatrice e asciugatrice.",
-        en: "At its core is an olive-green kitchen with Calacatta marble-effect worktops and an island that doubles as a workstation; a sofa bed turns the living area into a bedroom, flanked by bespoke shelving. Terrazzo flooring unifies every room, reinterpreting Milanese tradition in a contemporary key, while geometric lamps in yellow and green add character. The minimalist bathroom alternates white tiles with green grouting and a green vanity, discreetly concealing the washer and dryer area.",
-        tr: "Merkezde, Calacatta mermer görünümlü tezgâhlara sahip zeytin yeşili bir mutfak ve aynı zamanda çalışma alanı olarak da kullanılan bir ada yer alıyor; bir çekyat, özel tasarım raflarla çevrelenerek yaşam alanını yatak odasına dönüştürüyor. Terrazzo zemin tüm mekânları birleştirerek Milano geleneğini çağdaş bir anlayışla yeniden yorumlarken, sarı ve yeşil geometrik lambalar karakter katıyor. Minimalist banyo, yeşil derzli beyaz fayanslar ile yeşil bir lavabo dolabını dönüşümlü kullanıyor ve çamaşır–kurutma alanını ustaca gizliyor."
+        it: "L’obiettivo è trasformare uno spazio compatto in un ambiente unico e versatile, dove cucina, zona pranzo e zona notte si susseguono senza interruzioni visive.",
+        en: "The aim is to turn a compact space into a single, versatile interior, where the kitchen, dining area and sleeping area flow into one another without visual breaks.",
+        tr: "Amaç, kompakt bir alanı mutfak, yemek ve uyku bölümlerinin görsel kesintiler olmadan birbirini izlediği, bütünleşik ve çok yönlü bir mekâna dönüştürmek."
+      },
+      {
+        it: "Il fulcro del progetto è la cucina in verde oliva con piani effetto marmo Calacatta, completata da un’isola che funziona come tavolo da pranzo e come postazione di lavoro. Un divano letto, affiancato da mensole su misura, permette alla zona giorno di trasformarsi in camera.",
+        en: "At the heart of the design is an olive-green kitchen with Calacatta marble-effect worktops, completed by an island that serves as both a dining table and a workspace. A sofa bed, flanked by made-to-measure shelving, allows the living area to become a bedroom.",
+        tr: "Projenin odağında, Calacatta mermeri görünümlü tezgâhlara sahip zeytin yeşili mutfak yer alıyor. Hem yemek masası hem de çalışma alanı olarak kullanılan bir ada mutfağı tamamlıyor. Özel ölçü raflarla çevrelenen bir çekyat, yaşam alanının yatak odasına dönüşmesini sağlıyor."
+      },
+      {
+        it: "Il pavimento in terrazzo unifica tutti gli ambienti e reinterpreta in chiave contemporanea un materiale della tradizione milanese. Le lampade dalle forme geometriche in giallo e verde danno carattere allo spazio. Il bagno, essenziale, abbina piastrelle bianche con fughe verdi a un mobile lavabo nello stesso tono e nasconde con discrezione lavatrice e asciugatrice.",
+        en: "Terrazzo flooring unifies all the spaces, giving a contemporary interpretation to a material rooted in Milanese tradition. Geometric lights in yellow and green give the interior its character. The pared-back bathroom pairs white tiles and green grout with a matching green vanity, discreetly concealing the washing machine and tumble dryer.",
+        tr: "Terrazzo zemin, tüm mekânları birleştiriyor ve Milano geleneğine ait bir malzemeyi çağdaş bir yorumla ele alıyor. Sarı ve yeşil renkli geometrik aydınlatmalar mekâna karakter katıyor. Yalın tasarımlı banyoda, yeşil derzli beyaz fayanslar aynı tondaki bir lavabo dolabıyla eşleşirken çamaşır ve kurutma makineleri göze çarpmayacak şekilde gizleniyor."
       }
     ],
 
@@ -241,16 +289,22 @@ window.PROJECTS = [
       { label: { it: "Progetto",   en: "Project",  tr: "Proje" }, value: { it: "Disegno e scelta arredi",          en: "Design & furniture selection",    tr: "Tasarım ve mobilya seçimi" } }
     ],
 
+    subtitle: { it: "LUCE NATURALE", en: "NATURAL LIGHT", tr: "DOĞAL IŞIK" },
     intro: [
       {
-        it: "Una zona living con cucina di 45 m² a Eindhoven, ripensata come un unico ambiente luminoso e fluido. Il progetto disegna lo spazio e ne seleziona gli arredi attorno a una palette neutra di bianchi caldi, crema e legno chiaro, lasciando che sia la luce naturale a dare ritmo agli ambienti.",
-        en: "A 45 m² living area with kitchen in Eindhoven, reimagined as a single bright, flowing space. The project shapes the layout and selects the furnishings around a neutral palette of warm whites, cream and light wood, letting natural light set the rhythm of the rooms.",
-        tr: "Eindhoven'da 45 m²'lik, mutfaklı bir yaşam alanı; aydınlık ve akışkan tek bir mekân olarak yeniden tasarlandı. Proje, mekânın düzenini kuruyor ve mobilyaları sıcak beyazlar, krem ve açık ahşaptan oluşan nötr bir palet etrafında seçiyor; ritmi mekânlara doğal ışığın vermesine izin veriyor."
+        it: "Una zona living con cucina di 45 m² a Eindhoven, ripensata come un unico ambiente luminoso e fluido. L’incarico comprende il disegno dello spazio e la scelta degli arredi.",
+        en: "A 45 m² living area with a kitchen in Eindhoven, reimagined as a single, bright and flowing space. The brief covers spatial design and furniture selection.",
+        tr: "Eindhoven’da, aydınlık ve akıcı tek bir mekân olarak yeniden düşünülen, mutfakla birlikte 45 m²’lik bir yaşam alanı. İşin kapsamı mekân tasarımını ve mobilya seçimini içeriyor."
       },
       {
-        it: "La cucina si integra con la zona pranzo, dove un tavolo affiancato da sedute in paglia di Vienna dialoga con la mensola-fioriera sospesa che porta il verde all'interno. Il soggiorno, raccolto attorno a divani in tessuto chiaro, tavolini tondi e una lampada ad arco, si apre verso l'esterno: pochi accenti grafici e una libreria a giorno completano un ambiente sobrio e accogliente.",
-        en: "The kitchen flows into the dining area, where a table flanked by Vienna-cane chairs converses with a suspended planter-shelf that brings greenery indoors. The living room — gathered around light-fabric sofas, round coffee tables and an arc lamp — opens toward the outside: a few graphic accents and open shelving complete a calm, welcoming space.",
-        tr: "Mutfak, Viyana hasırı sandalyelerle çevrili bir masanın, yeşili içeri taşıyan asılı saksı-rafıyla diyalog kurduğu yemek alanına akıyor. Açık renk kumaş kanepeler, yuvarlak sehpalar ve bir ark lamba etrafında toplanan oturma odası dışarıya açılıyor: birkaç grafik vurgu ve açık raflar sakin ve davetkâr bir mekânı tamamlıyor."
+        it: "Il progetto si sviluppa attorno a una palette neutra di bianchi caldi, crema e legno chiaro. È la luce naturale a dare ritmo agli ambienti.",
+        en: "The design centres on a neutral palette of warm whites, cream and pale wood. Natural light sets the rhythm of the interior.",
+        tr: "Proje, sıcak beyazlar, krem ve açık renkli ahşaptan oluşan nötr bir palet etrafında şekilleniyor. Mekânların ritmini doğal ışık belirliyor."
+      },
+      {
+        it: "La cucina prosegue nella zona pranzo, dove il tavolo con sedute in paglia di Vienna si accompagna a una mensola fioriera sospesa che porta il verde all’interno. Il soggiorno si raccoglie attorno a divani in tessuto chiaro, tavolini tondi e una lampada ad arco, e si apre verso l’esterno. Una madia, una libreria a giorno e pochi accenti grafici completano un ambiente sobrio e accogliente.",
+        en: "The kitchen flows into the dining area, where a table and chairs with Viennese cane seats are accompanied by a suspended planter shelf that brings greenery indoors. The living room is arranged around sofas in light-coloured fabric, round coffee tables and an arc lamp, and opens towards the outdoors. A sideboard, an open bookcase and a few graphic accents complete an understated, welcoming interior.",
+        tr: "Mutfak yemek alanına uzanıyor; Viyana hasırı oturumlu sandalyelerin eşlik ettiği masa, yeşili içeri taşıyan asılı bir saksılık rafla tamamlanıyor. Salon, açık renkli kumaş kanepeler, yuvarlak sehpalar ve kemerli bir lambader etrafında şekilleniyor ve dışarıya açılıyor. Bir konsol, açık bir kitaplık ve birkaç grafik vurgu, sade ve davetkâr bir ortamı tamamlıyor."
       }
     ],
 

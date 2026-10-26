@@ -1,0 +1,27 @@
+/* Loaded only in the optional typography preview. Existing local font files. */
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; src: url('../assets/fonts/cormorant-garamond-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; src: url('../assets/fonts/cormorant-garamond-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; src: url('../assets/fonts/cormorant-garamond-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; src: url('../assets/fonts/cormorant-garamond-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; src: url('../assets/fonts/cormorant-garamond-600-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; src: url('../assets/fonts/cormorant-garamond-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; src: url('../assets/fonts/cormorant-garamond-400-italic-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02FF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; src: url('../assets/fonts/cormorant-garamond-400-italic-latin.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+html[data-font-preview] :is(h1, h2, h3) { font-family: var(--font-preview-headings, var(--font-text)); }
+.font-preview { position: fixed; right: 20px; bottom: 20px; z-index: 900; width: min(360px, calc(100vw - 40px)); max-height: calc(100dvh - 100px); overflow: auto; color: #222; background: #fff; border: 1px solid #d5d5d5; border-radius: 12px; box-shadow: 0 8px 32px #0002; font: 14px/1.5 system-ui, sans-serif; }
+.font-preview[hidden] { display: none; }
+.font-preview summary { cursor: pointer; padding: 14px 16px; font-weight: 600; }
+.font-preview summary span { float: right; font-size: 12px; font-weight: 400; color: #666; }
+.font-preview-controls { padding: 0 16px 16px; }
+.font-preview-controls > p:first-child { margin-bottom: 16px; color: #555; }
+.font-preview label { display: block; margin-bottom: 6px; font-weight: 600; }
+.font-preview label:not(:first-of-type) { margin-top: 14px; }
+.font-preview select { display: block; width: 100%; padding: 9px 10px; border: 1px solid #bbb; border-radius: 5px; background: #fff; color: #222; font: inherit; }
+.font-preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.font-preview button { cursor: pointer; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; background: #f5f5f5; color: #222; font: inherit; font-size: 12px; }
+.font-preview button:hover { background: #eaeaea; }
+.font-preview :is(button, select, summary):focus-visible { outline: 2px solid #247453; outline-offset: 3px; }
+.font-preview-status { min-height: 36px; margin-top: 14px; color: #555; font-size: 12px; }
+.font-preview .font-preview-exit { padding: 6px 0; margin-top: 6px; border: none; background: none; text-decoration: underline; text-underline-offset: 3px; }
+@media print { .font-preview { display: none; } }
