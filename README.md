@@ -2,7 +2,7 @@
 
 Il nome dello studio è **Selo’s Design**, da SElin + LOrenzo + ’s. Usa questa dicitura nei testi, nei metadati e nei dati strutturati.
 
-Sito vetrina statico: nessun framework o server applicativo. In produzione Cloudflare Pages esegue una breve build che genera le pagine SEO statiche; in locale si può aprire `index.html` oppure usare un server HTTP.
+Sito vetrina statico: nessun framework o server applicativo. In produzione Cloudflare Workers esegue una breve build che genera le pagine SEO statiche; in locale si può aprire `index.html` oppure usare un server HTTP.
 
 ---
 
@@ -153,14 +153,24 @@ Le scelte si vedono subito e vengono ricordate nel browser, anche passando a un�
 
 Sono disponibili DM Sans, Manrope, Work Sans, Source Sans 3, Lora e Cormorant Garamond. DM Sans e Cormorant sono locali; le altre famiglie vengono caricate da Google Fonts solo quando selezionate nell’anteprima e richiedono una connessione a Internet.
 
-## Deploy su Cloudflare Pages
+## Deploy su Cloudflare Workers
 
-1. Crea un repository git con tutti i file del sito
-2. Su Cloudflare Pages: connetti il repository e seleziona il branch principale
-3. Build command: `node scripts/export-pages.js`
-4. Build output directory: `dist`
+Il sito è il progetto Workers `seloswebsite`, collegato al repository GitHub
+`lorenzodustycosta/seloswebsite`. Ogni push su `master` aggiorna `selosdesign.com`;
+gli altri branch producono un URL di anteprima.
 
-Cloudflare eseguirà lo script, genererà le cartelle `index.html` per le pagine bilingui e aggiornerà `dist/sitemap.xml`, poi pubblicherà `dist/`. La cartella generata è esclusa da Git e non va modificata manualmente.
+Impostazioni (Settings → Build):
+
+- Build command: `node scripts/export-pages.js`
+- Deploy command: `npx wrangler deploy`
+
+`wrangler.jsonc` indica a Cloudflare di pubblicare la cartella `dist`
+(`"assets": { "directory": "./dist" }`). Cloudflare esegue lo script, genera le
+cartelle `index.html` per le pagine bilingui e `dist/sitemap.xml`, poi pubblica
+`dist/`. La cartella generata è esclusa da Git e non va modificata manualmente.
+
+Se una build fallisce, il sito resta alla versione precedente: apri la build in
+Deployments per leggere il log.
 
 ## Pagine pubbliche e SEO
 
@@ -174,7 +184,7 @@ Ogni pagina ha anche un URL statico, con `index.html` in una cartella: `/team/`,
 `/projects/`, `/project-bilocale-milano/`, `/contact/`, ecc.
 La versione inglese usa il suffisso `-en`, ad esempio `/contact-en/`; la homepage
 inglese è `/home-en/`. Il selettore lingua mantiene la pagina corrente e lo storico.
-Non ci sono dipendenze, framework o build richieste da Cloudflare Pages.
+Non ci sono dipendenze o framework: la build su Cloudflare esegue solo lo script Node.
 
 Dopo aver modificato testi, progetti o template, aggiorna la cartella di build e il sitemap:
 
